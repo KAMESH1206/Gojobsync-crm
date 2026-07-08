@@ -1,0 +1,62 @@
+import { prisma } from '@/lib/db';
+import { NextRequest, NextResponse } from 'next/server';
+
+type RouteParams = { params: Promise<{ id: string }> };
+
+export async function GET(_request: NextRequest, { params }: RouteParams) {
+  try {
+    const { id } = await params;
+    const candidate = await prisma.candidate.findUnique({
+      where: { id },
+      include: { requirement: { select: { title: true, client: { select: { companyName: true } } } }, interviews: true },
+    });
+    if (!candidate) return NextResponse.json({ error: 'Candidate not found' }, { status: 404 });
+    return NextResponse.json({ ...candidate, skills: JSON.parse(candidate.skills) });
+  } catch (error) {
+    console.error('Error fetching candidate:', error);
+    return NextResponse.json({ error: 'Failed to fetch candidate' }, { status: 500 });
+  }
+}
+
+export async function PUT(request: NextRequest, { params }: RouteParams) {
+  try {
+    const { id } = await params;
+    const data = await request.json();
+
+    const updateData: Record<string, unknown> = {};
+    if (data.name !== undefined) updateData.name = data.name.trim();
+    if (data.email !== undefined) updateData.email = data.email.trim();
+    if (data.phone !== undefined) updateData.phone = data.phone.trim();
+    if (data.skills !== undefined) updateData.skills = JSON.stringify(data.skills);
+    if (data.experience !== undefined) updateData.experience = data.experience.trim();
+    if (data.education !== undefined) updateData.education = data.education.trim();
+    if (data.currentCompany !== undefined) updateData.currentCompany = data.currentCompany?.trim() || null;
+    if (data.currentRole !== undefined) updateData.currentRole = data.currentRole?.trim() || null;
+    if (data.expectedSalary !== undefined) updateData.expectedSalary = data.expectedSalary?.trim() || null;
+    if (data.location !== undefined) updateData.location = data.location.trim();
+    if (data.status !== undefined) updateData.status = data.status;
+    if (data.appliedFor !== undefined) updateData.appliedFor = data.appliedFor || null;
+    if (data.notes !== undefined) updateData.notes = data.notes?.trim() || null;
+
+    const candidate = await prisma.candidate.update({ where: { id }, data: updateData });
+    return NextResponse.json({ ...candidate, skills: JSON.parse(candidate.skills) });
+  } catch (error) {
+    console.error('Error updating candidate:', error);
+    return NextResponse.json({ error: 'Failed to update candidate' }, { status: 500 });
+  }
+}
+
+export async function DELETE(_request: NextRequest, { params }: RouteParams) {
+  try {
+    const { id } = await params;
+    const intCount = await prisma.interview.count({ where: { candidateId: id } });
+    if (intCount > 0) {
+      return NextResponse.json({ error: `Cannot delete: ${intCount} interview(s) linked.` }, { status: 409 });
+    }
+    await prisma.candidate.delete({ where: { id } });
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting candidate:', error);
+    return NextResponse.json({ error: 'Failed to delete candidate' }, { status: 500 });
+  }
+}

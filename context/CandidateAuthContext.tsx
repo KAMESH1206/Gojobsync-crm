@@ -1,0 +1,126 @@
+'use client';
+
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
+
+interface CandidateUser {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  headline?: string;
+  skills: string;
+  experience?: string;
+  education?: string;
+  location?: string;
+  currentRole?: string;
+  currentCompany?: string;
+  expectedSalary?: string;
+}
+
+interface CandidateAuthContextType {
+  candidate: CandidateUser | null;
+  isLoading: boolean;
+  login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  logout: () => void;
+  updateProfile: (data: Partial<CandidateUser>) => void;
+  isAuthenticated: boolean;
+  appliedJobs: Set<string>;
+  applyToJob: (jobId: string) => Promise<boolean>;
+}
+
+const CandidateAuthContext = createContext<CandidateAuthContextType | undefined>(undefined);
+
+export function CandidateAuthProvider({ children }: { children: ReactNode }) {
+  const [candidate, setCandidate] = useState<CandidateUser | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [appliedJobs, setAppliedJobs] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const stored = localStorage.getItem('candidate_user');
+    if (stored) {
+      try { setCandidate(JSON.parse(stored)); } catch { localStorage.removeItem('candidate_user'); }
+    }
+    setIsLoading(false);
+  }, []);
+
+  const refreshApplications = useCallback(async (candId: string) => {
+    try {
+      const res = await fetch(`/api/candidate-auth/applications?candidateAccountId=${candId}`);
+      if (res.ok) {
+        const data = await res.json();
+        const ids = new Set<string>(data.map((app: any) => app.requirementId));
+        setAppliedJobs(ids);
+      }
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    if (candidate) refreshApplications(candidate.id);
+    else setAppliedJobs(new Set());
+  }, [candidate, refreshApplications]);
+
+  const login = useCallback(async (email: string, password: string) => {
+    try {
+      const res = await fetch('/api/candidate-auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) return { success: false, error: data.error || 'Login failed' };
+      setCandidate(data);
+      localStorage.setItem('candidate_user', JSON.stringify(data));
+      refreshApplications(data.id);
+      return { success: true };
+    } catch {
+      return { success: false, error: 'Network error. Please try again.' };
+    }
+  }, [refreshApplications]);
+
+  const logout = useCallback(() => {
+    setCandidate(null);
+    setAppliedJobs(new Set());
+    localStorage.removeItem('candidate_user');
+  }, []);
+
+  const updateProfile = useCallback((data: Partial<CandidateUser>) => {
+    setCandidate(prev => {
+      if (!prev) return prev;
+      const updated = { ...prev, ...data };
+      localStorage.setItem('candidate_user', JSON.stringify(updated));
+      return updated;
+    });
+  }, []);
+
+  const applyToJob = useCallback(async (jobId: string) => {
+    if (!candidate) return false;
+    try {
+      const res = await fetch('/api/candidate-auth/applications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ candidateAccountId: candidate.id, requirementId: jobId })
+      });
+      if (res.ok || res.status === 409) {
+        setAppliedJobs(prev => {
+          const next = new Set(prev);
+          next.add(jobId);
+          return next;
+        });
+        return true;
+      }
+      return false;
+    } catch { return false; }
+  }, [candidate]);
+
+  return (
+    <CandidateAuthContext.Provider value={{ candidate, isLoading, login, logout, updateProfile, isAuthenticated: !!candidate, appliedJobs, applyToJob }}>
+      {children}
+    </CandidateAuthContext.Provider>
+  );
+}
+
+export function useCandidateAuth() {
+  const ctx = useContext(CandidateAuthContext);
+  if (!ctx) throw new Error('useCandidateAuth must be used within CandidateAuthProvider');
+  return ctx;
+}
