@@ -313,6 +313,7 @@ export default function CareersPage() {
               />
             </div>
             <button
+              onClick={() => document.getElementById('jobs-list')?.scrollIntoView({ behavior: 'smooth' })}
               style={{ background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', color: 'white', border: 'none', borderRadius: 16, padding: '0 2.5rem', fontWeight: 700, fontSize: '1rem', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all 0.2s', height: '54px' }}
               className="hover:shadow-[0_0_20px_rgba(14,165,233,0.5)] hover:scale-[1.02]"
             >
@@ -403,7 +404,7 @@ export default function CareersPage() {
       )}
 
       {/* ===== ALL JOBS LIST ===== */}
-      <section style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem 6rem' }}>
+      <section id="jobs-list" style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem 6rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyItems: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between' }}>
           <div>
             <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: isDark ? 'white' : '#0f172a', marginBottom: 8, letterSpacing: '-0.5px', transition: 'color 0.3s' }}>Latest Openings</h2>
