@@ -4,24 +4,21 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Briefcase, Building2, Zap, ArrowRight, Sun, Moon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
 
 export default function Home() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('portal_theme') as 'light' | 'dark';
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
+    setMounted(true);
   }, []);
 
   const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme);
-    localStorage.setItem('portal_theme', nextTheme);
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  const isDark = theme === 'dark';
+  const isDark = mounted ? theme === 'dark' : true;
 
   return (
     <div style={{ 
