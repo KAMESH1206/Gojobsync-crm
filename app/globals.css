@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* ============================================
    MANPOWER CRM — PREMIUM DESIGN SYSTEM

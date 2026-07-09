@@ -37,9 +37,9 @@ export default function FAQ() {
   const currentFaqs = faqsData[activeTab] || [];
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-slate-900 transition-colors duration-300">
       {/* Header Banner */}
-      <div className="bg-[#0a1f44] text-white py-16">
+      <div className="bg-slate-900 dark:bg-slate-950 text-white py-16 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-2">Frequently Asked Questions</h1>
@@ -62,7 +62,7 @@ export default function FAQ() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl font-extrabold text-[#0a1f44] mb-4"
+          className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4 transition-colors duration-300"
         >
           How Can We Help You?
         </motion.h2>
@@ -71,7 +71,7 @@ export default function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-gray-500 font-medium max-w-2xl mx-auto mb-12"
+          className="text-slate-500 dark:text-slate-400 font-medium max-w-2xl mx-auto mb-12 transition-colors duration-300"
         >
           Find answers to the most common questions about GOJOBSYNC. Can't find what you're looking for? Contact our support team.
         </motion.p>
@@ -85,10 +85,10 @@ export default function FAQ() {
                 setActiveTab(tab);
                 setOpenFaq(null);
               }}
-              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all ${
+              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                 activeTab === tab 
-                  ? 'bg-[#1e3a8a] text-white shadow-lg' 
-                  : 'bg-white border border-gray-200 text-gray-600 hover:border-[#1e3a8a] hover:text-[#1e3a8a]'
+                  ? 'bg-gradient-to-br from-sky-500 to-indigo-500 text-white shadow-lg border-transparent' 
+                  : 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-sky-500 hover:text-sky-500'
               }`}
             >
               {tab}
@@ -97,20 +97,20 @@ export default function FAQ() {
         </div>
 
         {/* Tab Title */}
-        <h3 className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-8">
+        <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-8 transition-colors duration-300">
           {activeTab}
         </h3>
 
         {/* Accordion */}
         <div className="space-y-4 text-left min-h-[300px]">
           {currentFaqs.map((faq, idx) => (
-            <div key={idx} className="border border-gray-100 rounded-2xl bg-white shadow-sm overflow-hidden transition-all hover:shadow-md">
+            <div key={idx} className="border border-gray-100 dark:border-white/10 rounded-2xl bg-white dark:bg-slate-800 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md">
               <button 
                 onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-6 text-[#0a1f44] font-bold"
+                className="w-full flex items-center justify-between p-6 text-slate-900 dark:text-white font-bold transition-colors duration-300"
               >
                 <span>{faq.question}</span>
-                <span className="text-gray-400 bg-gray-50 rounded-full p-1">
+                <span className="text-slate-400 dark:text-slate-300 bg-slate-50 dark:bg-slate-700 rounded-full p-1 transition-colors duration-300">
                   {openFaq === idx ? <Minus size={18} /> : <Plus size={18} />}
                 </span>
               </button>
@@ -120,7 +120,7 @@ export default function FAQ() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="px-6 pb-6 text-gray-600 font-medium"
+                    className="px-6 pb-6 text-slate-600 dark:text-slate-400 font-medium transition-colors duration-300"
                   >
                     {faq.answer}
                   </motion.div>
@@ -133,16 +133,16 @@ export default function FAQ() {
 
       {/* CTA Footer Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="bg-[#0a1f44] rounded-[40px] p-12 md:p-20 text-center text-white">
+        <div className="bg-slate-900 dark:bg-slate-800/80 rounded-[40px] p-12 md:p-20 text-center text-white border border-transparent dark:border-white/10 transition-colors duration-300">
           <h2 className="text-3xl font-extrabold mb-4">Still have questions?</h2>
           <p className="text-blue-200 font-medium mb-10 max-w-xl mx-auto">
             Can't find the answer you're looking for? Our support team is happy to help you directly.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link href="/contact" className="w-full sm:w-auto bg-white text-[#0a1f44] px-8 py-3.5 rounded-xl font-bold hover:bg-gray-100 transition-colors shadow-lg">
+            <Link href="/contact" className="w-full sm:w-auto bg-gradient-to-br from-sky-500 to-indigo-500 text-white px-8 py-3.5 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
               Contact Support
             </Link>
-            <Link href="/register" className="w-full sm:w-auto bg-transparent border-2 border-white/30 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-white/10 transition-colors text-center">
+            <Link href="/register" className="w-full sm:w-auto bg-transparent border-2 border-white/30 dark:border-slate-700 text-white dark:text-slate-300 px-8 py-3.5 rounded-xl font-bold hover:bg-white/10 dark:hover:bg-white/5 transition-colors text-center">
               Create Free Account
             </Link>
           </div>

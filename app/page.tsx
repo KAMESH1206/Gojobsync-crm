@@ -31,8 +31,8 @@ export default function Home() {
   const isDark = mounted ? theme === 'dark' : true;
 
   return (
-    <main className="min-h-screen bg-white font-sans overflow-x-hidden">
-      <div className="sticky top-0 z-50 bg-white">
+    <main className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans overflow-x-hidden transition-colors duration-300">
+      <div className="sticky top-0 z-50">
         <Navbar />
       </div>
       <Hero />

@@ -5,9 +5,9 @@ import Link from 'next/link';
 
 export default function ContactUs() {
   return (
-    <section className="bg-white pb-20">
+    <section className="bg-slate-50 dark:bg-slate-900 pb-20 transition-colors duration-300">
       {/* Header Banner */}
-      <div className="bg-[#0a1f44] text-white py-16">
+      <div className="bg-slate-900 dark:bg-slate-950 text-white py-16 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-2">Contact Us</h1>
@@ -32,7 +32,7 @@ export default function ContactUs() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-extrabold text-[#0a1f44] mb-4"
+            className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4 transition-colors duration-300"
           >
             Get In Touch
           </motion.h2>
@@ -41,7 +41,7 @@ export default function ContactUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-gray-500 font-medium"
+            className="text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300"
           >
             Have a question, feedback, or need support? Fill in the form below or reach us directly \u2014 our team typically responds within 24 hours.
           </motion.p>
@@ -54,14 +54,14 @@ export default function ContactUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-white rounded-2xl p-8 text-center border border-gray-100 shadow-[0_4px_25px_rgba(0,0,0,0.03)]"
+            className="bg-white dark:bg-slate-800/80 rounded-2xl p-8 text-center border border-gray-100 dark:border-white/5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] transition-colors duration-300"
           >
-            <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-[#1e3a8a] mx-auto mb-6">
+            <div className="w-16 h-16 rounded-full bg-sky-50 dark:bg-slate-700 flex items-center justify-center text-sky-500 mx-auto mb-6 transition-colors duration-300">
               <Phone size={24} />
             </div>
-            <h3 className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-4">Phone</h3>
-            <p className="text-[#0a1f44] font-bold text-lg mb-2">+971 54 740 5625</p>
-            <p className="text-gray-500 text-sm">Mon-Fri, 9am-6pm GST</p>
+            <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Phone</h3>
+            <p className="text-slate-900 dark:text-white font-bold text-lg mb-2 transition-colors duration-300">+971 54 740 5625</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors duration-300">Mon-Fri, 9am-6pm GST</p>
           </motion.div>
           
           <motion.div 
@@ -69,14 +69,14 @@ export default function ContactUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-white rounded-2xl p-8 text-center border border-gray-100 shadow-[0_4px_25px_rgba(0,0,0,0.03)]"
+            className="bg-white dark:bg-slate-800/80 rounded-2xl p-8 text-center border border-gray-100 dark:border-white/5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] transition-colors duration-300"
           >
-            <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-[#1e3a8a] mx-auto mb-6">
+            <div className="w-16 h-16 rounded-full bg-sky-50 dark:bg-slate-700 flex items-center justify-center text-sky-500 mx-auto mb-6 transition-colors duration-300">
               <Mail size={24} />
             </div>
-            <h3 className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-4">Email</h3>
-            <p className="text-[#1e3a8a] font-bold text-lg mb-2">info@gojobsync.com</p>
-            <p className="text-gray-500 text-sm">Response within 24 hours</p>
+            <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Email</h3>
+            <p className="text-sky-500 dark:text-sky-400 font-bold text-lg mb-2 transition-colors duration-300">info@gojobsync.com</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors duration-300">Response within 24 hours</p>
           </motion.div>
 
           <motion.div 
@@ -84,13 +84,13 @@ export default function ContactUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="bg-white rounded-2xl p-8 text-center border border-gray-100 shadow-[0_4px_25px_rgba(0,0,0,0.03)]"
+            className="bg-white dark:bg-slate-800/80 rounded-2xl p-8 text-center border border-gray-100 dark:border-white/5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] transition-colors duration-300"
           >
-            <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-[#1e3a8a] mx-auto mb-6">
+            <div className="w-16 h-16 rounded-full bg-sky-50 dark:bg-slate-700 flex items-center justify-center text-sky-500 mx-auto mb-6 transition-colors duration-300">
               <MapPin size={24} />
             </div>
-            <h3 className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-4">Address</h3>
-            <p className="text-gray-600 font-medium text-[15px] mb-2 leading-relaxed">Dubai Creek Tower - 1st St<br/>Deira-Riggat Al Buteen - Dubai</p>
+            <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Address</h3>
+            <p className="text-slate-600 dark:text-slate-300 font-medium text-[15px] mb-2 leading-relaxed transition-colors duration-300">Dubai Creek Tower - 1st St<br/>Deira-Riggat Al Buteen - Dubai</p>
           </motion.div>
         </div>
 
@@ -98,36 +98,36 @@ export default function ContactUs() {
         <div className="flex flex-col lg:flex-row gap-8">
           
           {/* Form */}
-          <div className="w-full lg:w-[60%] bg-white rounded-3xl p-8 md:p-12 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100">
-            <h3 className="text-2xl font-extrabold text-[#0a1f44] mb-2">Send Us a Message</h3>
-            <p className="text-gray-500 font-medium mb-8">Fill out the form and our team will get back to you as soon as possible.</p>
+          <div className="w-full lg:w-[60%] bg-white dark:bg-slate-800/80 rounded-3xl p-8 md:p-12 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100 dark:border-white/5 transition-colors duration-300">
+            <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-2 transition-colors duration-300">Send Us a Message</h3>
+            <p className="text-slate-500 dark:text-slate-400 font-medium mb-8 transition-colors duration-300">Fill out the form and our team will get back to you as soon as possible.</p>
             
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">First Name</label>
-                  <input type="text" placeholder="John" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a]" />
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">First Name</label>
+                  <input type="text" placeholder="John" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Last Name</label>
-                  <input type="text" placeholder="Doe" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a]" />
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Last Name</label>
+                  <input type="text" placeholder="Doe" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
-                  <input type="email" placeholder="john@example.com" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a]" />
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Email Address</label>
+                  <input type="email" placeholder="john@example.com" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Phone Number</label>
-                  <input type="text" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a]" />
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Phone Number</label>
+                  <input type="text" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Subject</label>
-                <select className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] text-gray-500 bg-white">
+                <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Subject</label>
+                <select className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-slate-500 dark:text-slate-300 bg-white dark:bg-slate-900 transition-colors duration-300">
                   <option>Select a topic</option>
                   <option>General Inquiry</option>
                   <option>Support</option>
@@ -136,11 +136,11 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Message</label>
-                <textarea rows={5} placeholder="Write your message here..." className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] resize-none"></textarea>
+                <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Message</label>
+                <textarea rows={5} placeholder="Write your message here..." className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 resize-none transition-colors duration-300"></textarea>
               </div>
 
-              <button type="button" className="w-full flex justify-center items-center gap-2 bg-[#1e3a8a] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#172554] transition-colors shadow-lg">
+              <button type="button" className="w-full flex justify-center items-center gap-2 bg-gradient-to-br from-sky-500 to-indigo-500 text-white px-8 py-4 rounded-xl font-bold hover:scale-[1.02] transition-transform shadow-lg">
                 <Send size={18} />
                 <span>Send Message</span>
               </button>
@@ -151,7 +151,7 @@ export default function ContactUs() {
           <div className="w-full lg:w-[40%] space-y-8">
             
             {/* Map Card */}
-            <div className="bg-white rounded-3xl p-6 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100">
+            <div className="bg-white dark:bg-slate-800/80 rounded-3xl p-6 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100 dark:border-white/5 transition-colors duration-300">
               <div className="rounded-2xl overflow-hidden h-48 mb-6 relative">
                 {/* Map Placeholder Image */}
                 <img 
@@ -164,8 +164,8 @@ export default function ContactUs() {
                 </div>
               </div>
               <div>
-                <h4 className="font-extrabold text-[#0a1f44] mb-2 text-lg">GOJOBSYNC Office</h4>
-                <p className="text-gray-500 font-medium text-sm leading-relaxed">
+                <h4 className="font-extrabold text-slate-900 dark:text-white mb-2 text-lg transition-colors duration-300">GOJOBSYNC Office</h4>
+                <p className="text-slate-500 dark:text-slate-400 font-medium text-sm leading-relaxed transition-colors duration-300">
                   Dubai Creek Tower - 1st St<br/>
                   Deira Riggat Al Buteen Dubai
                 </p>
@@ -173,33 +173,33 @@ export default function ContactUs() {
             </div>
 
             {/* Office Hours Card */}
-            <div className="bg-white rounded-3xl p-8 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100">
-              <h3 className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-6">Office Hours</h3>
+            <div className="bg-white dark:bg-slate-800/80 rounded-3xl p-8 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100 dark:border-white/5 transition-colors duration-300">
+              <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-6 transition-colors duration-300">Office Hours</h3>
               
               <div className="space-y-4 mb-8 text-sm font-medium">
-                <div className="flex justify-between items-center border-b border-gray-50 pb-4">
-                  <span className="text-gray-500">Monday \u2013 Friday</span>
-                  <div className="flex items-center gap-2 text-gray-800 font-bold">
+                <div className="flex justify-between items-center border-b border-gray-50 dark:border-white/5 pb-4 transition-colors duration-300">
+                  <span className="text-slate-500 dark:text-slate-400">Monday \u2013 Friday</span>
+                  <div className="flex items-center gap-2 text-slate-800 dark:text-slate-200 font-bold">
                     9:00 AM \u2013 6:00 PM 
-                    <span className="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full uppercase">Open</span>
+                    <span className="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-400 text-[10px] px-2 py-0.5 rounded-full uppercase">Open</span>
                   </div>
                 </div>
-                <div className="flex justify-between items-center border-b border-gray-50 pb-4">
-                  <span className="text-gray-500">Saturday</span>
-                  <span className="text-gray-800 font-bold">9:00 AM \u2013 4:00 PM</span>
+                <div className="flex justify-between items-center border-b border-gray-50 dark:border-white/5 pb-4 transition-colors duration-300">
+                  <span className="text-slate-500 dark:text-slate-400">Saturday</span>
+                  <span className="text-slate-800 dark:text-slate-200 font-bold">9:00 AM \u2013 4:00 PM</span>
                 </div>
-                <div className="flex justify-between items-center border-b border-gray-50 pb-4">
-                  <span className="text-gray-500">Sunday</span>
-                  <span className="bg-red-50 text-red-500 text-[10px] px-2 py-0.5 rounded-full uppercase font-bold">Closed</span>
+                <div className="flex justify-between items-center border-b border-gray-50 dark:border-white/5 pb-4 transition-colors duration-300">
+                  <span className="text-slate-500 dark:text-slate-400">Sunday</span>
+                  <span className="bg-red-50 dark:bg-red-900/50 text-red-500 dark:text-red-400 text-[10px] px-2 py-0.5 rounded-full uppercase font-bold">Closed</span>
                 </div>
-                <div className="flex justify-between items-center pb-2">
-                  <span className="text-gray-500">Public Holidays</span>
-                  <span className="bg-red-50 text-red-500 text-[10px] px-2 py-0.5 rounded-full uppercase font-bold">Closed</span>
+                <div className="flex justify-between items-center pb-2 transition-colors duration-300">
+                  <span className="text-slate-500 dark:text-slate-400">Public Holidays</span>
+                  <span className="bg-red-50 dark:bg-red-900/50 text-red-500 dark:text-red-400 text-[10px] px-2 py-0.5 rounded-full uppercase font-bold">Closed</span>
                 </div>
               </div>
               
-              <p className="text-gray-400 text-xs leading-relaxed">
-                All times are in <strong className="text-gray-500">Indian Standard Time (IST)</strong>. Email support is available 24/7.
+              <p className="text-slate-400 dark:text-slate-500 text-xs leading-relaxed transition-colors duration-300">
+                All times are in <strong className="text-slate-500 dark:text-slate-300">Indian Standard Time (IST)</strong>. Email support is available 24/7.
               </p>
             </div>
 

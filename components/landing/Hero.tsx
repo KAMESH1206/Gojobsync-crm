@@ -82,13 +82,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-white">
+    <div className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
       {/* Main Background Image */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat mt-[45vh]"
         style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=2850&q=80")' }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-slate-50/80 to-transparent dark:from-slate-900 dark:via-slate-900/80 transition-colors duration-300"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,7 +98,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="hidden lg:block absolute right-0 top-0 w-[400px] h-[400px] rounded-full border-[12px] border-white shadow-2xl overflow-hidden z-20"
+          className="hidden lg:block absolute right-0 top-0 w-[400px] h-[400px] rounded-full border-[12px] border-white dark:border-slate-800 shadow-2xl overflow-hidden z-20 transition-colors duration-300"
         >
           <img 
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" 
@@ -112,7 +112,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-5xl md:text-6xl lg:text-[76px] font-extrabold text-[#0a1f44] tracking-tight mb-6 leading-tight"
+            className="text-5xl md:text-6xl lg:text-[76px] font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight transition-colors duration-300"
           >
             Navigate your Jobs here!
           </motion.h1>
@@ -121,7 +121,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-500 italic font-medium max-w-2xl mb-12 mx-auto lg:mx-0"
+            className="text-lg md:text-xl text-slate-500 dark:text-slate-400 italic font-medium max-w-2xl mb-12 mx-auto lg:mx-0 transition-colors duration-300"
           >
             "Lakhs of Employers. Millions of Job seekers. Endless success \u2014 only on GOJOBSYNC.COM."
           </motion.p>
@@ -132,45 +132,42 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="bg-white rounded-full shadow-2xl p-2 flex flex-col md:flex-row items-center divide-y md:divide-y-0 md:divide-x divide-gray-200 border border-gray-100 relative z-50"
+              className="bg-white/90 dark:bg-slate-800/80 backdrop-blur-md rounded-full shadow-2xl p-2 flex flex-col md:flex-row items-center divide-y md:divide-y-0 md:divide-x divide-gray-200 dark:divide-white/10 border border-gray-100 dark:border-white/10 relative z-50 transition-colors duration-300"
             >
               
-              {/* Industry */}
               <div 
-                className="flex-1 flex items-center justify-between gap-3 px-6 py-4 md:py-2 w-full cursor-pointer hover:bg-gray-50 rounded-t-3xl md:rounded-l-full md:rounded-tr-none transition-colors relative"
+                className="flex-1 flex items-center justify-between gap-3 px-6 py-4 md:py-2 w-full cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5 rounded-t-3xl md:rounded-l-full md:rounded-tr-none transition-colors relative"
                 onClick={() => setActiveDropdown(activeDropdown === 'industry' ? null : 'industry')}
               >
                 <div className="flex items-center gap-3 overflow-hidden">
                   <Monitor className="text-gray-400 flex-shrink-0" size={20} />
-                  <p className="text-gray-600 font-medium text-sm md:text-base truncate">
+                  <p className="text-slate-600 dark:text-slate-300 font-medium text-sm md:text-base truncate">
                     {selectedIndustry || 'Industry'}
                   </p>
                 </div>
                 <ChevronDown className={`text-gray-400 transition-transform ${activeDropdown === 'industry' ? 'rotate-180' : ''}`} size={16} />
               </div>
 
-              {/* Location */}
               <div 
-                className="flex-1 flex items-center justify-between gap-3 px-6 py-4 md:py-2 w-full cursor-pointer hover:bg-gray-50 transition-colors relative"
+                className="flex-1 flex items-center justify-between gap-3 px-6 py-4 md:py-2 w-full cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5 transition-colors relative"
                 onClick={() => setActiveDropdown(activeDropdown === 'location' ? null : 'location')}
               >
                 <div className="flex items-center gap-3 overflow-hidden">
                   <MapPin className="text-gray-400 flex-shrink-0" size={20} />
-                  <p className={`font-medium text-sm md:text-base truncate ${selectedLocation ? 'text-gray-800' : 'text-gray-500'}`}>
+                  <p className={`font-medium text-sm md:text-base truncate ${selectedLocation ? 'text-slate-800 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>
                     {selectedLocation || 'Location'}
                   </p>
                 </div>
                 <ChevronDownIcon className={`text-gray-400 transition-transform ${activeDropdown === 'location' ? 'rotate-180' : ''}`} size={16} />
               </div>
 
-              {/* Job Title */}
               <div 
-                className="flex-[1.5] flex items-center justify-between gap-3 px-6 py-4 md:py-2 w-full cursor-pointer hover:bg-gray-50 transition-colors relative"
+                className="flex-[1.5] flex items-center justify-between gap-3 px-6 py-4 md:py-2 w-full cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5 transition-colors relative"
                 onClick={() => setActiveDropdown(activeDropdown === 'job' ? null : 'job')}
               >
                 <div className="flex items-center gap-3 overflow-hidden">
                   <Search className="text-gray-400 flex-shrink-0" size={20} />
-                  <p className={`font-medium text-sm md:text-base truncate ${selectedJob ? 'text-gray-800' : 'text-gray-500'}`}>
+                  <p className={`font-medium text-sm md:text-base truncate ${selectedJob ? 'text-slate-800 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>
                     {selectedJob || 'Job title, keyword...'}
                   </p>
                 </div>
@@ -181,7 +178,7 @@ export default function Hero() {
               <div className="px-2 pb-2 pt-2 md:p-0 w-full md:w-auto h-full flex items-center">
                 <button 
                   onClick={() => setActiveDropdown(null)}
-                  className="w-full md:w-auto bg-[#1e3a8a] text-white px-8 py-4 md:py-3.5 rounded-full font-bold hover:bg-[#172554] transition-colors shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
+                  className="w-full md:w-auto bg-gradient-to-br from-sky-500 to-indigo-500 text-white px-8 py-4 md:py-3.5 rounded-full font-bold hover:scale-[1.02] transition-transform shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
                 >
                   <Search size={18} strokeWidth={2.5} />
                   <span>Search</span>
@@ -199,17 +196,17 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-[110%] left-0 w-full md:w-[350px] bg-white border border-gray-200 shadow-xl rounded-lg max-h-[400px] overflow-y-auto z-50 p-2"
+                  className="absolute top-[110%] left-0 w-full md:w-[350px] bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-xl rounded-lg max-h-[400px] overflow-y-auto z-50 p-2"
                 >
                   {industryData.map((category, idx) => (
                     <div key={idx} className="mb-2">
-                      <div className="font-bold text-[#0a1f44] text-sm px-3 py-2 bg-gray-50 rounded-md mb-1">
+                      <div className="font-bold text-slate-800 dark:text-slate-200 text-sm px-3 py-2 bg-slate-50 dark:bg-slate-700/50 rounded-md mb-1">
                         {category.category}
                       </div>
                       {category.items.map((item, i) => (
                         <div 
                           key={i} 
-                          className="px-3 py-2 text-sm text-gray-600 hover:bg-[#1e3a8a] hover:text-white cursor-pointer rounded-md transition-colors"
+                          className="px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-500 hover:text-white cursor-pointer rounded-md transition-colors"
                           onClick={() => {
                             setSelectedIndustry(item);
                             setActiveDropdown(null);
@@ -230,12 +227,12 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-[110%] left-0 md:left-[25%] w-full md:w-[350px] bg-[#1a1a1a] border border-[#333] shadow-xl rounded-lg max-h-[400px] overflow-y-auto z-50 py-2"
+                  className="absolute top-[110%] left-0 md:left-[25%] w-full md:w-[350px] bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-xl rounded-lg max-h-[400px] overflow-y-auto z-50 py-2"
                 >
                   {locationData.map((item, i) => (
                     <div 
                       key={i} 
-                      className="px-4 py-2.5 text-sm text-gray-300 hover:bg-[#333] hover:text-white cursor-pointer transition-colors"
+                      className="px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-slate-700 hover:text-sky-600 dark:hover:text-white cursor-pointer transition-colors"
                       onClick={() => {
                         setSelectedLocation(item);
                         setActiveDropdown(null);
@@ -254,12 +251,12 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-[110%] left-0 md:left-[50%] w-full md:w-[350px] bg-[#1a1a1a] border border-[#333] shadow-xl rounded-lg max-h-[400px] overflow-y-auto z-50 py-2"
+                  className="absolute top-[110%] left-0 md:left-[50%] w-full md:w-[350px] bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-xl rounded-lg max-h-[400px] overflow-y-auto z-50 py-2"
                 >
                   {jobData.map((item, i) => (
                     <div 
                       key={i} 
-                      className="px-4 py-2.5 text-sm text-gray-300 hover:bg-[#333] hover:text-white cursor-pointer transition-colors"
+                      className="px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-slate-700 hover:text-sky-600 dark:hover:text-white cursor-pointer transition-colors"
                       onClick={() => {
                         setSelectedJob(item);
                         setActiveDropdown(null);

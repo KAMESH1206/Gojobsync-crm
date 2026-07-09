@@ -3,8 +3,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCandidateAuth } from '@/context/CandidateAuthContext';
-import { Zap, Eye, EyeOff, User, Mail, Phone, Lock, ArrowRight, CheckCircle } from 'lucide-react';
+import { Zap, Eye, EyeOff, User, Mail, Phone, Lock, ArrowRight, CheckCircle, Sun, Moon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { useEffect } from 'react';
 
 export default function CandidateRegisterPage() {
   const router = useRouter();
@@ -14,6 +16,13 @@ export default function CandidateRegisterPage() {
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,46 +51,55 @@ export default function CandidateRegisterPage() {
   };
 
   if (step === 2) return (
-    <div style={{ minHeight: '100vh', background: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 24, padding: '3rem', textAlign: 'center', maxWidth: 440, boxShadow: '0 20px 60px rgba(0,0,0,0.5)', backdropFilter: 'blur(10px)' }}>
-        <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'linear-gradient(135deg, #10b981, #059669)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', boxShadow: '0 0 30px rgba(16,185,129,0.4)' }}>
-          <CheckCircle size={40} color="white" />
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center transition-colors duration-300">
+      <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-3xl p-12 text-center max-w-[440px] w-full shadow-xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)] backdrop-blur-lg">
+        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+          <CheckCircle size={40} className="text-white" />
         </div>
-        <h2 style={{ fontSize: '1.75rem', fontWeight: 800, color: 'white', marginBottom: 8, letterSpacing: '-0.5px' }}>Welcome to JobSync! 🎉</h2>
-        <p style={{ color: '#94a3b8' }}>Redirecting to your profile dashboard...</p>
+        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-2 tracking-tight">Welcome to JobSync! 🎉</h2>
+        <p className="text-slate-500 dark:text-slate-400">Redirecting to your profile dashboard...</p>
       </motion.div>
     </div>
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem', position: 'relative', overflow: 'hidden' }}>
-      {/* Background Orbs */}
-      <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(14,165,233,0.1) 0%, rgba(0,0,0,0) 70%)', top: -100, left: -100, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.1) 0%, rgba(0,0,0,0) 70%)', bottom: -50, right: -50, pointerEvents: 'none' }} />
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 sm:p-8 relative overflow-hidden transition-colors duration-300">
+      {/* Theme Toggle Button */}
+      {mounted && (
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className="absolute top-6 right-6 p-2 rounded-full bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors z-20 shadow-sm"
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+      )}
 
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} style={{ background: 'rgba(30, 41, 59, 0.5)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: '2.5rem', width: '100%', maxWidth: 440, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)', backdropFilter: 'blur(16px)', position: 'relative', zIndex: 1 }}>
-        <Link href="/careers" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: '2.5rem' }}>
-          <img src="/logooo.jpeg" alt="JobSync Logo" style={{ height: 36, width: 36, objectFit: 'contain', borderRadius: '50%' }} />
-          <span style={{ fontWeight: 800, fontSize: '1.25rem', color: 'white', letterSpacing: '-0.5px' }}>The Job<span style={{ color: '#38bdf8' }}>Sync</span></span>
+      {/* Background Orbs */}
+      <div className="absolute w-[500px] h-[500px] rounded-full -top-[100px] -left-[100px] pointer-events-none bg-[radial-gradient(circle,rgba(14,165,233,0.1)_0%,rgba(0,0,0,0)_70%)] dark:bg-[radial-gradient(circle,rgba(14,165,233,0.15)_0%,rgba(0,0,0,0)_70%)]" />
+      <div className="absolute w-[400px] h-[400px] rounded-full -bottom-[50px] -right-[50px] pointer-events-none bg-[radial-gradient(circle,rgba(99,102,241,0.1)_0%,rgba(0,0,0,0)_70%)] dark:bg-[radial-gradient(circle,rgba(99,102,241,0.15)_0%,rgba(0,0,0,0)_70%)]" />
+
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-10 w-full max-w-[440px] shadow-xl dark:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl relative z-10">
+        <Link href="/careers" className="flex items-center gap-2.5 no-underline mb-10">
+          <img src="/logooo.jpeg" alt="JobSync Logo" className="h-9 w-9 object-contain rounded-full border border-slate-200 dark:border-slate-700 bg-white" />
+          <span className="font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">The Job<span className="text-sky-500">Sync</span></span>
         </Link>
 
-        <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: 'white', marginBottom: 6, letterSpacing: '-0.5px' }}>Create an account</h1>
-        <p style={{ color: '#94a3b8', fontSize: '0.95rem', marginBottom: '2rem' }}>Level up your career with AI job matching.</p>
+        <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-1.5 tracking-tight">Create an account</h1>
+        <p className="text-slate-500 dark:text-slate-400 text-[15px] mb-8">Level up your career with AI job matching.</p>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {[
             { icon: <User size={18} />, field: 'name', placeholder: 'Full Name', type: 'text' },
             { icon: <Mail size={18} />, field: 'email', placeholder: 'Email Address', type: 'email' },
             { icon: <Phone size={18} />, field: 'phone', placeholder: 'Mobile Number', type: 'tel' },
           ].map(({ icon, field, placeholder, type }) => (
-            <div key={field} style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: '#64748b' }}>{icon}</div>
+            <div key={field} className="relative">
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500">{icon}</div>
               <input
                 required type={type} placeholder={placeholder}
                 value={(form as any)[field]}
                 onChange={e => setForm({ ...form, [field]: e.target.value })}
-                style={{ width: '100%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.2)', color: 'white', borderRadius: 12, padding: '0.8rem 0.8rem 0.8rem 2.8rem', fontSize: '0.95rem', outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.2s' }}
-                className="focus:border-sky-500 placeholder-slate-500"
+                className="w-full border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white rounded-xl py-3.5 pl-11 pr-4 text-[15px] outline-none transition-colors focus:border-sky-500 dark:focus:border-sky-500 placeholder-slate-400 dark:placeholder-slate-500"
               />
             </div>
           ))}
@@ -90,30 +108,29 @@ export default function CandidateRegisterPage() {
             { field: 'password', placeholder: 'Password (min 6 chars)' },
             { field: 'confirmPassword', placeholder: 'Confirm Password' },
           ].map(({ field, placeholder }) => (
-            <div key={field} style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: '#64748b' }}><Lock size={18} /></div>
+            <div key={field} className="relative">
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500"><Lock size={18} /></div>
               <input
                 required type={showPw ? 'text' : 'password'} placeholder={placeholder}
                 value={(form as any)[field]}
                 onChange={e => setForm({ ...form, [field]: e.target.value })}
-                style={{ width: '100%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.2)', color: 'white', borderRadius: 12, padding: '0.8rem 2.8rem', fontSize: '0.95rem', outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.2s' }}
-                className="focus:border-sky-500 placeholder-slate-500"
+                className="w-full border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white rounded-xl py-3.5 pl-11 pr-11 text-[15px] outline-none transition-colors focus:border-sky-500 dark:focus:border-sky-500 placeholder-slate-400 dark:placeholder-slate-500"
               />
-              <button type="button" onClick={() => setShowPw(!showPw)} style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', padding: 0 }}>
+              <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300">
                 {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           ))}
 
-          {error && <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', borderRadius: 10, padding: '0.75rem', color: '#ef4444', fontSize: '0.875rem' }}>{error}</div>}
+          {error && <div className="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-xl p-3 text-red-600 dark:text-red-400 text-sm font-medium">{error}</div>}
 
-          <button type="submit" disabled={loading} style={{ background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', color: 'white', border: 'none', borderRadius: 12, padding: '0.875rem', fontWeight: 700, fontSize: '1rem', cursor: loading ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: '0.5rem', transition: 'all 0.2s' }} className="hover:shadow-[0_0_20px_rgba(14,165,233,0.4)]">
+          <button type="submit" disabled={loading} className="mt-2 bg-gradient-to-r from-sky-500 to-indigo-600 text-white rounded-xl p-3.5 font-bold text-base cursor-pointer flex items-center justify-center gap-2 transition-all hover:shadow-[0_8px_20px_rgba(14,165,233,0.3)] disabled:opacity-70 disabled:cursor-not-allowed">
             {loading ? 'Creating Account...' : <><span>Join JobSync</span><ArrowRight size={18} /></>}
           </button>
         </form>
 
-        <p style={{ textAlign: 'center', marginTop: '1.75rem', color: '#94a3b8', fontSize: '0.9rem' }}>
-          Already have an account? <Link href="/careers/login" style={{ color: '#38bdf8', fontWeight: 700, textDecoration: 'none' }} className="hover:text-sky-300">Sign In</Link>
+        <p className="text-center mt-8 text-slate-500 dark:text-slate-400 text-sm font-medium">
+          Already have an account? <Link href="/careers/login" className="text-sky-600 dark:text-sky-400 font-bold hover:underline">Sign In</Link>
         </p>
       </motion.div>
     </div>
