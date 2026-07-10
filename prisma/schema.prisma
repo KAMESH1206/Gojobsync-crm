@@ -354,3 +354,105 @@ model CandidateMessage {
 
   candidateAccount CandidateAccount @relation(fields: [candidateAccountId], references: [id], onDelete: Cascade)
 }
+
+// ==================== ERP MODELS ====================
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String
+  excerpt     String?
+  coverImage  String?
+  author      String
+  status      String   @default("draft") // draft | published
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  isActive    Boolean  @default(true)
+  subscribedAt DateTime @default(now())
+}
+
+model Package {
+  id           String   @id @default(cuid())
+  name         String
+  price        Float
+  duration     Int      @default(30) // days
+  jobPosts     Int      @default(5)
+  resumeViews  Int      @default(50)
+  features     String   @default("[]") // JSON array
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Coupon {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  discount     Float    // percentage
+  maxUses      Int      @default(100)
+  usedCount    Int      @default(0)
+  validFrom    String
+  validUntil   String
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+}
+
+model MediaFile {
+  id         String   @id @default(cuid())
+  name       String
+  url        String
+  type       String   // image | video | document
+  size       Int      @default(0) // bytes
+  uploadedBy String?
+  createdAt  DateTime @default(now())
+}
+
+model Location {
+  id        String   @id @default(cuid())
+  name      String
+  state     String?
+  country   String   @default("India")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model PaymentSetting {
+  id              String   @id @default(cuid())
+  gatewayName     String   @default("razorpay") // razorpay | stripe
+  apiKey          String   @default("")
+  apiSecret       String   @default("")
+  gstRate         Float    @default(18.0)
+  invoicePrefix   String   @default("INV")
+  isActive        Boolean  @default(true)
+  updatedAt       DateTime @updatedAt
+}
+
+model Invoice {
+  id            String   @id @default(cuid())
+  invoiceNumber String   @unique
+  companyName   String
+  email         String
+  packageName   String
+  amount        Float
+  gstAmount     Float    @default(0)
+  totalAmount   Float
+  status        String   @default("pending") // pending | paid | cancelled
+  paidAt        DateTime?
+  createdAt     DateTime @default(now())
+}
