@@ -123,7 +123,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-lg md:text-xl text-slate-500 dark:text-slate-400 italic font-medium max-w-2xl mb-12 mx-auto lg:mx-0 transition-colors duration-300"
           >
-            "Lakhs of Employers. Millions of Job seekers. Endless success \u2014 only on GOJOBSYNC.COM."
+            "Lakhs of Employers. Millions of Job seekers. Endless success \u2014 only on THEJOBSYNC.COM."
           </motion.p>
           
           {/* Search Bar */}

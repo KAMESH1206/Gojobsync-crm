@@ -230,7 +230,7 @@ export default function PricingPage() {
           <div className="mb-12">
             <h3 className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-4">Employers</h3>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#0a1f44] mb-4">RESDEX \u2013 Resume Database</h2>
-            <p className="text-gray-500 font-medium">Search GOJOBSYNC's extensive database. Filter by location, skills and experience.</p>
+            <p className="text-gray-500 font-medium">Search THEJOBSYNC's extensive database. Filter by location, skills and experience.</p>
           </div>
 
           <div className="max-w-md">

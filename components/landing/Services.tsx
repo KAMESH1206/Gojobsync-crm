@@ -19,7 +19,7 @@ export default function Services() {
       title: 'RESDEX \u2013 Resume Database',
       icon: <Database className="text-gray-800 mb-4" size={32} />,
       features: [
-        'Search GOJOBSYNC\'s extensive resume database',
+        'Search THEJOBSYNC\'s extensive resume database',
         'Discover talent across every city in India',
         'Filter candidates by location, skills, experience, and more'
       ],

@@ -24,7 +24,7 @@ export default function AboutUs() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-slate-600 dark:text-slate-400 leading-relaxed text-[15px] md:text-[17px] font-medium transition-colors duration-300"
           >
-            At GOJOBSYNC.COM, we are redefining the future of recruitment. Our platform is built to digitize and streamline the entire hiring lifecycle, ensuring efficiency, transparency, and trust at every stage. From candidate placement to rebuttal management, we deliver a seamless, data-driven experience that empowers both employers and job seekers. By integrating advanced technology and AI-enhanced processes, GOJOBSYNC.COM transforms recruitment into a scalable, intelligent, and user-friendly ecosystem.
+            At THEJOBSYNC.COM, we are redefining the future of recruitment. Our platform is built to digitize and streamline the entire hiring lifecycle, ensuring efficiency, transparency, and trust at every stage. From candidate placement to rebuttal management, we deliver a seamless, data-driven experience that empowers both employers and job seekers. By integrating advanced technology and AI-enhanced processes, THEJOBSYNC.COM transforms recruitment into a scalable, intelligent, and user-friendly ecosystem.
           </motion.p>
         </div>
 
@@ -62,13 +62,13 @@ export default function AboutUs() {
             </h2>
             <div className="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-[15px] md:text-[16px] font-medium text-justify transition-colors duration-300">
               <p>
-                "GOJOBSYNC.COM" starts its humble beginnings in 2025 at United Arab Emirates, as a modest venture of job portal access worldwide. We set out with a clear mission: to be the trusted bridge between ambition and opportunity—empowering job seekers and employers to create success stories every day.
+                "THEJOBSYNC.COM" starts its humble beginnings in 2025 at United Arab Emirates, as a modest venture of job portal access worldwide. We set out with a clear mission: to be the trusted bridge between ambition and opportunity—empowering job seekers and employers to create success stories every day.
               </p>
               <p>
                 Our global job portal offers access to the best career opportunities free of charge, providing a comprehensive solution that matches skills with the right roles. We are committed to empowering individuals to find their ideal employment and take confident steps toward building their future.
               </p>
               <p>
-                GOJOBSYNC.COM is more than a job portal—it is a complete recruitment ecosystem designed to bring top talent and top organizations together seamlessly.
+                THEJOBSYNC.COM is more than a job portal—it is a complete recruitment ecosystem designed to bring top talent and top organizations together seamlessly.
               </p>
             </div>
           </motion.div>

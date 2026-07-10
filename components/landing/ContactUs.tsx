@@ -75,7 +75,7 @@ export default function ContactUs() {
               <Mail size={24} />
             </div>
             <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Email</h3>
-            <p className="text-sky-500 dark:text-sky-400 font-bold text-lg mb-2 transition-colors duration-300">info@gojobsync.com</p>
+            <p className="text-sky-500 dark:text-sky-400 font-bold text-lg mb-2 transition-colors duration-300">info@thejobsync.com</p>
             <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors duration-300">Response within 24 hours</p>
           </motion.div>
 
@@ -164,7 +164,7 @@ export default function ContactUs() {
                 </div>
               </div>
               <div>
-                <h4 className="font-extrabold text-slate-900 dark:text-white mb-2 text-lg transition-colors duration-300">GOJOBSYNC Office</h4>
+                <h4 className="font-extrabold text-slate-900 dark:text-white mb-2 text-lg transition-colors duration-300">THEJOBSYNC Office</h4>
                 <p className="text-slate-500 dark:text-slate-400 font-medium text-sm leading-relaxed transition-colors duration-300">
                   Dubai Creek Tower - 1st St<br/>
                   Deira Riggat Al Buteen Dubai

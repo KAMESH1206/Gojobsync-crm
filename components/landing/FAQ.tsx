@@ -8,16 +8,16 @@ const tabs = ['General', 'Job Seekers', 'Employers', 'Account & Security', 'Tech
 
 const faqsData: Record<string, {question: string, answer: string}[]> = {
   'General': [
-    { question: "What is GOJOBSYNC?", answer: "GOJOBSYNC is a comprehensive global recruitment platform..." },
-    { question: "What is the main goal of GOJOBSYNC?", answer: "Our main goal is to be the trusted bridge between ambition and opportunity..." },
-    { question: "Is GOJOBSYNC free to use?", answer: "Yes, basic job seeking features are free to use..." },
+    { question: "What is THEJOBSYNC?", answer: "THEJOBSYNC is a comprehensive global recruitment platform..." },
+    { question: "What is the main goal of THEJOBSYNC?", answer: "Our main goal is to be the trusted bridge between ambition and opportunity..." },
+    { question: "Is THEJOBSYNC free to use?", answer: "Yes, basic job seeking features are free to use..." },
   ],
   'Job Seekers': [
     { question: "How do I create a profile?", answer: "To create a profile, click on Register and follow the steps to complete your resume." },
     { question: "Can I hide my profile from current employers?", answer: "Yes, you can manage your privacy settings in your dashboard to hide your profile from specific companies." },
   ],
   'Employers': [
-    { question: "How can my company post jobs on GOJOBSYNC?", answer: "You can post jobs by navigating to the Job Posting section under Employers and selecting a plan." },
+    { question: "How can my company post jobs on THEJOBSYNC?", answer: "You can post jobs by navigating to the Job Posting section under Employers and selecting a plan." },
     { question: "Can employers search for candidates directly?", answer: "Yes, our RESDEX database allows direct candidate search based on skills, location, and experience." },
   ],
   'Account & Security': [
@@ -25,7 +25,7 @@ const faqsData: Record<string, {question: string, answer: string}[]> = {
     { question: "What is my Registration Number (JS-XXXXXX)?", answer: "Your registration number is a unique identifier found in your profile settings, used for tracking applications." },
   ],
   'Technical': [
-    { question: "Which browsers does GOJOBSYNC support?", answer: "We support all modern browsers including Chrome, Safari, Edge, and Firefox." },
+    { question: "Which browsers does THEJOBSYNC support?", answer: "We support all modern browsers including Chrome, Safari, Edge, and Firefox." },
     { question: "What file formats are accepted for resume upload?", answer: "You can upload resumes in PDF, DOCX, or DOC formats up to 5MB." },
   ]
 };
@@ -43,7 +43,7 @@ export default function FAQ() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-2">Frequently Asked Questions</h1>
-            <p className="text-gray-300 font-medium">Everything you need to know about GOJOBSYNC</p>
+            <p className="text-gray-300 font-medium">Everything you need to know about THEJOBSYNC</p>
           </div>
           <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-medium">
             <Link href="/" className="flex items-center gap-1 hover:text-white text-gray-300 transition-colors">
@@ -73,7 +73,7 @@ export default function FAQ() {
           transition={{ delay: 0.1 }}
           className="text-slate-500 dark:text-slate-400 font-medium max-w-2xl mx-auto mb-12 transition-colors duration-300"
         >
-          Find answers to the most common questions about GOJOBSYNC. Can't find what you're looking for? Contact our support team.
+          Find answers to the most common questions about THEJOBSYNC. Can't find what you're looking for? Contact our support team.
         </motion.p>
 
         {/* Tabs */}

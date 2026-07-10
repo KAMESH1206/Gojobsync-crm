@@ -48,11 +48,11 @@ export default function NewsBlog() {
             </div>
             
             <h3 className="text-2xl md:text-[28px] font-extrabold text-slate-900 dark:text-white mb-6 leading-tight transition-colors duration-300">
-              GOJOBSYNC \u2014 Navigate Your Career, Live!
+              THEJOBSYNC \u2014 Navigate Your Career, Live!
             </h3>
             
             <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed mb-8 text-[15px] transition-colors duration-300">
-              Watch our latest platform walkthrough and see how GOJOBSYNC connects thousands of job seekers with top employers every day. From AI-powered job matching to seamless applications \u2014 ...
+              Watch our latest platform walkthrough and see how THEJOBSYNC connects thousands of job seekers with top employers every day. From AI-powered job matching to seamless applications \u2014 ...
             </p>
             
             <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-50 dark:border-white/10 transition-colors duration-300">
@@ -60,7 +60,7 @@ export default function NewsBlog() {
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-indigo-500 text-white flex items-center justify-center text-xs font-bold">
                   GT
                 </div>
-                <span className="text-sm font-bold text-slate-700 dark:text-slate-300 transition-colors duration-300">GOJOBSYNC Team</span>
+                <span className="text-sm font-bold text-slate-700 dark:text-slate-300 transition-colors duration-300">THEJOBSYNC Team</span>
               </div>
               <span className="text-[13px] font-medium text-slate-400 dark:text-slate-500 transition-colors duration-300">May 25, 2026</span>
             </div>
