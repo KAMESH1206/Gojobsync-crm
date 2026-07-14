@@ -111,7 +111,7 @@ export default function CareersPage() {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 76 }}>
           {/* Logo */}
           <Link href="/careers" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <img src="/logooo.jpeg" alt="JobSync Logo" style={{ height: 36, width: 36, objectFit: 'contain', borderRadius: '50%' }} />
+            <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 36, width: 36, objectFit: 'contain', borderRadius: '50%' }} />
             <span className="brand-text" style={{ fontWeight: 800, fontSize: '1.5rem', color: isDark ? 'white' : '#0f172a', letterSpacing: '-0.5px', transition: 'color 0.3s' }}>The Job<span style={{ color: '#38bdf8' }}>Sync</span></span>
           </Link>
 
@@ -156,7 +156,7 @@ export default function CareersPage() {
               <>
                 <Link href="/careers/login" style={{ color: isDark ? '#e2e8f0' : '#1e293b', fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none', transition: 'color 0.2s' }} className="hover:text-sky-500">Sign In</Link>
                 <Link href="/careers/register" style={{ padding: '0.6rem 1.5rem', background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', color: 'white', borderRadius: 12, fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none', boxShadow: '0 4px 20px rgba(14,165,233,0.4)', transition: 'transform 0.2s' }} className="hover:scale-105 hidden-mobile">
-                  Join JobSync
+                  Join The Job Sync
                 </Link>
               </>
             )}
@@ -253,7 +253,7 @@ export default function CareersPage() {
                     onClick={() => setMobileMenuOpen(false)}
                     style={{ padding: '0.75rem', background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', color: 'white', borderRadius: 10, fontWeight: 700, textDecoration: 'none', textAlign: 'center', boxShadow: '0 4px 15px rgba(14,165,233,0.3)' }}
                   >
-                    Join JobSync
+                    Join The Job Sync
                   </Link>
                 </>
               )}
@@ -286,7 +286,7 @@ export default function CareersPage() {
               </span>
             </h1>
             <p style={{ color: isDark ? '#94a3b8' : '#475569', fontSize: '1.25rem', marginBottom: '3rem', lineHeight: 1.6, maxWidth: 600, margin: '0 auto 3rem', transition: 'color 0.3s' }}>
-              JobSync connects elite talent with top-tier companies seamlessly. Discover {jobs.length}+ opportunities tailored to your expertise.
+              The Job Sync connects elite talent with top-tier companies seamlessly. Discover {jobs.length}+ opportunities tailored to your expertise.
             </p>
           </motion.div>
 
@@ -446,7 +446,7 @@ export default function CareersPage() {
             <div style={{ position: 'absolute', right: -50, top: -50, width: 300, height: 300, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', filter: 'blur(40px)' }} />
             <div style={{ position: 'relative', zIndex: 2 }}>
               <h2 style={{ color: 'white', fontSize: '2.5rem', fontWeight: 900, marginBottom: 12, letterSpacing: '-1px' }}>Ready to level up?</h2>
-              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.125rem', maxWidth: 500 }}>Create your JobSync profile today. Upload your resume and let our AI match you with perfect opportunities instantly.</p>
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.125rem', maxWidth: 500 }}>Create your The Job Sync profile today. Upload your resume and let our AI match you with perfect opportunities instantly.</p>
             </div>
             <Link href="/careers/register" style={{ position: 'relative', zIndex: 2, background: 'white', color: '#0ea5e9', padding: '1rem 2.5rem', borderRadius: 16, fontWeight: 800, fontSize: '1.125rem', textDecoration: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', gap: 10, transition: 'transform 0.2s' }} className="hover:scale-105">
               Create Profile <ArrowRight size={20} />
@@ -459,8 +459,8 @@ export default function CareersPage() {
       <footer style={{ background: isDark ? '#020617' : '#f1f5f9', color: '#64748b', padding: '4rem 2rem 2rem', borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)'}`, transition: 'all 0.3s' }}>
         <div className="footer-content" style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src="/logooo.jpeg" alt="JobSync Logo" style={{ height: 28, width: 28, objectFit: 'contain', borderRadius: '50%' }} />
-            <span style={{ fontWeight: 800, fontSize: '1.25rem', color: isDark ? 'white' : '#0f172a', transition: 'color 0.3s' }}>The JobSync</span>
+            <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 28, width: 28, objectFit: 'contain', borderRadius: '50%' }} />
+            <span style={{ fontWeight: 800, fontSize: '1.25rem', color: isDark ? 'white' : '#0f172a', transition: 'color 0.3s' }}>The The Job Sync</span>
           </div>
           <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.9rem' }}>
             <Link href="/login" style={{ color: isDark ? '#94a3b8' : '#475569', textDecoration: 'none' }} className="hover:text-sky-500">Recruiter Login</Link>
@@ -468,7 +468,7 @@ export default function CareersPage() {
           </div>
         </div>
         <div style={{ maxWidth: 1280, margin: '2rem auto 0', textAlign: 'center', fontSize: '0.85rem', borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)'}`, paddingTop: '2rem' }}>
-          © 2026 JobSync (Powered by CRM). All rights reserved.
+          © 2026 The Job Sync (Powered by CRM). All rights reserved.
         </div>
       </footer>
 
@@ -518,7 +518,7 @@ export default function CareersPage() {
 
 function JobCard({ job, candidate, delay = 0, isRecommended = false, isDark = true }: { job: any; candidate: any, delay?: number, isRecommended?: boolean, isDark?: boolean }) {
   const router = useRouter();
-  const { appliedJobs, applyToJob } = useCandidateAuth();
+  const { appliedJobs, applyToJob, requireCompleteProfile } = useCandidateAuth();
   const [applying, setApplying] = useState(false);
   const applied = appliedJobs?.has(job.id) || false;
 
@@ -527,9 +527,12 @@ function JobCard({ job, candidate, delay = 0, isRecommended = false, isDark = tr
   const handleApply = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!candidate) { router.push('/careers/login'); return; }
-    setApplying(true);
-    await applyToJob(job.id);
-    setApplying(false);
+    
+    requireCompleteProfile(async () => {
+      setApplying(true);
+      await applyToJob(job.id);
+      setApplying(false);
+    });
   };
 
   const companyInitial = (job.client?.companyName || 'C')[0].toUpperCase();

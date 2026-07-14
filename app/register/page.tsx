@@ -83,8 +83,8 @@ export default function Register() {
 
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
           <img 
-            src="/logooo.jpeg" 
-            alt="JobSync Logo" 
+            src="/loooo.jpeg" 
+            alt="The Job Sync Logo" 
             style={{ 
               height: 96, 
               width: 96, 
@@ -112,7 +112,7 @@ export default function Register() {
                 <Briefcase size={28} />
               </div>
               <div>
-                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: isDark ? 'white' : '#1e293b', marginBottom: 8, transition: 'color 0.3s ease' }}>The JobSync Candidate</h2>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: isDark ? 'white' : '#1e293b', marginBottom: 8, transition: 'color 0.3s ease' }}>The The Job Sync Candidate</h2>
                 <p style={{ fontSize: '0.9rem', color: isDark ? '#64748b' : '#64748b', lineHeight: 1.5 }}>Browse open positions, track applications, and manage your profile.</p>
               </div>
               <div style={{ marginTop: 'auto', paddingTop: '1.5rem', display: 'flex', alignItems: 'center', gap: 6, color: '#38bdf8', fontWeight: 700, fontSize: '0.9rem' }}>
@@ -121,18 +121,18 @@ export default function Register() {
             </div>
           </Link>
 
-          {/* CRM Card */}
-          <Link href="/login" className="portal-card-link">
+          {/* Employer Card */}
+          <Link href="/employer/login" className="portal-card-link">
             <div className={`portal-card-inner crm-card ${isDark ? 'dark' : 'light'}`}>
               <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(99,102,241,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#818cf8' }}>
                 <Building2 size={28} />
               </div>
               <div>
-                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: isDark ? 'white' : '#1e293b', marginBottom: 8, transition: 'color 0.3s ease' }}>CRM Employee</h2>
-                <p style={{ fontSize: '0.9rem', color: isDark ? '#64748b' : '#64748b', lineHeight: 1.5 }}>Access the internal dashboard to manage jobs, candidates, and hiring.</p>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: isDark ? 'white' : '#1e293b', marginBottom: 8, transition: 'color 0.3s ease' }}>Company Portal</h2>
+                <p style={{ fontSize: '0.9rem', color: isDark ? '#64748b' : '#64748b', lineHeight: 1.5 }}>Post jobs, manage your candidate pipeline, and hire top talent directly.</p>
               </div>
               <div style={{ marginTop: 'auto', paddingTop: '1.5rem', display: 'flex', alignItems: 'center', gap: 6, color: '#818cf8', fontWeight: 700, fontSize: '0.9rem' }}>
-                Internal Login <ArrowRight size={16} />
+                Company Login <ArrowRight size={16} />
               </div>
             </div>
           </Link>

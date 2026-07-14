@@ -16,9 +16,9 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-            <img src="/logooo.jpeg" alt="JobSync Logo" className="h-12 w-auto object-contain rounded-full border border-gray-100 shadow-sm" />
+            <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-12 w-auto object-contain rounded-full border border-gray-100 shadow-sm" />
             <span className="font-extrabold text-2xl text-[#1e3a8a] dark:text-sky-400 tracking-tight transition-colors">
-              JobSync
+              The Job Sync
             </span>
           </Link>
 

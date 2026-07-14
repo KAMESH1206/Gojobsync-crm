@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
+import CompleteProfileModal from '@/components/careers/CompleteProfileModal';
 
 interface CandidateUser {
   id: string;
@@ -26,6 +27,7 @@ interface CandidateAuthContextType {
   isAuthenticated: boolean;
   appliedJobs: Set<string>;
   applyToJob: (jobId: string) => Promise<boolean>;
+  requireCompleteProfile: (onComplete: () => void) => void;
 }
 
 const CandidateAuthContext = createContext<CandidateAuthContextType | undefined>(undefined);
@@ -34,6 +36,9 @@ export function CandidateAuthProvider({ children }: { children: ReactNode }) {
   const [candidate, setCandidate] = useState<CandidateUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [appliedJobs, setAppliedJobs] = useState<Set<string>>(new Set());
+  
+  const [showCompleteProfileModal, setShowCompleteProfileModal] = useState(false);
+  const [onProfileCompleteCb, setOnProfileCompleteCb] = useState<(() => void) | null>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem('candidate_user');
@@ -112,9 +117,36 @@ export function CandidateAuthProvider({ children }: { children: ReactNode }) {
     } catch { return false; }
   }, [candidate]);
 
+  const requireCompleteProfile = useCallback((onComplete: () => void) => {
+    if (!candidate) return;
+    
+    const hasLocation = !!candidate.location;
+    const hasSkills = candidate.skills && candidate.skills !== '[]' && candidate.skills.length > 2;
+    const hasExperience = !!candidate.experience && candidate.experience !== '[]';
+    
+    if (hasLocation && hasSkills && hasExperience) {
+      onComplete();
+    } else {
+      setOnProfileCompleteCb(() => onComplete);
+      setShowCompleteProfileModal(true);
+    }
+  }, [candidate]);
+
   return (
-    <CandidateAuthContext.Provider value={{ candidate, isLoading, login, logout, updateProfile, isAuthenticated: !!candidate, appliedJobs, applyToJob }}>
+    <CandidateAuthContext.Provider value={{ candidate, isLoading, login, logout, updateProfile, isAuthenticated: !!candidate, appliedJobs, applyToJob, requireCompleteProfile }}>
       {children}
+      {showCompleteProfileModal && (
+        <CompleteProfileModal
+          isOpen={showCompleteProfileModal}
+          onClose={() => setShowCompleteProfileModal(false)}
+          candidate={candidate}
+          onSuccess={(updated) => {
+            updateProfile(updated);
+            setShowCompleteProfileModal(false);
+            if (onProfileCompleteCb) onProfileCompleteCb();
+          }}
+        />
+      )}
     </CandidateAuthContext.Provider>
   );
 }

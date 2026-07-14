@@ -126,7 +126,7 @@ export default function CompaniesPage() {
                 <div className="w-4 h-4 rounded-full border-2 border-[#1e3a8a] flex items-center justify-center">
                   <span className="w-1.5 h-1.5 bg-[#1e3a8a] rounded-full"></span>
                 </div>
-                About Companies on GoJobSync
+                About Companies on The Job Sync
               </div>
               <h2 className="text-4xl md:text-5xl font-extrabold text-[#0a1f44] leading-tight mb-6">
                 Where Talent Meets<br/>Industry

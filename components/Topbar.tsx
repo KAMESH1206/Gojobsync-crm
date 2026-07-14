@@ -29,7 +29,7 @@ export default function Topbar({ sidebarCollapsed, onMobileMenuToggle }: TopbarP
 
   const handleLogout = () => {
     logout();
-    router.push('/login');
+    router.push('/crm');
   };
 
   const getInitials = (name: string) => {
