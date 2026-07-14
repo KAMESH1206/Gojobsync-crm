@@ -9,8 +9,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <img src="/logooo.jpeg" alt="JobSync Logo" className="h-12 w-auto object-contain rounded-full border border-gray-700" />
-              <span className="font-extrabold text-xl tracking-tight">JobSync</span>
+              <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-12 w-auto object-contain rounded-full border border-gray-700" />
+              <span className="font-extrabold text-xl tracking-tight">The Job Sync</span>
             </div>
             <p className="text-slate-400 dark:text-slate-500 text-sm leading-relaxed font-medium mb-8 transition-colors duration-300">
               The trusted bridge between ambition and opportunity. Connecting top talent with leading employers.
@@ -54,7 +54,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 pt-8 flex justify-center text-center">
           <p className="text-slate-400 dark:text-slate-500 text-sm font-medium transition-colors duration-300">
-            &copy; 2026 JobSync. All rights reserved.
+            &copy; 2026 The Job Sync. All rights reserved.
           </p>
         </div>
       </div>

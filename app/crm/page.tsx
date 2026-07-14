@@ -90,10 +90,10 @@ export default function LoginPage() {
         {/* Logo / Title */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-            <img src="/logooo.jpeg" alt="JobSync Logo" style={{ height: 56, width: 56, objectFit: 'contain', borderRadius: '50%' }} />
+            <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 56, width: 56, objectFit: 'contain', borderRadius: '50%' }} />
           </div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--foreground)', marginBottom: '0.375rem', letterSpacing: '-0.5px' }}>
-            The JobSync
+            The The Job Sync
           </h1>
           <p style={{ fontSize: '0.875rem', color: 'var(--muted-foreground)' }}>
             Recruitment Management System

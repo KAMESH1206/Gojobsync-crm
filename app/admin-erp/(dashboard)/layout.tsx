@@ -11,9 +11,9 @@ export default function AdminERPLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-[#0f172a] text-white flex flex-col h-full overflow-y-auto">
         <div className="p-6 border-b border-white/10 flex items-center space-x-3">
-          <div className="bg-white text-[#0f172a] p-1 rounded-md font-bold text-xl h-8 w-8 flex items-center justify-center">S</div>
+          <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-8 w-8 object-contain rounded-full border border-gray-700 bg-white" />
           <div>
-            <h1 className="font-bold tracking-wider text-sm">THEJOBSYNC</h1>
+            <h1 className="font-bold tracking-wider text-sm">The Job Sync</h1>
             <p className="text-[10px] text-gray-300 tracking-widest uppercase">Admin Panel</p>
           </div>
         </div>

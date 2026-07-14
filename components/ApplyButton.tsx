@@ -6,15 +6,18 @@ import { CheckCircle, Zap } from 'lucide-react';
 
 export default function ApplyButton({ jobId }: { jobId: string }) {
   const router = useRouter();
-  const { candidate, appliedJobs, applyToJob } = useCandidateAuth();
+  const { candidate, appliedJobs, applyToJob, requireCompleteProfile } = useCandidateAuth();
   const [applying, setApplying] = useState(false);
   const applied = appliedJobs?.has(jobId) || false;
 
   const handleApply = async () => {
     if (!candidate) { router.push('/careers/login'); return; }
-    setApplying(true);
-    await applyToJob(jobId);
-    setApplying(false);
+    
+    requireCompleteProfile(async () => {
+      setApplying(true);
+      await applyToJob(jobId);
+      setApplying(false);
+    });
   };
 
   if (applied) {
