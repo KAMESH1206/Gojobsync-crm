@@ -51,7 +51,7 @@ export default function SavedJobsPage() {
 
       {loading ? (
         <div style={{ textAlign: 'center', padding: '4rem', color: isDark ? '#94a3b8' : '#64748b' }}>
-          <div style={{ width: 40, height: 40, border: `3px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`, borderTopColor: '#38bdf8', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }} />
+          <div style={{ width: 40, height: 40, border: `3px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`, borderTopColor: '#00B4D8', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }} />
           Loading your saved jobs...
         </div>
       ) : savedJobs.length === 0 ? (
@@ -59,7 +59,7 @@ export default function SavedJobsPage() {
           <Bookmark size={56} color="#475569" style={{ margin: '0 auto 1.5rem' }} />
           <h3 style={{ fontWeight: 800, color: isDark ? 'white' : '#0f172a', fontSize: '1.25rem', marginBottom: 10 }}>Your wishlist is empty</h3>
           <p style={{ color: isDark ? '#94a3b8' : '#64748b', marginBottom: '2rem' }}>Browse open positions and bookmark the ones you like.</p>
-          <Link href="/careers" style={{ background: 'linear-gradient(135deg,#0ea5e9,#6366f1)', color: 'white', padding: '1rem 2.5rem', borderRadius: 12, textDecoration: 'none', fontWeight: 800, fontSize: '1.05rem', boxShadow: '0 10px 20px rgba(14,165,233,0.3)' }} className="hover:scale-105 inline-block transition-transform">Explore Jobs</Link>
+          <Link href="/careers" style={{ background: 'linear-gradient(135deg,#0ea5e9,#0077B6)', color: 'white', padding: '1rem 2.5rem', borderRadius: 12, textDecoration: 'none', fontWeight: 800, fontSize: '1.05rem', boxShadow: '0 10px 20px rgba(14,165,233,0.3)' }} className="hover:scale-105 inline-block transition-transform">Explore Jobs</Link>
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.5rem' }}>
@@ -68,7 +68,7 @@ export default function SavedJobsPage() {
             const hue = job?.client?.companyName ? [...job.client.companyName].reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360 : 200;
 
             return (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} key={saved.id} style={{ background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`, borderRadius: 20, padding: '1.75rem', display: 'flex', flexDirection: 'column', position: 'relative' }} className="hover:bg-sky-500/5 hover:border-sky-500/40 transition-all">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} key={saved.id} style={{ background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`, borderRadius: 20, padding: '1.75rem', display: 'flex', flexDirection: 'column', position: 'relative' }} className="hover:bg-[#0077B6]/5 hover:border-[#0077B6]/40 transition-all">
                 <button onClick={() => handleRemove(job.id)} style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', borderRadius: 8, padding: 8, cursor: 'pointer', zIndex: 10 }} className="hover:bg-red-500 hover:text-white transition-colors" title="Remove from saved">
                   <Trash2 size={16} />
                 </button>
@@ -78,7 +78,7 @@ export default function SavedJobsPage() {
                     {(job?.client?.companyName || 'J')[0]}
                   </div>
                   <div style={{ paddingRight: 40 }}>
-                    <Link href={`/careers/jobs/${job?.id}`} style={{ fontWeight: 800, fontSize: '1.1rem', color: isDark ? 'white' : '#0f172a', textDecoration: 'none' }} className="hover:text-sky-400 transition-colors line-clamp-1">
+                    <Link href={`/careers/jobs/${job?.id}`} style={{ fontWeight: 800, fontSize: '1.1rem', color: isDark ? 'white' : '#0f172a', textDecoration: 'none' }} className="hover:text-[#00B4D8] transition-colors line-clamp-1">
                       {job?.title}
                     </Link>
                     <p style={{ fontSize: '0.85rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{job?.client?.companyName}</p>
@@ -95,7 +95,7 @@ export default function SavedJobsPage() {
                   <span style={{ fontSize: '0.75rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: 4 }}>
                     <Clock size={12} /> Saved {new Date(saved.savedAt).toLocaleDateString()}
                   </span>
-                  <Link href={`/careers/jobs/${job?.id}`} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', color: 'white', padding: '0.5rem 1rem', borderRadius: 8, fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none' }} className="hover:scale-105 transition-transform">
+                  <Link href={`/careers/jobs/${job?.id}`} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'linear-gradient(135deg, #0ea5e9, #0077B6)', color: 'white', padding: '0.5rem 1rem', borderRadius: 8, fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none' }} className="hover:scale-105 transition-transform">
                     <Zap size={14} /> Apply
                   </Link>
                 </div>

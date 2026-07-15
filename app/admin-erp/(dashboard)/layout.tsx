@@ -9,7 +9,7 @@ export default function AdminERPLayout({
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-64 bg-[#0f172a] text-white flex flex-col h-full overflow-y-auto">
+      <aside className="w-64 bg-[#03045E] text-white flex flex-col h-full overflow-y-auto">
         <div className="p-6 border-b border-white/10 flex items-center space-x-3">
           <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-8 w-8 object-contain rounded-full border border-gray-700 bg-white" />
           <div>

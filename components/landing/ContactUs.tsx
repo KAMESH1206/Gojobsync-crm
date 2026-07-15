@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Home, ChevronRight, Send } from 'lucide-react';
 import Link from 'next/link';
@@ -56,10 +56,10 @@ export default function ContactUs() {
             transition={{ delay: 0.1 }}
             className="bg-white dark:bg-slate-800/80 rounded-2xl p-8 text-center border border-gray-100 dark:border-white/5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] transition-colors duration-300"
           >
-            <div className="w-16 h-16 rounded-full bg-sky-50 dark:bg-slate-700 flex items-center justify-center text-sky-500 mx-auto mb-6 transition-colors duration-300">
+            <div className="w-16 h-16 rounded-full bg-[#CAF0F8]/30 dark:bg-slate-700 flex items-center justify-center text-[#0077B6] mx-auto mb-6 transition-colors duration-300">
               <Phone size={24} />
             </div>
-            <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Phone</h3>
+            <h3 className="text-[#0077B6] dark:text-[#00B4D8] font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Phone</h3>
             <p className="text-slate-900 dark:text-white font-bold text-lg mb-2 transition-colors duration-300">+971 54 740 5625</p>
             <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors duration-300">Mon-Fri, 9am-6pm GST</p>
           </motion.div>
@@ -71,11 +71,11 @@ export default function ContactUs() {
             transition={{ delay: 0.2 }}
             className="bg-white dark:bg-slate-800/80 rounded-2xl p-8 text-center border border-gray-100 dark:border-white/5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] transition-colors duration-300"
           >
-            <div className="w-16 h-16 rounded-full bg-sky-50 dark:bg-slate-700 flex items-center justify-center text-sky-500 mx-auto mb-6 transition-colors duration-300">
+            <div className="w-16 h-16 rounded-full bg-[#CAF0F8]/30 dark:bg-slate-700 flex items-center justify-center text-[#0077B6] mx-auto mb-6 transition-colors duration-300">
               <Mail size={24} />
             </div>
-            <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Email</h3>
-            <p className="text-sky-500 dark:text-sky-400 font-bold text-lg mb-2 transition-colors duration-300">info@thejobsync.com</p>
+            <h3 className="text-[#0077B6] dark:text-[#00B4D8] font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Email</h3>
+            <p className="text-[#0077B6] dark:text-[#00B4D8] font-bold text-lg mb-2 transition-colors duration-300">info@thejobsync.com</p>
             <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors duration-300">Response within 24 hours</p>
           </motion.div>
 
@@ -86,10 +86,10 @@ export default function ContactUs() {
             transition={{ delay: 0.3 }}
             className="bg-white dark:bg-slate-800/80 rounded-2xl p-8 text-center border border-gray-100 dark:border-white/5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] transition-colors duration-300"
           >
-            <div className="w-16 h-16 rounded-full bg-sky-50 dark:bg-slate-700 flex items-center justify-center text-sky-500 mx-auto mb-6 transition-colors duration-300">
+            <div className="w-16 h-16 rounded-full bg-[#CAF0F8]/30 dark:bg-slate-700 flex items-center justify-center text-[#0077B6] mx-auto mb-6 transition-colors duration-300">
               <MapPin size={24} />
             </div>
-            <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Address</h3>
+            <h3 className="text-[#0077B6] dark:text-[#00B4D8] font-bold text-sm tracking-widest uppercase mb-4 transition-colors duration-300">Address</h3>
             <p className="text-slate-600 dark:text-slate-300 font-medium text-[15px] mb-2 leading-relaxed transition-colors duration-300">Dubai Creek Tower - 1st St<br/>Deira-Riggat Al Buteen - Dubai</p>
           </motion.div>
         </div>
@@ -106,28 +106,28 @@ export default function ContactUs() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">First Name</label>
-                  <input type="text" placeholder="John" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
+                  <input type="text" placeholder="John" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-[#0077B6] focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Last Name</label>
-                  <input type="text" placeholder="Doe" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
+                  <input type="text" placeholder="Doe" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-[#0077B6] focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Email Address</label>
-                  <input type="email" placeholder="john@example.com" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
+                  <input type="email" placeholder="john@example.com" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-[#0077B6] focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Phone Number</label>
-                  <input type="text" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
+                  <input type="text" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-[#0077B6] focus:ring-1 focus:ring-sky-500 transition-colors duration-300" />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Subject</label>
-                <select className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-slate-500 dark:text-slate-300 bg-white dark:bg-slate-900 transition-colors duration-300">
+                <select className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 focus:outline-none focus:border-[#0077B6] focus:ring-1 focus:ring-sky-500 text-slate-500 dark:text-slate-300 bg-white dark:bg-slate-900 transition-colors duration-300">
                   <option>Select a topic</option>
                   <option>General Inquiry</option>
                   <option>Support</option>
@@ -137,10 +137,10 @@ export default function ContactUs() {
 
               <div>
                 <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Message</label>
-                <textarea rows={5} placeholder="Write your message here..." className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 resize-none transition-colors duration-300"></textarea>
+                <textarea rows={5} placeholder="Write your message here..." className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-[#0077B6] focus:ring-1 focus:ring-sky-500 resize-none transition-colors duration-300"></textarea>
               </div>
 
-              <button type="button" className="w-full flex justify-center items-center gap-2 bg-gradient-to-br from-sky-500 to-indigo-500 text-white px-8 py-4 rounded-xl font-bold hover:scale-[1.02] transition-transform shadow-lg">
+              <button type="button" className="w-full flex justify-center items-center gap-2 bg-gradient-to-br from-[#0077B6] to-[#00B4D8] text-white px-8 py-4 rounded-xl font-bold hover:scale-[1.02] transition-transform shadow-lg">
                 <Send size={18} />
                 <span>Send Message</span>
               </button>
@@ -174,7 +174,7 @@ export default function ContactUs() {
 
             {/* Office Hours Card */}
             <div className="bg-white dark:bg-slate-800/80 rounded-3xl p-8 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100 dark:border-white/5 transition-colors duration-300">
-              <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-6 transition-colors duration-300">Office Hours</h3>
+              <h3 className="text-[#0077B6] dark:text-[#00B4D8] font-bold text-sm tracking-widest uppercase mb-6 transition-colors duration-300">Office Hours</h3>
               
               <div className="space-y-4 mb-8 text-sm font-medium">
                 <div className="flex justify-between items-center border-b border-gray-50 dark:border-white/5 pb-4 transition-colors duration-300">

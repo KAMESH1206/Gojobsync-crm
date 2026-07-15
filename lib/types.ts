@@ -195,16 +195,16 @@ export const ROLE_LABELS: Partial<Record<UserRole, string>> = {
 };
 
 export const ROLE_COLORS: Partial<Record<UserRole, string>> = {
-  super_admin: '#ef4444', // red
-  it_admin: '#f97316', // orange
-  admin: '#eab308', // yellow
-  placement_coordinator: '#10b981', // emerald
-  recruiter: '#14b8a6', // teal
-  interviewer: '#0ea5e9', // sky
-  hr: '#6366f1', // indigo
-  client: '#8b5cf6', // violet
-  developer: '#a855f7', // purple
-  tester: '#ec4899', // pink
+  super_admin: '#ef4444',
+  it_admin: '#f97316',
+  admin: '#eab308',
+  placement_coordinator: '#10b981',
+  recruiter: '#00B4D8',   // ocean cyan
+  interviewer: '#0077B6', // ocean blue
+  hr: '#03045E',          // deep navy
+  client: '#90E0EF',      // light cyan
+  developer: '#a855f7',
+  tester: '#ec4899',
 };
 
 export const STATUS_COLORS: Record<string, string> = {

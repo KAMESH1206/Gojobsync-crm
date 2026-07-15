@@ -81,7 +81,7 @@ export default function MessagesPage() {
         <div style={{ flex: 1, padding: '1.5rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {loading ? (
             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ width: 30, height: 30, border: `3px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`, borderTopColor: '#38bdf8', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+              <div style={{ width: 30, height: 30, border: `3px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`, borderTopColor: '#00B4D8', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
             </div>
           ) : messages.length === 0 ? (
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#64748b', textAlign: 'center' }}>
@@ -94,7 +94,7 @@ export default function MessagesPage() {
               return (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} key={msg.id || i} style={{ alignSelf: isMe ? 'flex-end' : 'flex-start', maxWidth: '75%' }}>
                   <div style={{ 
-                    background: isMe ? 'linear-gradient(135deg,#0ea5e9,#6366f1)' : (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'), 
+                    background: isMe ? 'linear-gradient(135deg,#0ea5e9,#0077B6)' : (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'), 
                     color: isMe ? 'white' : (isDark ? 'white' : '#0f172a'), padding: '0.875rem 1.25rem', borderRadius: 16, 
                     borderBottomRightRadius: isMe ? 4 : 16, borderBottomLeftRadius: !isMe ? 4 : 16,
                     fontSize: '0.95rem', lineHeight: 1.5
@@ -117,9 +117,9 @@ export default function MessagesPage() {
               value={input} onChange={e => setInput(e.target.value)} 
               placeholder="Type your message..." 
               style={{ flex: 1, background: isDark ? 'rgba(0,0,0,0.3)' : 'white', border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`, borderRadius: 12, padding: '1rem', color: isDark ? 'white' : '#0f172a', outline: 'none', fontSize: '0.95rem' }} 
-              className="focus:border-sky-500 transition-colors"
+              className="focus:border-[#0077B6] transition-colors"
             />
-            <button type="submit" disabled={sending || !input.trim()} style={{ background: 'linear-gradient(135deg,#0ea5e9,#6366f1)', color: 'white', border: 'none', borderRadius: 12, padding: '0 1.5rem', cursor: (sending || !input.trim()) ? 'default' : 'pointer', opacity: (sending || !input.trim()) ? 0.6 : 1, transition: 'transform 0.2s' }} className={(sending || !input.trim()) ? '' : 'hover:scale-105'}>
+            <button type="submit" disabled={sending || !input.trim()} style={{ background: 'linear-gradient(135deg,#0ea5e9,#0077B6)', color: 'white', border: 'none', borderRadius: 12, padding: '0 1.5rem', cursor: (sending || !input.trim()) ? 'default' : 'pointer', opacity: (sending || !input.trim()) ? 0.6 : 1, transition: 'transform 0.2s' }} className={(sending || !input.trim()) ? '' : 'hover:scale-105'}>
               <Send size={20} />
             </button>
           </form>

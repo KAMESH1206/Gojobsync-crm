@@ -250,16 +250,15 @@ export default function EmployerRegistration() {
           {/* Landing State Header */}
           <header className="w-full h-20 px-6 sm:px-10 flex items-center justify-between z-20 bg-white">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-extrabold text-xl shadow-md">
-                S
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img src="/loooo.jpeg" alt="The Job Sync Logo" className="w-full h-full object-contain rounded-full border border-[#00B4D8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-lg text-slate-900 leading-none tracking-tight">GO</span>
-                <span className="font-extrabold text-lg text-slate-900 leading-none tracking-tight">JOBSYNC</span>
+                <span className="font-extrabold text-lg text-slate-900 leading-none tracking-tight">THE JOB SYNC</span>
               </div>
             </Link>
             <Link href="/">
-              <button className="hidden sm:flex items-center gap-2 bg-[#1e3a8a] text-white text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-[#172554] transition-colors shadow-sm">
+              <button className="hidden sm:flex items-center gap-2 bg-[#03045E] text-white text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-[#172554] transition-colors shadow-sm">
                 <ArrowLeft size={16} /> Back to Home
               </button>
             </Link>
@@ -271,11 +270,7 @@ export default function EmployerRegistration() {
 
             {/* Left Content */}
             <div className="lg:w-[55%] relative z-10">
-              <Link href="/">
-                <button className="flex items-center gap-2 bg-[#1e3a8a] text-white hover:bg-[#172554] text-sm font-bold py-2 px-4 rounded-lg transition-colors mb-8 w-max border border-blue-800">
-                  <ArrowLeft size={16} /> Back
-                </button>
-              </Link>
+              {/* Removed redundant left back button */}
 
               <div className="inline-flex items-center gap-2 bg-blue-900/50 border border-blue-700/50 py-1.5 px-4 rounded-full text-[11px] font-bold tracking-widest text-blue-200 mb-6 uppercase">
                 <span className="w-2 h-2 rounded-full bg-blue-400"></span> TRUSTED BY 5,000+ COMPANIES
@@ -283,7 +278,7 @@ export default function EmployerRegistration() {
 
               <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
                 Find Your Next <br />
-                <span className="text-sky-400">Dream Employer</span>
+                <span className="text-[#00B4D8]">Dream Employer</span>
               </h1>
 
               <p className="text-lg text-blue-100/70 max-w-xl leading-relaxed mb-12">
@@ -324,10 +319,10 @@ export default function EmployerRegistration() {
             {/* Right Card (Tabs) */}
             <div className="lg:w-[450px] w-full bg-white rounded-3xl shadow-2xl overflow-hidden text-slate-900 relative z-10">
               <div className="flex border-b border-slate-200">
-                <button onClick={() => setActiveTab('enquiry')} className={`flex-1 py-5 text-sm font-bold transition-colors ${activeTab === 'enquiry' ? 'text-[#1e3a8a] border-b-2 border-[#1e3a8a]' : 'text-slate-400 hover:text-slate-600'}`}>
+                <button onClick={() => setActiveTab('enquiry')} className={`flex-1 py-5 text-sm font-bold transition-colors ${activeTab === 'enquiry' ? 'text-[#03045E] border-b-2 border-[#03045E]' : 'text-slate-400 hover:text-slate-600'}`}>
                   Profile Enquiry
                 </button>
-                <button onClick={() => setActiveTab('register')} className={`flex-1 py-5 text-sm font-bold transition-colors ${activeTab === 'register' ? 'text-[#1e3a8a] border-b-2 border-[#1e3a8a]' : 'text-slate-400 hover:text-slate-600'}`}>
+                <button onClick={() => setActiveTab('register')} className={`flex-1 py-5 text-sm font-bold transition-colors ${activeTab === 'register' ? 'text-[#03045E] border-b-2 border-[#03045E]' : 'text-slate-400 hover:text-slate-600'}`}>
                   Register / Log in
                 </button>
               </div>
@@ -342,27 +337,27 @@ export default function EmployerRegistration() {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <span className="text-[10px] font-bold tracking-widest text-[#1e3a8a] uppercase block mb-2">For Employers</span>
+                      <span className="text-[10px] font-bold tracking-widest text-[#03045E] uppercase block mb-2">For Employers</span>
                       <h3 className="text-2xl font-extrabold text-slate-900 mb-2">Post Jobs & Find Talent</h3>
                       <p className="text-sm text-slate-500 mb-6">Connect with millions of candidates. Tell us about your hiring needs.</p>
 
                       <form className="space-y-4">
                         <div>
                           <label className="block text-xs font-bold text-slate-700 mb-1.5">Company Name</label>
-                          <input type="text" placeholder="e.g. Infosys, TCS, Zoho" className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-colors" />
+                          <input type="text" placeholder="e.g. Infosys, TCS, Zoho" className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-colors" />
                         </div>
                         <div>
                           <label className="block text-xs font-bold text-slate-700 mb-1.5">Work Email</label>
-                          <input type="email" placeholder="mrjobsync@gmail.com" className="w-full px-4 py-3 bg-sky-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-colors" />
+                          <input type="email" placeholder="mrjobsync@gmail.com" className="w-full px-4 py-3 bg-[#CAF0F8]/30/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-colors" />
                         </div>
                         <div>
                           <label className="block text-xs font-bold text-slate-700 mb-1.5">Phone Number</label>
-                          <input type="tel" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-colors" />
+                          <input type="tel" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-colors" />
                         </div>
 
                         <div className="pt-2 space-y-3">
-                          <button type="button" className="w-full py-3.5 bg-[#1e3a8a] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all">Request a Demo</button>
-                          <button type="button" className="w-full py-3.5 bg-[#1e3a8a] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all">Log in</button>
+                          <button type="button" className="w-full py-3.5 bg-[#03045E] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all">Request a Demo</button>
+                          <button type="button" className="w-full py-3.5 bg-[#03045E] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all">Log in</button>
                         </div>
                       </form>
                     </motion.div>
@@ -374,7 +369,7 @@ export default function EmployerRegistration() {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <span className="text-[10px] font-bold tracking-widest text-[#1e3a8a] uppercase block mb-2">For Companies</span>
+                      <span className="text-[10px] font-bold tracking-widest text-[#03045E] uppercase block mb-2">For Companies</span>
                       <h3 className="text-2xl font-extrabold text-slate-900 mb-2">Company Login</h3>
                       <p className="text-sm text-slate-500 mb-6">Sign in to manage your job postings and candidate applications.</p>
 
@@ -401,11 +396,11 @@ export default function EmployerRegistration() {
                       }}>
                         <div>
                           <label className="block text-xs font-bold text-slate-700 mb-1.5">Email Address</label>
-                          <input type="email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required placeholder="you@company.com" className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-colors" />
+                          <input type="email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required placeholder="you@company.com" className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-colors" />
                         </div>
                         <div>
                           <label className="block text-xs font-bold text-slate-700 mb-1.5">Password</label>
-                          <input type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required placeholder="••••••••••••" className="w-full px-4 py-3 bg-sky-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-colors" />
+                          <input type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required placeholder="••••••••••••" className="w-full px-4 py-3 bg-[#CAF0F8]/30/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-colors" />
                         </div>
 
                         {loginError && (
@@ -415,7 +410,7 @@ export default function EmployerRegistration() {
                         )}
 
                         <div className="pt-2">
-                          <button type="submit" disabled={loginLoading} className="w-full py-3.5 flex items-center justify-center gap-2 bg-[#1e3a8a] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all mb-4 disabled:opacity-70">
+                          <button type="submit" disabled={loginLoading} className="w-full py-3.5 flex items-center justify-center gap-2 bg-[#03045E] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all mb-4 disabled:opacity-70">
                             {loginLoading && <Loader2 size={16} className="animate-spin" />}
                             Sign In
                           </button>
@@ -453,7 +448,7 @@ export default function EmployerRegistration() {
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Verify your email</h3>
                   <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                     A 6-digit OTP has been sent to{' '}
-                    <span className="font-semibold text-sky-600 dark:text-sky-400">{workEmail}</span>.
+                    <span className="font-semibold text-[#03045E] dark:text-[#00B4D8]">{workEmail}</span>.
                     Enter it below to verify your account.
                   </p>
 
@@ -481,7 +476,7 @@ export default function EmployerRegistration() {
                           outline: 'none',
                           boxShadow: digit ? '0 0 0 3px rgba(14,165,233,0.15)' : 'none',
                           transition: 'border-color 0.15s, box-shadow 0.15s',
-                          caretColor: '#0ea5e9',
+                          caretColor: '#00B4D8',
                         }}
                         onFocus={(e) => {
                           e.target.style.border = '2px solid #0ea5e9';
@@ -513,7 +508,7 @@ export default function EmployerRegistration() {
                       <button
                         onClick={handleResendOtp}
                         disabled={otpLoading}
-                        className="text-sky-600 dark:text-sky-400 font-bold hover:underline disabled:opacity-50"
+                        className="text-[#03045E] dark:text-[#00B4D8] font-bold hover:underline disabled:opacity-50"
                       >
                         {otpLoading ? 'Sending...' : 'Resend OTP'}
                       </button>
@@ -523,7 +518,7 @@ export default function EmployerRegistration() {
                   <button
                     onClick={handleVerifyOtp}
                     disabled={verifyLoading || otp.join('').length < 6}
-                    className="w-full py-3.5 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-sky-500/25 transition-all mb-3 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 bg-gradient-to-r from-[#0077B6] to-[#00B4D8] hover:from-sky-600 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-sky-500/25 transition-all mb-3 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {verifyLoading ? 'Verifying...' : 'Verify OTP'}
                   </button>
@@ -541,7 +536,7 @@ export default function EmployerRegistration() {
           {/* TOP NAVBAR */}
           <header className="absolute top-0 left-0 w-full h-20 px-6 sm:px-10 flex items-center justify-between z-10 border-b border-slate-200/50 dark:border-slate-800/50 bg-white/50 dark:bg-slate-950/50 backdrop-blur-md">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-extrabold text-xl shadow-md">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#0077B6] to-[#00B4D8] rounded-xl flex items-center justify-center text-white font-extrabold text-xl shadow-md">
                 S
               </div>
               <div className="flex flex-col">
@@ -550,12 +545,12 @@ export default function EmployerRegistration() {
               </div>
             </Link>
             <div className="flex items-center gap-6">
-              <button onClick={() => setIsWizardActive(false)} className="hidden sm:flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 transition-colors border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg bg-white dark:bg-slate-900 shadow-sm">
+              <button onClick={() => setIsWizardActive(false)} className="hidden sm:flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-[#0077B6] dark:hover:text-[#00B4D8] transition-colors border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg bg-white dark:bg-slate-900 shadow-sm">
                 <ArrowLeft size={16} />
                 Back
               </button>
               <div className="text-sm font-medium text-slate-500 dark:text-slate-400">
-                Already registered? <button onClick={() => { setIsWizardActive(false); setActiveTab('register'); }} className="text-sky-600 dark:text-sky-400 font-bold hover:underline">Sign In &rarr;</button>
+                Already registered? <button onClick={() => { setIsWizardActive(false); setActiveTab('register'); }} className="text-[#03045E] dark:text-[#00B4D8] font-bold hover:underline">Sign In &rarr;</button>
               </div>
             </div>
           </header>
@@ -566,14 +561,14 @@ export default function EmployerRegistration() {
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
 
 
-            <div className="inline-flex items-center gap-2 bg-sky-100 dark:bg-sky-500/10 border border-sky-200 dark:border-sky-500/20 py-1.5 px-4 rounded-full text-[11px] font-bold tracking-widest text-sky-700 dark:text-sky-400 mb-6 w-max">
-              <span className="w-2 h-2 rounded-full bg-sky-500"></span>
+            <div className="inline-flex items-center gap-2 bg-[#90E0EF]/30 dark:bg-[#0077B6]/10 border border-sky-200 dark:border-[#0077B6]/20 py-1.5 px-4 rounded-full text-[11px] font-bold tracking-widest text-sky-700 dark:text-[#00B4D8] mb-6 w-max">
+              <span className="w-2 h-2 rounded-full bg-[#0077B6]"></span>
               EMPLOYER PORTAL
             </div>
 
             <h1 className="text-5xl xl:text-6xl font-extrabold text-slate-900 dark:text-white leading-[1.1] mb-6 tracking-tight">
               Hire smarter,<br />
-              <span className="bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-transparent">grow faster</span>
+              <span className="bg-gradient-to-r from-[#0077B6] to-[#00B4D8] bg-clip-text text-transparent">grow faster</span>
             </h1>
 
             <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-12 max-w-md">
@@ -606,7 +601,7 @@ export default function EmployerRegistration() {
 
                 return (
                   <div key={idx} className="flex items-center gap-5">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${isCompleted ? 'bg-sky-500 text-white' :
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${isCompleted ? 'bg-[#0077B6] text-white' :
                         isCurrent ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 ring-4 ring-sky-500/20' :
                           'bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
                       }`}>
@@ -629,7 +624,7 @@ export default function EmployerRegistration() {
               {/* Top Progress Line */}
               <div className="absolute top-0 left-0 h-1 bg-slate-100 dark:bg-slate-800 w-full">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-sky-500 to-indigo-600"
+                  className="h-full bg-gradient-to-r from-[#0077B6] to-[#00B4D8]"
                   initial={{ width: '33%' }}
                   animate={{ width: `${(step / 3) * 100}%` }}
                   transition={{ duration: 0.5 }}
@@ -691,25 +686,25 @@ export default function EmployerRegistration() {
                       <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setStep((s) => Math.min(s + 1, 3)); }}>
                         <div>
                           <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Company Name *</label>
-                          <input type="text" placeholder="e.g. Infosys, TCS, Zoho" required value={companyName} onChange={e => setCompanyName(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white" />
+                          <input type="text" placeholder="e.g. Infosys, TCS, Zoho" required value={companyName} onChange={e => setCompanyName(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white" />
                         </div>
                         <div>
                           <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">GST Number *</label>
-                          <input type="text" placeholder="E.g. 22AAAAA0000A1Z5" required value={gstNumber} onChange={e => setGstNumber(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white" />
+                          <input type="text" placeholder="E.g. 22AAAAA0000A1Z5" required value={gstNumber} onChange={e => setGstNumber(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white" />
                         </div>
                         <div>
                           <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Company Address *</label>
-                          <input type="text" placeholder="Street address, city, state, PIN" required value={address} onChange={e => setAddress(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white" />
+                          <input type="text" placeholder="Street address, city, state, PIN" required value={address} onChange={e => setAddress(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white" />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                           <div>
                             <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Contact Person *</label>
-                            <input type="text" placeholder="Full name" required value={contactPerson} onChange={e => setContactPerson(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white" />
+                            <input type="text" placeholder="Full name" required value={contactPerson} onChange={e => setContactPerson(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white" />
                           </div>
                           <div>
                             <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Contact Number *</label>
-                            <input type="tel" placeholder="10-digit mobile" required value={contactPhone} onChange={e => setContactPhone(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white" />
+                            <input type="tel" placeholder="10-digit mobile" required value={contactPhone} onChange={e => setContactPhone(e.target.value)} className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white" />
                           </div>
                         </div>
 
@@ -721,13 +716,13 @@ export default function EmployerRegistration() {
                             required
                             value={workEmail}
                             onChange={(e) => setWorkEmail(e.target.value)}
-                            className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white"
+                            className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white"
                           />
                         </div>
 
                         <div>
                           <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Nature of Company *</label>
-                          <select value={industry} onChange={e => setIndustry(e.target.value)} required className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white appearance-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}>
+                          <select value={industry} onChange={e => setIndustry(e.target.value)} required className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white appearance-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}>
                             <option value="" disabled>Select nature of business</option>
                             <option value="Information Technology">Information Technology</option>
                             <option value="Manufacturing">Manufacturing</option>
@@ -739,10 +734,10 @@ export default function EmployerRegistration() {
 
                         <div>
                           <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">About the Company *</label>
-                          <textarea rows={3} value={about} onChange={e => setAbout(e.target.value)} placeholder="Briefly describe your company — culture, mission, what you do..." required className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors resize-none dark:text-white"></textarea>
+                          <textarea rows={3} value={about} onChange={e => setAbout(e.target.value)} placeholder="Briefly describe your company — culture, mission, what you do..." required className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors resize-none dark:text-white"></textarea>
                         </div>
 
-                        <button type="submit" className="w-full mt-6 py-4 bg-[#1e3a8a] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                        <button type="submit" className="w-full mt-6 py-4 bg-[#03045E] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
                           Save & Continue <ArrowLeft size={16} className="rotate-180" />
                         </button>
 
@@ -772,9 +767,9 @@ export default function EmployerRegistration() {
 
                         <div>
                           <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Username *</label>
-                          <input type="text" placeholder="Choose a unique username" required className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white" />
+                          <input type="text" placeholder="Choose a unique username" required className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white" />
                           <div className="flex items-center gap-2 mt-3">
-                            <input type="checkbox" id="use-email" className="w-4 h-4 rounded border-slate-300 text-sky-600 focus:ring-sky-600" />
+                            <input type="checkbox" id="use-email" className="w-4 h-4 rounded border-slate-300 text-[#03045E] focus:ring-sky-600" />
                             <label htmlFor="use-email" className="text-sm text-slate-600 dark:text-slate-400">Use email as username (<span className="font-medium text-slate-900 dark:text-white">{workEmail || 'enter email in step 1'}</span>)</label>
                           </div>
                         </div>
@@ -788,7 +783,7 @@ export default function EmployerRegistration() {
                               value={password}
                               onChange={(e) => setPassword(e.target.value)}
                               required
-                              className="w-full pl-4 pr-12 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white"
+                              className="w-full pl-4 pr-12 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white"
                             />
                             <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
                               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -822,7 +817,7 @@ export default function EmployerRegistration() {
                               type={showConfirmPassword ? "text" : "password"}
                               placeholder="Re-enter password"
                               required
-                              className="w-full pl-4 pr-12 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors dark:text-white"
+                              className="w-full pl-4 pr-12 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white"
                             />
                             <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
                               {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -839,7 +834,7 @@ export default function EmployerRegistration() {
                           <button
                             type="submit"
                             disabled={otpLoading}
-                            className="w-full py-4 bg-[#1e3a8a] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                            className="w-full py-4 bg-[#03045E] hover:bg-[#172554] text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                           >
                             {otpLoading ? 'Sending OTP...' : <><span>Continue</span><ArrowLeft size={16} className="rotate-180" /></>}
                           </button>
@@ -864,7 +859,7 @@ export default function EmployerRegistration() {
         <div className="max-w-7xl mx-auto">
 
           <div className="text-center mb-12">
-            <span className="text-sm font-bold text-sky-500 tracking-widest uppercase mb-3 block">Top Employers</span>
+            <span className="text-sm font-bold text-[#0077B6] tracking-widest uppercase mb-3 block">Top Employers</span>
             <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight">Companies Actively Hiring</h2>
             <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">
               Explore verified companies and find where your next opportunity awaits
@@ -879,17 +874,17 @@ export default function EmployerRegistration() {
               <input
                 type="text"
                 placeholder="Search companies..."
-                className="w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors placeholder-slate-400"
+                className="w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors placeholder-slate-400"
               />
             </div>
             <div className="flex gap-4">
-              <select className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-slate-700 dark:text-slate-300 font-medium focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors cursor-pointer min-w-[160px] appearance-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}>
+              <select className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-slate-700 dark:text-slate-300 font-medium focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors cursor-pointer min-w-[160px] appearance-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}>
                 <option>All Industries</option>
                 <option>Technology</option>
                 <option>Finance</option>
                 <option>Healthcare</option>
               </select>
-              <select className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-slate-700 dark:text-slate-300 font-medium focus:outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors cursor-pointer min-w-[160px] appearance-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}>
+              <select className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-slate-700 dark:text-slate-300 font-medium focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors cursor-pointer min-w-[160px] appearance-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}>
                 <option>All Locations</option>
                 <option>Chennai</option>
                 <option>Bangalore</option>
@@ -900,10 +895,10 @@ export default function EmployerRegistration() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {activelyHiring.map((company, idx) => (
-              <div key={idx} className="bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl dark:shadow-none hover:border-sky-500/50 transition-all flex flex-col relative group">
+              <div key={idx} className="bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl dark:shadow-none hover:border-[#0077B6]/50 transition-all flex flex-col relative group">
 
                 {company.featured && (
-                  <div className="absolute top-8 right-8 bg-sky-500 text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wider uppercase">
+                  <div className="absolute top-8 right-8 bg-[#0077B6] text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wider uppercase">
                     Featured
                   </div>
                 )}
@@ -912,7 +907,7 @@ export default function EmployerRegistration() {
                   {company.initials}
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-sky-500 transition-colors">{company.name}</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-[#0077B6] transition-colors">{company.name}</h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">{company.industry}</p>
 
                 <div className="flex items-center gap-2 mb-6">
@@ -933,14 +928,14 @@ export default function EmployerRegistration() {
 
                 <div className="flex flex-wrap gap-2 mb-8">
                   {company.skills.map((skill, sIdx) => (
-                    <span key={sIdx} className="bg-sky-100 dark:bg-sky-500/10 text-sky-700 dark:text-sky-400 border border-sky-200 dark:border-sky-500/20 text-xs font-bold px-3 py-1.5 rounded-full">
+                    <span key={sIdx} className="bg-[#90E0EF]/30 dark:bg-[#0077B6]/10 text-sky-700 dark:text-[#00B4D8] border border-sky-200 dark:border-[#0077B6]/20 text-xs font-bold px-3 py-1.5 rounded-full">
                       {skill}
                     </span>
                   ))}
                 </div>
 
                 <div className="mt-auto">
-                  <button className="w-full bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-sky-500 hover:text-sky-500 dark:hover:border-sky-500 dark:hover:text-sky-400 font-bold py-3 rounded-xl transition-colors text-sm flex items-center justify-center gap-2 group/btn">
+                  <button className="w-full bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-[#0077B6] hover:text-[#0077B6] dark:hover:border-[#0077B6] dark:hover:text-[#00B4D8] font-bold py-3 rounded-xl transition-colors text-sm flex items-center justify-center gap-2 group/btn">
                     View {company.jobs} Jobs
                     <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
                   </button>

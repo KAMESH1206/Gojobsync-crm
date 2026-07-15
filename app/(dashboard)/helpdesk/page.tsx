@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
@@ -122,7 +122,7 @@ export default function HelpdeskPage() {
     <div>
       <div className="animate-fade-in" style={{ marginBottom: '1.5rem' }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <LifeBuoy size={22} style={{ color: '#3b82f6' }} /> Helpdesk & Leave Portal
+          <LifeBuoy size={22} style={{ color: '#0077B6' }} /> Helpdesk & Leave Portal
         </h1>
         <p style={{ color: 'var(--muted-foreground)', fontSize: '0.875rem' }}>Raise IT/Admin tickets and apply for leaves</p>
       </div>
@@ -216,7 +216,7 @@ export default function HelpdeskPage() {
                         <div className="text-[0.7rem] text-[var(--muted-foreground)] mb-1 px-1">
                           {isMe ? 'You' : msg.sender.name} • {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </div>
-                        <div className={`p-3 rounded-2xl ${isMe ? 'bg-sky-500 text-white rounded-tr-none' : 'bg-[var(--background)] border border-[var(--border)] rounded-tl-none'}`}>
+                        <div className={`p-3 rounded-2xl ${isMe ? 'bg-[#0077B6] text-white rounded-tr-none' : 'bg-[var(--background)] border border-[var(--border)] rounded-tl-none'}`}>
                           {msg.message}
                         </div>
                       </div>

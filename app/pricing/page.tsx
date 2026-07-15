@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import Link from 'next/link';
 import { ArrowLeft, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -117,7 +117,7 @@ export default function PricingPage() {
       <div className="bg-white border-b border-gray-100 py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center sticky top-0 z-50">
         <Link href="/" className="flex items-center gap-2">
           {/* Logo Placeholder */}
-          <div className="w-8 h-8 bg-[#1e3a8a] rounded-lg rotate-45 flex items-center justify-center">
+          <div className="w-8 h-8 bg-[#03045E] rounded-lg rotate-45 flex items-center justify-center">
             <div className="w-4 h-4 bg-white rounded-sm -rotate-45"></div>
           </div>
           <span className="font-extrabold text-xl text-[#0a1f44] tracking-tight ml-2">GO<br/>JOBSYNC</span>
@@ -129,18 +129,18 @@ export default function PricingPage() {
       </div>
 
       {/* Dark Blue Banner - Currency Toggle */}
-      <div className="bg-[#1e3a8a] py-8 text-white flex justify-center items-center gap-4">
+      <div className="bg-[#03045E] py-8 text-white flex justify-center items-center gap-4">
         <span className="font-medium text-blue-200">featured listings.</span>
         <div className="bg-white/10 rounded-lg p-1 flex">
           <button 
             onClick={() => setCurrency('USD')}
-            className={`px-4 py-1.5 rounded-md text-sm font-bold transition-colors ${currency === 'USD' ? 'bg-white text-[#1e3a8a] shadow-sm' : 'text-white hover:bg-white/20'}`}
+            className={`px-4 py-1.5 rounded-md text-sm font-bold transition-colors ${currency === 'USD' ? 'bg-white text-[#03045E] shadow-sm' : 'text-white hover:bg-white/20'}`}
           >
             USD
           </button>
           <button 
             onClick={() => setCurrency('INR')}
-            className={`px-4 py-1.5 rounded-md text-sm font-bold transition-colors ${currency === 'INR' ? 'bg-white text-[#1e3a8a] shadow-sm' : 'text-white hover:bg-white/20'}`}
+            className={`px-4 py-1.5 rounded-md text-sm font-bold transition-colors ${currency === 'INR' ? 'bg-white text-[#03045E] shadow-sm' : 'text-white hover:bg-white/20'}`}
           >
             INR (₹)
           </button>
@@ -152,7 +152,7 @@ export default function PricingPage() {
         {/* Job Posting Section */}
         <section id="job_posting" className="bg-white rounded-3xl p-8 md:p-12 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100">
           <div className="mb-12">
-            <h3 className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-4">Employers</h3>
+            <h3 className="text-[#03045E] font-bold text-sm tracking-widest uppercase mb-4">Employers</h3>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#0a1f44] mb-4">Job Posting</h2>
             <p className="text-gray-500 font-medium">Post a job and receive relevant applications. Choose featured visibility or simple pay-per-post.</p>
           </div>
@@ -164,16 +164,16 @@ export default function PricingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`relative bg-[#f8fafc] rounded-2xl p-8 flex flex-col ${plan.popular ? 'border-2 border-[#1e3a8a] shadow-lg' : 'border border-gray-200'}`}
+                className={`relative bg-[#f8fafc] rounded-2xl p-8 flex flex-col ${plan.popular ? 'border-2 border-[#03045E] shadow-lg' : 'border border-gray-200'}`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#1e3a8a] text-white text-[11px] font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#03045E] text-white text-[11px] font-bold px-4 py-1 rounded-full uppercase tracking-wider">
                     Popular
                   </div>
                 )}
                 <h4 className="text-xl font-bold text-[#0a1f44] mb-4">{plan.title}</h4>
                 <div className="mb-6">
-                  <span className="text-4xl font-extrabold text-[#1e3a8a]">{getPrice(plan.price.inr, plan.price.usd)}</span>
+                  <span className="text-4xl font-extrabold text-[#03045E]">{getPrice(plan.price.inr, plan.price.usd)}</span>
                   <p className="text-gray-400 text-xs mt-2">+ 18% GST at checkout<br/>Valid 30 days</p>
                 </div>
                 
@@ -186,7 +186,7 @@ export default function PricingPage() {
                   ))}
                 </ul>
 
-                <button className={`w-full py-3 rounded-lg font-bold transition-colors ${plan.popular ? 'bg-[#1e3a8a] text-white hover:bg-[#172554]' : 'bg-white border border-[#1e3a8a] text-[#1e3a8a] hover:bg-gray-50'}`}>
+                <button className={`w-full py-3 rounded-lg font-bold transition-colors ${plan.popular ? 'bg-[#03045E] text-white hover:bg-[#172554]' : 'bg-white border border-[#03045E] text-[#03045E] hover:bg-gray-50'}`}>
                   Get Started
                 </button>
               </motion.div>
@@ -200,11 +200,11 @@ export default function PricingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`relative bg-[#f8fafc] rounded-2xl p-8 flex flex-col ${plan.popular ? 'border-2 border-[#1e3a8a] shadow-lg' : 'border border-gray-200'}`}
+                className={`relative bg-[#f8fafc] rounded-2xl p-8 flex flex-col ${plan.popular ? 'border-2 border-[#03045E] shadow-lg' : 'border border-gray-200'}`}
               >
                 <h4 className="text-xl font-bold text-[#0a1f44] mb-4">{plan.title}</h4>
                 <div className="mb-6">
-                  <span className="text-4xl font-extrabold text-[#1e3a8a]">{getPrice(plan.price.inr, plan.price.usd)}</span>
+                  <span className="text-4xl font-extrabold text-[#03045E]">{getPrice(plan.price.inr, plan.price.usd)}</span>
                   <p className="text-gray-400 text-xs mt-2">+ 18% GST at checkout<br/>Valid 30 days</p>
                 </div>
                 
@@ -217,7 +217,7 @@ export default function PricingPage() {
                   ))}
                 </ul>
 
-                <button className={`w-full py-3 rounded-lg font-bold transition-colors ${plan.popular ? 'bg-[#1e3a8a] text-white hover:bg-[#172554]' : 'bg-white border border-[#1e3a8a] text-[#1e3a8a] hover:bg-gray-50'}`}>
+                <button className={`w-full py-3 rounded-lg font-bold transition-colors ${plan.popular ? 'bg-[#03045E] text-white hover:bg-[#172554]' : 'bg-white border border-[#03045E] text-[#03045E] hover:bg-gray-50'}`}>
                   Get Started
                 </button>
               </motion.div>
@@ -228,7 +228,7 @@ export default function PricingPage() {
         {/* Resume Database Section */}
         <section id="resume_access" className="bg-white rounded-3xl p-8 md:p-12 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100">
           <div className="mb-12">
-            <h3 className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-4">Employers</h3>
+            <h3 className="text-[#03045E] font-bold text-sm tracking-widest uppercase mb-4">Employers</h3>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#0a1f44] mb-4">RESDEX \u2013 Resume Database</h2>
             <p className="text-gray-500 font-medium">Search THEJOBSYNC's extensive database. Filter by location, skills and experience.</p>
           </div>
@@ -238,14 +238,14 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative bg-[#f8fafc] rounded-2xl p-8 flex flex-col border-2 border-[#1e3a8a] shadow-lg"
+              className="relative bg-[#f8fafc] rounded-2xl p-8 flex flex-col border-2 border-[#03045E] shadow-lg"
             >
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#1e3a8a] text-white text-[11px] font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#03045E] text-white text-[11px] font-bold px-4 py-1 rounded-full uppercase tracking-wider">
                 Popular
               </div>
               <h4 className="text-xl font-bold text-[#0a1f44] mb-4">RESDEX Basic</h4>
               <div className="mb-6">
-                <span className="text-4xl font-extrabold text-[#1e3a8a]">{getPrice('₹2,999', '$36')}</span>
+                <span className="text-4xl font-extrabold text-[#03045E]">{getPrice('₹2,999', '$36')}</span>
                 <p className="text-gray-400 text-xs mt-2">+ 18% GST at checkout<br/>Valid 15 days</p>
               </div>
               
@@ -265,7 +265,7 @@ export default function PricingPage() {
                 ))}
               </ul>
 
-              <button className="w-full py-3 rounded-lg font-bold transition-colors bg-[#1e3a8a] text-white hover:bg-[#172554]">
+              <button className="w-full py-3 rounded-lg font-bold transition-colors bg-[#03045E] text-white hover:bg-[#172554]">
                 Get Started
               </button>
             </motion.div>
@@ -275,7 +275,7 @@ export default function PricingPage() {
         {/* Premium Plans for Candidates Section */}
         <section id="candidate_plans" className="bg-white rounded-3xl p-8 md:p-12 shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-gray-100">
           <div className="mb-12">
-            <h3 className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-4">Job Seekers</h3>
+            <h3 className="text-[#03045E] font-bold text-sm tracking-widest uppercase mb-4">Job Seekers</h3>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#0a1f44] mb-4">Premium Plans for Candidates</h2>
             <p className="text-gray-500 font-medium">Unlock direct company contacts, profile boosts and recruiter assistance.</p>
           </div>
@@ -287,16 +287,16 @@ export default function PricingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`relative bg-[#f8fafc] rounded-2xl p-8 flex flex-col ${plan.popular ? 'border-2 border-[#1e3a8a] shadow-lg' : 'border border-gray-200'}`}
+                className={`relative bg-[#f8fafc] rounded-2xl p-8 flex flex-col ${plan.popular ? 'border-2 border-[#03045E] shadow-lg' : 'border border-gray-200'}`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3 right-8 bg-[#1e3a8a] text-white text-[11px] font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                  <div className="absolute -top-3 right-8 bg-[#03045E] text-white text-[11px] font-bold px-4 py-1 rounded-full uppercase tracking-wider">
                     Popular
                   </div>
                 )}
                 <h4 className="text-xl font-bold text-[#0a1f44] mb-4">{plan.title}</h4>
                 <div className="mb-6">
-                  <span className="text-4xl font-extrabold text-[#1e3a8a]">{getPrice(plan.price.inr, plan.price.usd)}</span>
+                  <span className="text-4xl font-extrabold text-[#03045E]">{getPrice(plan.price.inr, plan.price.usd)}</span>
                   <p className="text-gray-400 text-xs mt-2">+ 18% GST at checkout<br/>Valid 30 days</p>
                 </div>
                 
@@ -309,7 +309,7 @@ export default function PricingPage() {
                   ))}
                 </ul>
 
-                <button className={`w-full py-3 rounded-lg font-bold transition-colors ${plan.popular ? 'bg-[#1e3a8a] text-white hover:bg-[#172554]' : 'bg-white border border-[#1e3a8a] text-[#1e3a8a] hover:bg-gray-50'}`}>
+                <button className={`w-full py-3 rounded-lg font-bold transition-colors ${plan.popular ? 'bg-[#03045E] text-white hover:bg-[#172554]' : 'bg-white border border-[#03045E] text-[#03045E] hover:bg-gray-50'}`}>
                   Get Started
                 </button>
               </motion.div>

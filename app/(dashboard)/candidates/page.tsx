@@ -6,12 +6,13 @@ import { useDataStore } from '@/lib/useDataStore';
 import { Candidate, JobRequirement } from '@/lib/types';
 import { validateForm, validateRequired, validateEmail, validatePhone } from '@/lib/validation';
 import { useAuth } from '@/context/AuthContext';
+import { canEditModule } from '@/lib/permissions';
 
 const STATUS_COLORS: Record<string, string> = {
-  new: '#3b82f6',
-  shortlisted: '#a855f7',
+  new: '#0077B6',
+  shortlisted: '#00B4D8',
   interview_scheduled: '#f59e0b',
-  interviewed: '#0ea5e9',
+  interviewed: '#00B4D8',
   selected: '#22c55e',
   offered: '#10b981',
   offer_accepted: '#059669',
@@ -21,7 +22,7 @@ const STATUS_COLORS: Record<string, string> = {
 
 export default function CandidatesPage() {
   const { user } = useAuth();
-  const isReadOnly = user?.role === 'admin';
+  const isReadOnly = !canEditModule(user?.role, 'candidates');
 
   const { data: candidates, loading, error, createItem, updateItem, deleteItem, fetchItems } = useDataStore<Candidate>({
     endpoint: '/api/candidates',

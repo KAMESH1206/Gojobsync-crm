@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
@@ -27,7 +27,7 @@ const FIELDS = [
   'Healthcare', 'HR & Administration', 'Manufacturing', 'Marketing', 'Sales', 'Other',
 ];
 
-const INPUT_CLS = 'w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-colors bg-white text-slate-900';
+const INPUT_CLS = 'w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-colors bg-white text-slate-900';
 
 export default function EmployerDashboard() {
   const router = useRouter();
@@ -144,7 +144,7 @@ export default function EmployerDashboard() {
   if (isLoading || !employer) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-sky-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-[#0077B6] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -161,12 +161,12 @@ export default function EmployerDashboard() {
             <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-9 w-9 object-contain rounded-full border border-gray-200" />
             <div>
               <div className="font-extrabold text-slate-900 text-sm leading-none">The Job Sync</div>
-              <div className="text-sky-600 text-[10px] font-semibold mt-0.5 uppercase tracking-wider">Employer Portal</div>
+              <div className="text-[#03045E] text-[10px] font-semibold mt-0.5 uppercase tracking-wider">Employer Portal</div>
             </div>
           </div>
           <nav className="hidden md:flex items-center gap-1">
-            <span className="px-4 py-2 text-sm font-semibold text-sky-600 bg-sky-50 rounded-lg">Dashboard</span>
-            <Link href="/employer/candidates" className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors flex items-center gap-1.5">
+            <span className="px-4 py-2 text-sm font-semibold text-[#03045E] bg-[#CAF0F8]/30 rounded-lg">Dashboard</span>
+            <Link href="/employer/candidates" className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#03045E] hover:bg-[#CAF0F8]/20 rounded-lg transition-colors flex items-center gap-1.5">
               <Search size={14} /> Candidates
             </Link>
           </nav>
@@ -188,7 +188,7 @@ export default function EmployerDashboard() {
           </div>
           <button
             onClick={() => { setShowPostJob(true); setPostError(''); setPostSuccess(false); }}
-            className="flex items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg hover:from-sky-600 hover:to-indigo-700 transition-all text-sm"
+            className="flex items-center gap-2 bg-gradient-to-r from-[#0077B6] to-[#00B4D8] text-white font-bold px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg hover:from-sky-600 hover:to-indigo-700 transition-all text-sm"
           >
             <Plus size={16} /> Post a Job
           </button>
@@ -197,8 +197,8 @@ export default function EmployerDashboard() {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-            <div className="w-9 h-9 rounded-xl bg-sky-100 flex items-center justify-center mb-3">
-              <Briefcase size={18} className="text-sky-600" />
+            <div className="w-9 h-9 rounded-xl bg-[#90E0EF]/30 flex items-center justify-center mb-3">
+              <Briefcase size={18} className="text-[#03045E]" />
             </div>
             <div className="text-2xl font-extrabold text-slate-900">{jobs.length}</div>
             <div className="text-xs text-slate-500 mt-1 font-medium">Total Jobs Posted</div>
@@ -212,7 +212,7 @@ export default function EmployerDashboard() {
           </div>
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
             <div className="w-9 h-9 rounded-xl bg-indigo-100 flex items-center justify-center mb-3">
-              <Building2 size={18} className="text-indigo-600" />
+              <Building2 size={18} className="text-[#0077B6]" />
             </div>
             <div className="text-2xl font-extrabold text-slate-900">{employer.industry.split(' ')[0]}</div>
             <div className="text-xs text-slate-500 mt-1 font-medium">Industry</div>
@@ -249,7 +249,7 @@ export default function EmployerDashboard() {
                 <div key={job.id} onClick={() => setSelectedJob(job)} className="px-6 py-4 hover:bg-slate-50 transition-colors flex items-start justify-between gap-4 cursor-pointer group">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="font-bold text-slate-900 text-sm group-hover:text-sky-600 transition-colors">{job.title}</h3>
+                      <h3 className="font-bold text-slate-900 text-sm group-hover:text-[#03045E] transition-colors">{job.title}</h3>
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                         job.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'
                       }`}>
@@ -259,7 +259,7 @@ export default function EmployerDashboard() {
                     <div className="flex items-center gap-3 mt-1 flex-wrap">
                       <span className="flex items-center gap-1 text-xs text-slate-500"><MapPin size={11} />{job.location}</span>
                       <span className="flex items-center gap-1 text-xs text-slate-500"><Clock size={11} />{job.jobType}</span>
-                      <span className="text-xs text-sky-600 font-medium">{job.field}</span>
+                      <span className="text-xs text-[#03045E] font-medium">{job.field}</span>
                       <span className="text-xs text-slate-400">{job.salaryRange}</span>
                     </div>
                   </div>
@@ -309,7 +309,7 @@ export default function EmployerDashboard() {
                 <div>
                   <h3 className="text-xl font-bold text-slate-900">{selectedJob.title}</h3>
                   <div className="flex gap-2 items-center mt-2 flex-wrap">
-                    <span className="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-semibold">{selectedJob.field}</span>
+                    <span className="px-3 py-1 bg-[#90E0EF]/30 text-sky-700 rounded-full text-xs font-semibold">{selectedJob.field}</span>
                     <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-semibold">{selectedJob.jobType}</span>
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${selectedJob.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'}`}>{selectedJob.status}</span>
                   </div>
@@ -485,7 +485,7 @@ export default function EmployerDashboard() {
                           onClick={() => setNewJob(p => ({ ...p, jobType: t }))}
                           className={`px-4 py-2 rounded-lg text-sm font-semibold border transition-all ${
                             newJob.jobType === t
-                              ? 'bg-sky-500 text-white border-sky-500'
+                              ? 'bg-[#0077B6] text-white border-[#0077B6]'
                               : 'bg-white text-slate-600 border-slate-200 hover:border-sky-300'
                           }`}
                         >
@@ -507,7 +507,7 @@ export default function EmployerDashboard() {
                       Cancel
                     </button>
                     <button type="submit" disabled={posting}
-                      className="flex-1 py-3 bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold rounded-xl shadow-md hover:from-sky-600 hover:to-indigo-700 transition-all disabled:opacity-60">
+                      className="flex-1 py-3 bg-gradient-to-r from-[#0077B6] to-[#00B4D8] text-white font-bold rounded-xl shadow-md hover:from-sky-600 hover:to-indigo-700 transition-all disabled:opacity-60">
                       {posting ? 'Posting...' : 'Post Job →'}
                     </button>
                   </div>

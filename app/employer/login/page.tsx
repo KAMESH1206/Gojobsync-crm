@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -45,7 +45,7 @@ export default function EmployerLoginPage() {
       >
         <div className="text-center mb-8">
           <Link href="/post-job" className="inline-flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#0077B6] to-[#00B4D8] rounded-2xl flex items-center justify-center shadow-lg">
               <Building2 size={24} className="text-white" />
             </div>
             <div className="text-left">
@@ -75,7 +75,7 @@ export default function EmployerLoginPage() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full pl-11 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/40 text-sm focus:outline-none focus:border-sky-400 transition-colors"
+                className="w-full pl-11 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/40 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
               />
             </div>
             <div className="relative">
@@ -86,7 +86,7 @@ export default function EmployerLoginPage() {
                 required
                 value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
-                className="w-full pl-11 pr-11 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/40 text-sm focus:outline-none focus:border-sky-400 transition-colors"
+                className="w-full pl-11 pr-11 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/40 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
               />
               <button type="button" onClick={() => setShowPw(!showPw)}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition-colors">
@@ -103,7 +103,7 @@ export default function EmployerLoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 mt-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-sky-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full py-3.5 mt-2 bg-gradient-to-r from-[#0077B6] to-[#00B4D8] hover:from-sky-600 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-sky-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
             >
               {loading ? 'Signing in...' : <><span>Sign In</span><ArrowRight size={16} /></>}
             </button>
@@ -111,7 +111,7 @@ export default function EmployerLoginPage() {
 
           <div className="text-center mt-6 pt-6 border-t border-white/10">
             <span className="text-white/50 text-sm">New to The Job Sync? </span>
-            <Link href="/post-job" className="text-sky-400 font-bold text-sm hover:underline">
+            <Link href="/post-job" className="text-[#00B4D8] font-bold text-sm hover:underline">
               Register your company →
             </Link>
           </div>

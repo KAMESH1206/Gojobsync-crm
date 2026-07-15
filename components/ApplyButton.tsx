@@ -33,7 +33,7 @@ export default function ApplyButton({ jobId }: { jobId: string }) {
       onClick={handleApply}
       disabled={applying}
       style={{
-        background: applying ? 'rgba(255,255,255,0.1)' : 'linear-gradient(135deg, #0ea5e9, #6366f1)',
+        background: applying ? 'rgba(255,255,255,0.1)' : 'linear-gradient(135deg, #0077B6, #00B4D8)',
         color: applying ? '#94a3b8' : 'white',
         border: 'none', borderRadius: 12, padding: '1rem 2.5rem',
         fontWeight: 800, fontSize: '1.05rem', cursor: applying ? 'wait' : 'pointer',

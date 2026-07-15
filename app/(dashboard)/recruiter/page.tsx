@@ -20,7 +20,7 @@ export default function RecruiterPage() {
       {/* Stats */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
-          { label: 'Assigned Requirements', value: myRequirements.length, icon: <Briefcase size={18} />, color: '#6366f1' },
+          { label: 'Assigned Requirements', value: myRequirements.length, icon: <Briefcase size={18} />, color: '#0077B6' },
           { label: 'Candidates in Pipeline', value: myCandidates.length, icon: <Users size={18} />, color: '#22c55e' },
           { label: 'Interviews This Week', value: 2, icon: <Calendar size={18} />, color: '#f97316' },
           { label: 'Placements (Month)', value: 1, icon: <Target size={18} />, color: '#ec4899' },

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { motion } from 'framer-motion';
 
 export default function Features() {
@@ -39,7 +39,7 @@ export default function Features() {
             transition={{ duration: 0.7 }}
             className="w-full lg:w-1/2"
           >
-            <div className="bg-sky-50 dark:bg-slate-800/50 rounded-[40px] p-8 flex justify-center items-center transition-colors duration-300">
+            <div className="bg-[#CAF0F8]/30 dark:bg-slate-800/50 rounded-[40px] p-8 flex justify-center items-center transition-colors duration-300">
               {/* Placeholder for the Job Search illustration */}
               <img 
                 src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=800&q=80" 

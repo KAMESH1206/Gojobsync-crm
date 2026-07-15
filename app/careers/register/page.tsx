@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -81,7 +81,7 @@ export default function CandidateRegisterPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-10 w-full max-w-[440px] shadow-xl dark:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl relative z-10">
         <Link href="/careers" className="flex items-center gap-2.5 no-underline mb-10">
           <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-9 w-9 object-contain rounded-full border border-slate-200 dark:border-slate-700 bg-white" />
-          <span className="font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">The Job<span className="text-sky-500">Sync</span></span>
+          <span className="font-extrabold text-xl text-slate-900 dark:text-white tracking-tight">The Job<span className="text-[#0077B6]">Sync</span></span>
         </Link>
 
         <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-1.5 tracking-tight">Create an account</h1>
@@ -99,7 +99,7 @@ export default function CandidateRegisterPage() {
                 required type={type} placeholder={placeholder}
                 value={(form as any)[field]}
                 onChange={e => setForm({ ...form, [field]: e.target.value })}
-                className="w-full border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white rounded-xl py-3.5 pl-11 pr-4 text-[15px] outline-none transition-colors focus:border-sky-500 dark:focus:border-sky-500 placeholder-slate-400 dark:placeholder-slate-500"
+                className="w-full border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white rounded-xl py-3.5 pl-11 pr-4 text-[15px] outline-none transition-colors focus:border-[#0077B6] dark:focus:border-[#0077B6] placeholder-slate-400 dark:placeholder-slate-500"
               />
             </div>
           ))}
@@ -114,7 +114,7 @@ export default function CandidateRegisterPage() {
                 required type={showPw ? 'text' : 'password'} placeholder={placeholder}
                 value={(form as any)[field]}
                 onChange={e => setForm({ ...form, [field]: e.target.value })}
-                className="w-full border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white rounded-xl py-3.5 pl-11 pr-11 text-[15px] outline-none transition-colors focus:border-sky-500 dark:focus:border-sky-500 placeholder-slate-400 dark:placeholder-slate-500"
+                className="w-full border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white rounded-xl py-3.5 pl-11 pr-11 text-[15px] outline-none transition-colors focus:border-[#0077B6] dark:focus:border-[#0077B6] placeholder-slate-400 dark:placeholder-slate-500"
               />
               <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300">
                 {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -124,13 +124,13 @@ export default function CandidateRegisterPage() {
 
           {error && <div className="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-xl p-3 text-red-600 dark:text-red-400 text-sm font-medium">{error}</div>}
 
-          <button type="submit" disabled={loading} className="mt-2 bg-gradient-to-r from-sky-500 to-indigo-600 text-white rounded-xl p-3.5 font-bold text-base cursor-pointer flex items-center justify-center gap-2 transition-all hover:shadow-[0_8px_20px_rgba(14,165,233,0.3)] disabled:opacity-70 disabled:cursor-not-allowed">
+          <button type="submit" disabled={loading} className="mt-2 bg-gradient-to-r from-[#0077B6] to-[#00B4D8] text-white rounded-xl p-3.5 font-bold text-base cursor-pointer flex items-center justify-center gap-2 transition-all hover:shadow-[0_8px_20px_rgba(14,165,233,0.3)] disabled:opacity-70 disabled:cursor-not-allowed">
             {loading ? 'Creating Account...' : <><span>Join The Job Sync</span><ArrowRight size={18} /></>}
           </button>
         </form>
 
         <p className="text-center mt-8 text-slate-500 dark:text-slate-400 text-sm font-medium">
-          Already have an account? <Link href="/careers/login" className="text-sky-600 dark:text-sky-400 font-bold hover:underline">Sign In</Link>
+          Already have an account? <Link href="/careers/login" className="text-[#03045E] dark:text-[#00B4D8] font-bold hover:underline">Sign In</Link>
         </p>
       </motion.div>
     </div>

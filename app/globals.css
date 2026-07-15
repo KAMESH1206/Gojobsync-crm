@@ -13,41 +13,46 @@
 }
 
 :root {
-  --background: #0b0f1a;
-  --foreground: #e2e8f0;
-  --surface: #111827;
-  --surface-hover: #1e293b;
-  --surface-active: #273549;
-  --border: #1e293b;
-  --border-light: #334155;
-  --muted: #64748b;
-  --muted-foreground: #94a3b8;
+  /* =============================================
+     THE JOB SYNC — Blue Ocean Palette (Dark Mode)
+     #03045E | #0077B6 | #00B4D8 | #90E0EF | #CAF0F8
+     ============================================= */
 
-  /* Accent */
-  --primary: #6366f1;
-  --primary-hover: #818cf8;
+  --background: #010a18;
+  --foreground: #caf0f8;
+  --surface: #03045E;
+  --surface-hover: #03154f;
+  --surface-active: #0a2166;
+  --border: #0a2166;
+  --border-light: #0077B6;
+  --muted: #90E0EF;
+  --muted-foreground: #caf0f8;
+
+  /* Primary Accent — vivid ocean blue */
+  --primary: #0077B6;
+  --primary-hover: #00B4D8;
   --primary-foreground: #ffffff;
-  --primary-glow: rgba(99, 102, 241, 0.15);
+  --primary-glow: rgba(0, 180, 216, 0.2);
 
   /* Status */
   --success: #22c55e;
   --warning: #eab308;
   --danger: #ef4444;
-  --info: #3b82f6;
+  --info: #00B4D8;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
-  --gradient-dark: linear-gradient(135deg, #0b0f1a 0%, #1a1f3a 50%, #0b0f1a 100%);
-  --gradient-card: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.04));
+  --gradient-primary: linear-gradient(135deg, #03045E, #0077B6, #00B4D8);
+  --gradient-dark: linear-gradient(135deg, #010a18 0%, #03045E 50%, #010a18 100%);
+  --gradient-card: linear-gradient(135deg, rgba(0,119,182,0.12), rgba(0,180,216,0.06));
   --gradient-success: linear-gradient(135deg, #22c55e, #10b981);
   --gradient-danger: linear-gradient(135deg, #ef4444, #f97316);
-  --gradient-info: linear-gradient(135deg, #3b82f6, #06b6d4);
+  --gradient-info: linear-gradient(135deg, #0077B6, #00B4D8);
   --gradient-warning: linear-gradient(135deg, #eab308, #f97316);
 
   /* Glass */
-  --glass-bg: rgba(17, 24, 39, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-bg: rgba(3, 4, 94, 0.65);
+  --glass-border: rgba(144, 224, 239, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 
   /* Sidebar */
   --sidebar-width: 260px;
@@ -63,22 +68,25 @@
 }
 
 :root.light, :root[data-theme="light"] {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  /* =============================================
+     THE JOB SYNC — Blue Ocean Palette (Light Mode)
+     ============================================= */
+  --background: #f0f9ff;
+  --foreground: #03045E;
   --surface: #ffffff;
-  --surface-hover: #f1f5f9;
-  --surface-active: #e2e8f0;
-  --border: #e2e8f0;
-  --border-light: #f1f5f9;
-  --muted: #64748b;
-  --muted-foreground: #94a3b8;
+  --surface-hover: #e0f4fb;
+  --surface-active: #caf0f8;
+  --border: #90E0EF;
+  --border-light: #caf0f8;
+  --muted: #0077B6;
+  --muted-foreground: #03045E;
 
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.06);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 119, 182, 0.15);
+  --glass-shadow: 0 8px 32px rgba(0, 119, 182, 0.08);
 
-  --gradient-dark: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f8fafc 100%);
-  --gradient-card: linear-gradient(135deg, rgba(99,102,241,0.04), rgba(139,92,246,0.02));
+  --gradient-dark: linear-gradient(135deg, #caf0f8 0%, #90E0EF 50%, #caf0f8 100%);
+  --gradient-card: linear-gradient(135deg, rgba(0,119,182,0.06), rgba(0,180,216,0.03));
 }
 
 /* ========== BASE ========== */
@@ -231,7 +239,7 @@ body {
 .stat-card:hover {
   border-color: var(--primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 119, 182, 0.18);
 }
 .stat-card:hover::before { opacity: 1; }
 
@@ -256,10 +264,10 @@ body {
 .btn-primary {
   background: var(--gradient-primary);
   color: white;
-  box-shadow: 0 2px 12px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 2px 12px rgba(0, 119, 182, 0.3);
 }
 .btn-primary:hover {
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 180, 216, 0.45);
   transform: translateY(-1px);
 }
 
@@ -460,7 +468,7 @@ body {
   top: 0;
   right: 0;
   height: var(--topbar-height);
-  background: rgba(11, 15, 26, 0.85);
+  background: var(--background);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);

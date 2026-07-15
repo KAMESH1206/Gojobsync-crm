@@ -5,10 +5,11 @@ import { MOCK_USERS } from '@/lib/mock-data';
 import { ROLE_LABELS, ROLE_COLORS } from '@/lib/types';
 import { Shield, Users, Settings, BarChart3, Search, Plus, Edit, Trash2, ToggleLeft, ToggleRight } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
+import { canEditModule } from '@/lib/permissions';
 
 export default function AdminPage() {
   const { user } = useAuth();
-  const isReadOnly = user?.role === 'admin';
+  const isReadOnly = !canEditModule(user?.role, 'admin');
 
   const [activeTab, setActiveTab] = useState<'users' | 'roles' | 'system'>('users');
   const [search, setSearch] = useState('');
@@ -35,7 +36,7 @@ export default function AdminPage() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
-          { label: 'Total Users', value: MOCK_USERS.length, icon: <Users size={18} />, color: '#6366f1' },
+          { label: 'Total Users', value: MOCK_USERS.length, icon: <Users size={18} />, color: '#0077B6' },
           { label: 'Active Roles', value: '10', icon: <Shield size={18} />, color: '#22c55e' },
           { label: 'Active Sessions', value: '23', icon: <BarChart3 size={18} />, color: '#f97316' },
         ].map((s, i) => (

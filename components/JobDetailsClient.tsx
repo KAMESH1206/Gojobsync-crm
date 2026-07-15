@@ -53,7 +53,7 @@ export default function JobDetailsClient({ job, similarJobs, skills, companyInit
               </div>
               <div>
                 <h1 style={{ fontSize: '2rem', fontWeight: 900, color: isDark ? 'white' : '#0f172a', marginBottom: 8, letterSpacing: '-0.5px' }}>{job.title}</h1>
-                <Link href={`/careers/company/${job.client?.id}`} style={{ fontSize: '1.1rem', color: isDark ? '#38bdf8' : '#0284c7', textDecoration: 'none', fontWeight: 600 }} className="hover:underline">
+                <Link href={`/careers/company/${job.client?.id}`} style={{ fontSize: '1.1rem', color: isDark ? '#00B4D8' : '#0077B6', textDecoration: 'none', fontWeight: 600 }} className="hover:underline">
                   {job.client?.companyName}
                 </Link>
               </div>
@@ -106,11 +106,11 @@ export default function JobDetailsClient({ job, similarJobs, skills, companyInit
               {job.client?.website && (
                 <div style={{ display: 'flex', gap: 10 }}>
                   <Users size={18} color="#64748b" style={{ flexShrink: 0 }} />
-                  <a href={job.client.website} target="_blank" rel="noreferrer" style={{ color: isDark ? '#38bdf8' : '#0284c7', textDecoration: 'none' }} className="hover:underline">Visit Website</a>
+                  <a href={job.client.website} target="_blank" rel="noreferrer" style={{ color: isDark ? '#00B4D8' : '#0077B6', textDecoration: 'none' }} className="hover:underline">Visit Website</a>
                 </div>
               )}
             </div>
-            <Link href={`/careers/company/${job.client?.id}`} style={{ display: 'inline-block', marginTop: '1.5rem', color: isDark ? '#38bdf8' : '#0284c7', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }} className="hover:underline">
+            <Link href={`/careers/company/${job.client?.id}`} style={{ display: 'inline-block', marginTop: '1.5rem', color: isDark ? '#00B4D8' : '#0077B6', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }} className="hover:underline">
               View full company profile →
             </Link>
           </div>
@@ -122,7 +122,7 @@ export default function JobDetailsClient({ job, similarJobs, skills, companyInit
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 {similarJobs.map(sj => (
                   <Link key={sj.id} href={`/careers/jobs/${sj.id}`} style={{ textDecoration: 'none' }} className="group">
-                    <div style={{ fontWeight: 700, color: isDark ? 'white' : '#0f172a', fontSize: '1.05rem', marginBottom: 4, transition: 'color 0.2s' }} className="group-hover:text-sky-500">{sj.title}</div>
+                    <div style={{ fontWeight: 700, color: isDark ? 'white' : '#0f172a', fontSize: '1.05rem', marginBottom: 4, transition: 'color 0.2s' }} className="group-hover:text-[#0077B6]">{sj.title}</div>
                     <div style={{ fontSize: '0.85rem', color: isDark ? '#94a3b8' : '#64748b', display: 'flex', gap: 12 }}>
                       <span>{sj.location}</span>
                       <span>•</span>

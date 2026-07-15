@@ -207,7 +207,7 @@ export default function CompleteProfileModal({
           <button type="button" onClick={onClose} style={{ padding: '0.75rem 1.5rem', borderRadius: 12, border: 'none', background: 'transparent', color: isDark ? '#94a3b8' : '#64748b', fontWeight: 600, cursor: 'pointer' }}>
             Cancel
           </button>
-          <button type="submit" form="complete-profile-form" disabled={saving} style={{ padding: '0.75rem 2rem', borderRadius: 12, border: 'none', background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', color: 'white', fontWeight: 700, cursor: saving ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, boxShadow: '0 4px 15px rgba(14,165,233,0.3)' }}>
+          <button type="submit" form="complete-profile-form" disabled={saving} style={{ padding: '0.75rem 2rem', borderRadius: 12, border: 'none', background: 'linear-gradient(135deg, #0077B6, #00B4D8)', color: 'white', fontWeight: 700, cursor: saving ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, boxShadow: '0 4px 15px rgba(0,119,182,0.3)' }}>
             {saving ? 'Saving...' : <><CheckCircle size={18} /> Save & Apply</>}
           </button>
         </div>

@@ -44,7 +44,7 @@ export default function SaveJobButton({ jobId }: { jobId: string }) {
       disabled={saving || saved}
       style={{
         background: saved ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.02)',
-        color: saved ? '#38bdf8' : '#cbd5e1',
+        color: saved ? '#00B4D8' : '#cbd5e1',
         border: `1px solid ${saved ? 'rgba(56,189,248,0.4)' : 'rgba(255,255,255,0.1)'}`,
         borderRadius: 12, padding: '1rem',
         fontWeight: 600, fontSize: '1rem', cursor: (saving || saved) ? 'default' : 'pointer',
@@ -52,7 +52,7 @@ export default function SaveJobButton({ jobId }: { jobId: string }) {
       }}
       className={!saved && !saving ? "hover:bg-white/5 hover:border-white/20" : ""}
     >
-      <Bookmark size={20} fill={saved ? '#38bdf8' : 'none'} color={saved ? '#38bdf8' : '#cbd5e1'} />
+      <Bookmark size={20} fill={saved ? '#00B4D8' : 'none'} color={saved ? '#00B4D8' : '#cbd5e1'} />
       {saved ? 'Saved' : saving ? 'Saving...' : 'Save Job'}
     </button>
   );

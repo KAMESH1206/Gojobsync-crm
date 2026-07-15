@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ClipboardList, Database, UserPlus, Check, ArrowRight } from 'lucide-react';
@@ -44,7 +44,7 @@ export default function Services() {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h3 className="text-sky-500 dark:text-sky-400 font-bold text-xs tracking-widest uppercase mb-4 transition-colors duration-300">Our Services</h3>
+          <h3 className="text-[#0077B6] dark:text-[#00B4D8] font-bold text-xs tracking-widest uppercase mb-4 transition-colors duration-300">Our Services</h3>
           <h2 className="text-3xl md:text-[40px] font-extrabold text-slate-900 dark:text-white mb-6 transition-colors duration-300">Three Ways to Hire Smarter</h2>
           <p className="text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300">
             From single job postings to full-service hiring assistance \u2014 pick the path that fits how your team grows.
@@ -81,7 +81,7 @@ export default function Services() {
                 ))}
               </ul>
 
-              <Link href={service.link} className="flex items-center justify-center gap-2 bg-gradient-to-br from-sky-500 to-indigo-500 text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:scale-[1.02] transition-transform shadow-md self-start">
+              <Link href={service.link} className="flex items-center justify-center gap-2 bg-gradient-to-br from-[#0077B6] to-[#00B4D8] text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:scale-[1.02] transition-transform shadow-md self-start">
                 View Plans
                 <ArrowRight size={16} strokeWidth={2.5} />
               </Link>

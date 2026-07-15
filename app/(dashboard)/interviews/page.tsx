@@ -6,6 +6,7 @@ import { useDataStore } from '@/lib/useDataStore';
 import { Interview, Candidate, JobRequirement, User as AppUser } from '@/lib/types';
 import { validateForm, validateRequired, validateNumber } from '@/lib/validation';
 import { useAuth } from '@/context/AuthContext';
+import { canEditModule } from '@/lib/permissions';
 
 const TYPE_ICONS: Record<string, React.ReactNode> = {
   technical: <span style={{ fontSize: '0.75rem' }}>💻</span>,
@@ -23,7 +24,7 @@ const STATUS_COLORS: Record<string, string> = {
 
 export default function InterviewsPage() {
   const { user } = useAuth();
-  const isReadOnly = user?.role === 'admin';
+  const isReadOnly = !canEditModule(user?.role, 'interviews');
 
   const { data: interviews, loading, error, createItem, updateItem, deleteItem, fetchItems } = useDataStore<Interview>({
     endpoint: '/api/interviews',

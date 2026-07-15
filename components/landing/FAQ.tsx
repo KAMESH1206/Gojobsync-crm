@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, Plus, Minus, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
@@ -87,8 +87,8 @@ export default function FAQ() {
               }}
               className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                 activeTab === tab 
-                  ? 'bg-gradient-to-br from-sky-500 to-indigo-500 text-white shadow-lg border-transparent' 
-                  : 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-sky-500 hover:text-sky-500'
+                  ? 'bg-gradient-to-br from-[#0077B6] to-[#00B4D8] text-white shadow-lg border-transparent' 
+                  : 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-[#0077B6] hover:text-[#0077B6]'
               }`}
             >
               {tab}
@@ -97,7 +97,7 @@ export default function FAQ() {
         </div>
 
         {/* Tab Title */}
-        <h3 className="text-sky-500 dark:text-sky-400 font-bold text-sm tracking-widest uppercase mb-8 transition-colors duration-300">
+        <h3 className="text-[#0077B6] dark:text-[#00B4D8] font-bold text-sm tracking-widest uppercase mb-8 transition-colors duration-300">
           {activeTab}
         </h3>
 
@@ -139,7 +139,7 @@ export default function FAQ() {
             Can't find the answer you're looking for? Our support team is happy to help you directly.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link href="/contact" className="w-full sm:w-auto bg-gradient-to-br from-sky-500 to-indigo-500 text-white px-8 py-3.5 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
+            <Link href="/contact" className="w-full sm:w-auto bg-gradient-to-br from-[#0077B6] to-[#00B4D8] text-white px-8 py-3.5 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
               Contact Support
             </Link>
             <Link href="/register" className="w-full sm:w-auto bg-transparent border-2 border-white/30 dark:border-slate-700 text-white dark:text-slate-300 px-8 py-3.5 rounded-xl font-bold hover:bg-white/10 dark:hover:bg-white/5 transition-colors text-center">

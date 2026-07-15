@@ -17,12 +17,12 @@ import {
 import { useEffect, useState } from 'react';
 
 const STAT_CARDS = [
-  { label: 'Total Clients', key: 'totalClients' as const, icon: <Building2 size={20} />, gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)', change: '+12%', up: true },
-  { label: 'Active Requirements', key: 'activeRequirements' as const, icon: <Briefcase size={20} />, gradient: 'linear-gradient(135deg, #3b82f6, #06b6d4)', change: '+8%', up: true },
+  { label: 'Total Clients', key: 'totalClients' as const, icon: <Building2 size={20} />, gradient: 'linear-gradient(135deg, #0077B6, #0077B6)', change: '+12%', up: true },
+  { label: 'Active Requirements', key: 'activeRequirements' as const, icon: <Briefcase size={20} />, gradient: 'linear-gradient(135deg, #0077B6, #06b6d4)', change: '+8%', up: true },
   { label: 'Total Candidates', key: 'totalCandidates' as const, icon: <Users size={20} />, gradient: 'linear-gradient(135deg, #22c55e, #10b981)', change: '+24%', up: true },
   { label: 'Scheduled Interviews', key: 'scheduledInterviews' as const, icon: <Calendar size={20} />, gradient: 'linear-gradient(135deg, #f97316, #eab308)', change: '-5%', up: false },
   { label: 'Total Placements', key: 'placements' as const, icon: <Award size={20} />, gradient: 'linear-gradient(135deg, #ec4899, #f43f5e)', change: '+18%', up: true },
-  { label: 'Open Positions', key: 'openPositions' as const, icon: <TrendingUp size={20} />, gradient: 'linear-gradient(135deg, #8b5cf6, #a855f7)', change: '+15%', up: true },
+  { label: 'Open Positions', key: 'openPositions' as const, icon: <TrendingUp size={20} />, gradient: 'linear-gradient(135deg, #0077B6, #00B4D8)', change: '+15%', up: true },
 ];
 
 const ACTIVITY_ICONS: Record<string, React.ReactNode> = {
@@ -35,7 +35,7 @@ const ACTIVITY_ICONS: Record<string, React.ReactNode> = {
 
 const ACTIVITY_COLORS: Record<string, string> = {
   client: '#06b6d4',
-  requirement: '#3b82f6',
+  requirement: '#0077B6',
   candidate: '#22c55e',
   interview: '#f97316',
   placement: '#ec4899',
@@ -144,8 +144,8 @@ export default function DashboardPage() {
                   <AreaChart data={MONTHLY_PLACEMENT_DATA}>
                     <defs>
                       <linearGradient id="colorPlacements" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#0077B6" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#0077B6" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="colorInterviews" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#22c55e" stopOpacity={0.3} />
@@ -164,13 +164,13 @@ export default function DashboardPage() {
                       }}
                     />
                     <Area type="monotone" dataKey="interviews" stroke="#22c55e" fill="url(#colorInterviews)" strokeWidth={2} />
-                    <Area type="monotone" dataKey="placements" stroke="#6366f1" fill="url(#colorPlacements)" strokeWidth={2} />
+                    <Area type="monotone" dataKey="placements" stroke="#0077B6" fill="url(#colorPlacements)" strokeWidth={2} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
               <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', marginTop: '0.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', fontSize: '0.75rem', color: 'var(--muted-foreground)' }}>
-                  <div style={{ width: 10, height: 10, borderRadius: 2, background: '#6366f1' }} /> Placements
+                  <div style={{ width: 10, height: 10, borderRadius: 2, background: '#0077B6' }} /> Placements
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', fontSize: '0.75rem', color: 'var(--muted-foreground)' }}>
                   <div style={{ width: 10, height: 10, borderRadius: 2, background: '#22c55e' }} /> Interviews
@@ -252,7 +252,7 @@ export default function DashboardPage() {
                         borderRadius: 8, fontSize: '0.8125rem',
                       }}
                     />
-                    <Bar dataKey="demand" fill="#a855f7" radius={[0, 4, 4, 0]} barSize={20}>
+                    <Bar dataKey="demand" fill="#00B4D8" radius={[0, 4, 4, 0]} barSize={20}>
                       {TOP_SKILLS_DATA.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={`hsl(270, 70%, ${60 - index * 5}%)`} />
                       ))}
