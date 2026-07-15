@@ -20,7 +20,7 @@ export default function DeveloperPage() {
     { method: 'GET', path: '/api/reports', description: 'Generate reports', status: 'beta' },
   ];
 
-  const METHOD_COLORS: Record<string, string> = { GET: '#22c55e', POST: '#3b82f6', PUT: '#f97316', DELETE: '#ef4444' };
+  const METHOD_COLORS: Record<string, string> = { GET: '#22c55e', POST: '#0077B6', PUT: '#f97316', DELETE: '#ef4444' };
 
   return (
     <div>
@@ -31,10 +31,10 @@ export default function DeveloperPage() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
-          { label: 'API Endpoints', value: apiEndpoints.length, icon: <Code size={18} />, color: '#6366f1' },
+          { label: 'API Endpoints', value: apiEndpoints.length, icon: <Code size={18} />, color: '#0077B6' },
           { label: 'Current Version', value: 'v2.1.0', icon: <GitBranch size={18} />, color: '#22c55e' },
           { label: 'Open Issues', value: '7', icon: <Bug size={18} />, color: '#f97316' },
-          { label: 'Last Deploy', value: '2h ago', icon: <Rocket size={18} />, color: '#8b5cf6' },
+          { label: 'Last Deploy', value: '2h ago', icon: <Rocket size={18} />, color: '#0077B6' },
         ].map((s, i) => (
           <div key={s.label} className={`stat-card animate-fade-in-up delay-${i + 1}`}>
             <div style={{ width: 36, height: 36, borderRadius: 8, background: `${s.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, marginBottom: '0.75rem' }}>{s.icon}</div>

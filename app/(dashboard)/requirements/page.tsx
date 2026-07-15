@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useMemo } from 'react';
 import { Briefcase, Plus, Search, MapPin, Clock, Users, MoreVertical, Edit2, Trash2, X } from 'lucide-react';
@@ -6,11 +6,12 @@ import { useDataStore } from '@/lib/useDataStore';
 import { JobRequirement, Client } from '@/lib/types';
 import { validateForm, validateRequired, validateNumber } from '@/lib/validation';
 import { useAuth } from '@/context/AuthContext';
+import { canEditModule } from '@/lib/permissions';
 
-const PRIORITY_COLORS = { low: '#22c55e', medium: '#3b82f6', high: '#f97316', urgent: '#ef4444' };
+const PRIORITY_COLORS = { low: '#22c55e', medium: '#0077B6', high: '#f97316', urgent: '#ef4444' };
 const STATUS_COLORS: Record<string, string> = {
   open: '#22c55e',
-  in_progress: '#3b82f6',
+  in_progress: '#0077B6',
   on_hold: '#eab308',
   closed: '#6b7280',
   cancelled: '#ef4444',
@@ -18,7 +19,7 @@ const STATUS_COLORS: Record<string, string> = {
 
 export default function RequirementsPage() {
   const { user } = useAuth();
-  const isReadOnly = user?.role === 'admin';
+  const isReadOnly = !canEditModule(user?.role, 'requirements');
 
   const { data: requirements, loading, error, createItem, updateItem, deleteItem, fetchItems } = useDataStore<JobRequirement>({
     endpoint: '/api/requirements',

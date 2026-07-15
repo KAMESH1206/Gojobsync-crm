@@ -178,7 +178,7 @@ export default function Hero() {
               <div className="px-2 pb-2 pt-2 md:p-0 w-full md:w-auto h-full flex items-center">
                 <button 
                   onClick={() => setActiveDropdown(null)}
-                  className="w-full md:w-auto bg-gradient-to-br from-sky-500 to-indigo-500 text-white px-8 py-4 md:py-3.5 rounded-full font-bold hover:scale-[1.02] transition-transform shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
+                  className="w-full md:w-auto bg-gradient-to-br from-[#03045E] to-[#0077B6] hover:from-[#0077B6] hover:to-[#00B4D8] text-white px-8 py-4 md:py-3.5 rounded-full font-bold hover:scale-[1.02] transition-all shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
                 >
                   <Search size={18} strokeWidth={2.5} />
                   <span>Search</span>
@@ -206,7 +206,7 @@ export default function Hero() {
                       {category.items.map((item, i) => (
                         <div 
                           key={i} 
-                          className="px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-500 hover:text-white cursor-pointer rounded-md transition-colors"
+                          className="px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-[#0077B6] hover:text-white cursor-pointer rounded-md transition-colors"
                           onClick={() => {
                             setSelectedIndustry(item);
                             setActiveDropdown(null);
@@ -232,7 +232,7 @@ export default function Hero() {
                   {locationData.map((item, i) => (
                     <div 
                       key={i} 
-                      className="px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-slate-700 hover:text-sky-600 dark:hover:text-white cursor-pointer transition-colors"
+                      className="px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-[#CAF0F8]/20 dark:hover:bg-slate-700 hover:text-[#03045E] dark:hover:text-white cursor-pointer transition-colors"
                       onClick={() => {
                         setSelectedLocation(item);
                         setActiveDropdown(null);
@@ -256,7 +256,7 @@ export default function Hero() {
                   {jobData.map((item, i) => (
                     <div 
                       key={i} 
-                      className="px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-slate-700 hover:text-sky-600 dark:hover:text-white cursor-pointer transition-colors"
+                      className="px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-[#CAF0F8]/20 dark:hover:bg-slate-700 hover:text-[#03045E] dark:hover:text-white cursor-pointer transition-colors"
                       onClick={() => {
                         setSelectedJob(item);
                         setActiveDropdown(null);

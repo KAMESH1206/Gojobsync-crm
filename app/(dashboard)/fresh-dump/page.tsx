@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
@@ -57,7 +57,7 @@ export default function FreshDumpPage() {
     <div>
       <div className="animate-fade-in mb-8">
         <h1 className="text-2xl font-bold flex items-center gap-2 text-[var(--foreground)]">
-          <Database size={24} className="text-indigo-500" />
+          <Database size={24} className="text-[#0077B6]" />
           Fresh Dump
         </h1>
         <p className="text-[var(--muted-foreground)]">Day-to-day new applications waiting for HR review</p>
@@ -81,7 +81,7 @@ export default function FreshDumpPage() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {grouped[dateStr].map((c: any) => (
-                  <div key={c.id} className="card p-5 border border-[var(--border)] flex flex-col hover:border-indigo-500/30 transition-colors">
+                  <div key={c.id} className="card p-5 border border-[var(--border)] flex flex-col hover:border-[#0077B6]/30 transition-colors">
                     <div className="flex gap-4 items-center mb-4">
                       <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xl shrink-0">
                         {c.name[0]?.toUpperCase()}

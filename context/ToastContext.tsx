@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react';
 import { X, CheckCircle, AlertTriangle, Info, AlertCircle } from 'lucide-react';
@@ -60,7 +60,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                 toast.type === 'success' ? 'var(--success, #22c55e)' :
                 toast.type === 'error' ? 'var(--destructive, #ef4444)' :
                 toast.type === 'warning' ? 'var(--warning, #f59e0b)' :
-                'var(--info, #3b82f6)'
+                'var(--info, #0077B6)'
               }`,
               padding: '12px 16px',
               borderRadius: 'var(--radius-md)',
@@ -76,7 +76,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               color: toast.type === 'success' ? 'var(--success, #22c55e)' :
                      toast.type === 'error' ? 'var(--destructive, #ef4444)' :
                      toast.type === 'warning' ? 'var(--warning, #f59e0b)' :
-                     'var(--info, #3b82f6)'
+                     'var(--info, #0077B6)'
             }}>
               {toast.type === 'success' && <CheckCircle size={20} />}
               {toast.type === 'error' && <AlertCircle size={20} />}

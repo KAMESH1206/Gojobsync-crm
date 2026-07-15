@@ -75,7 +75,7 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
           {!collapsed && (
             <div style={{ overflow: 'hidden' }}>
               <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--foreground)', whiteSpace: 'nowrap', letterSpacing: '-0.3px' }}>
-                The The Job Sync
+                The Job Sync
               </div>
               <div style={{ fontSize: '0.6875rem', color: 'var(--muted)', whiteSpace: 'nowrap' }}>
                 Recruitment System

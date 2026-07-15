@@ -112,13 +112,13 @@ export default function CareersPage() {
           {/* Logo */}
           <Link href="/careers" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
             <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 36, width: 36, objectFit: 'contain', borderRadius: '50%' }} />
-            <span className="brand-text" style={{ fontWeight: 800, fontSize: '1.5rem', color: isDark ? 'white' : '#0f172a', letterSpacing: '-0.5px', transition: 'color 0.3s' }}>The Job<span style={{ color: '#38bdf8' }}>Sync</span></span>
+            <span className="brand-text" style={{ fontWeight: 800, fontSize: '1.5rem', color: isDark ? 'white' : '#0f172a', letterSpacing: '-0.5px', transition: 'color 0.3s' }}>The Job<span style={{ color: '#00B4D8' }}>Sync</span></span>
           </Link>
 
           {/* Desktop Nav */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="hidden-mobile">
-            <Link href="/careers" style={{ color: '#38bdf8', fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none', transition: 'color 0.2s' }}>Explore Jobs</Link>
-            <Link href="/careers/my-applications" style={{ color: isDark ? '#94a3b8' : '#475569', fontWeight: 500, fontSize: '0.95rem', textDecoration: 'none', transition: 'color 0.2s' }} className="hover:text-sky-500">My Applications</Link>
+            <Link href="/careers" style={{ color: '#00B4D8', fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none', transition: 'color 0.2s' }}>Explore Jobs</Link>
+            <Link href="/careers/my-applications" style={{ color: isDark ? '#94a3b8' : '#475569', fontWeight: 500, fontSize: '0.95rem', textDecoration: 'none', transition: 'color 0.2s' }} className="hover:text-[#0077B6]">My Applications</Link>
           </div>
 
           {/* Auth */}
@@ -129,7 +129,7 @@ export default function CareersPage() {
               style={{
                 background: 'none',
                 border: 'none',
-                color: isDark ? '#f59e0b' : '#6366f1',
+                color: isDark ? '#f59e0b' : '#0077B6',
                 cursor: 'pointer',
                 padding: '0.5rem',
                 borderRadius: '50%',
@@ -154,8 +154,8 @@ export default function CareersPage() {
               </>
             ) : (
               <>
-                <Link href="/careers/login" style={{ color: isDark ? '#e2e8f0' : '#1e293b', fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none', transition: 'color 0.2s' }} className="hover:text-sky-500">Sign In</Link>
-                <Link href="/careers/register" style={{ padding: '0.6rem 1.5rem', background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', color: 'white', borderRadius: 12, fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none', boxShadow: '0 4px 20px rgba(14,165,233,0.4)', transition: 'transform 0.2s' }} className="hover:scale-105 hidden-mobile">
+                <Link href="/careers/login" style={{ color: isDark ? '#e2e8f0' : '#1e293b', fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none', transition: 'color 0.2s' }} className="hover:text-[#0077B6]">Sign In</Link>
+                <Link href="/careers/register" style={{ padding: '0.6rem 1.5rem', background: 'linear-gradient(135deg, #0ea5e9, #0077B6)', color: 'white', borderRadius: 12, fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none', boxShadow: '0 4px 20px rgba(14,165,233,0.4)', transition: 'transform 0.2s' }} className="hover:scale-105 hidden-mobile">
                   Join The Job Sync
                 </Link>
               </>
@@ -210,7 +210,7 @@ export default function CareersPage() {
             <Link
               href="/careers"
               onClick={() => setMobileMenuOpen(false)}
-              style={{ color: '#38bdf8', fontWeight: 700, fontSize: '1.1rem', textDecoration: 'none', padding: '0.5rem 0' }}
+              style={{ color: '#00B4D8', fontWeight: 700, fontSize: '1.1rem', textDecoration: 'none', padding: '0.5rem 0' }}
             >
               Explore Jobs
             </Link>
@@ -251,7 +251,7 @@ export default function CareersPage() {
                   <Link
                     href="/careers/register"
                     onClick={() => setMobileMenuOpen(false)}
-                    style={{ padding: '0.75rem', background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', color: 'white', borderRadius: 10, fontWeight: 700, textDecoration: 'none', textAlign: 'center', boxShadow: '0 4px 15px rgba(14,165,233,0.3)' }}
+                    style={{ padding: '0.75rem', background: 'linear-gradient(135deg, #0ea5e9, #0077B6)', color: 'white', borderRadius: 10, fontWeight: 700, textDecoration: 'none', textAlign: 'center', boxShadow: '0 4px 15px rgba(14,165,233,0.3)' }}
                   >
                     Join The Job Sync
                   </Link>
@@ -281,7 +281,7 @@ export default function CareersPage() {
 
             <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, color: isDark ? 'white' : '#0f172a', lineHeight: 1.1, marginBottom: '1.5rem', letterSpacing: '-1px', transition: 'color 0.3s' }}>
               Sync Your Skills With <br />
-              <span style={{ background: 'linear-gradient(90deg, #38bdf8, #818cf8, #c084fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <span style={{ background: 'linear-gradient(90deg, #38bdf8, #00B4D8, #c084fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Your Dream Career
               </span>
             </h1>
@@ -314,7 +314,7 @@ export default function CareersPage() {
             </div>
             <button
               onClick={() => document.getElementById('jobs-list')?.scrollIntoView({ behavior: 'smooth' })}
-              style={{ background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', color: 'white', border: 'none', borderRadius: 16, padding: '0 2.5rem', fontWeight: 700, fontSize: '1rem', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all 0.2s', height: '54px' }}
+              style={{ background: 'linear-gradient(135deg, #0ea5e9, #0077B6)', color: 'white', border: 'none', borderRadius: 16, padding: '0 2.5rem', fontWeight: 700, fontSize: '1rem', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all 0.2s', height: '54px' }}
               className="hover:shadow-[0_0_20px_rgba(14,165,233,0.5)] hover:scale-[1.02]"
             >
               Sync Jobs
@@ -325,7 +325,7 @@ export default function CareersPage() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
             <span style={{ color: '#64748b', fontSize: '0.875rem' }}>Trending:</span>
             {['React', 'Node.js', 'Python', 'AWS', 'UI/UX'].map(tag => (
-              <button key={tag} onClick={() => setSearch(tag)} style={{ background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)', border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`, color: isDark ? '#cbd5e1' : '#475569', borderRadius: 50, padding: '0.35rem 1rem', fontSize: '0.8125rem', cursor: 'pointer', fontWeight: 500, transition: 'all 0.2s' }} className="hover:bg-sky-500 hover:text-white">
+              <button key={tag} onClick={() => setSearch(tag)} style={{ background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)', border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`, color: isDark ? '#cbd5e1' : '#475569', borderRadius: 50, padding: '0.35rem 1rem', fontSize: '0.8125rem', cursor: 'pointer', fontWeight: 500, transition: 'all 0.2s' }} className="hover:bg-[#0077B6] hover:text-white">
                 {tag}
               </button>
             ))}
@@ -348,7 +348,7 @@ export default function CareersPage() {
         <section style={{ maxWidth: 1280, margin: '0 auto', padding: '2rem 1.5rem 4rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: '2rem' }}>
             <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(139, 92, 246, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Sparkles size={20} color="#a855f7" />
+              <Sparkles size={20} color="#00B4D8" />
             </div>
             <div>
               <h2 style={{ fontSize: '1.75rem', fontWeight: 800, color: isDark ? 'white' : '#0f172a', letterSpacing: '-0.5px', transition: 'color 0.3s' }}>Recommended For You</h2>
@@ -390,9 +390,9 @@ export default function CareersPage() {
                   transition: 'all 0.3s ease',
                   boxShadow: isDark ? 'none' : '0 4px 12px rgba(0,0,0,0.02)'
                 }}
-                className="hover:border-sky-500/50 hover:shadow-[0_10px_30px_rgba(14,165,233,0.15)] group"
+                className="hover:border-[#0077B6]/50 hover:shadow-[0_10px_30px_rgba(14,165,233,0.15)] group"
               >
-                <div style={{ width: 56, height: 56, borderRadius: 16, background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem', color: '#38bdf8', transition: 'all 0.3s' }} className="group-hover:scale-110 group-hover:bg-sky-500/10">
+                <div style={{ width: 56, height: 56, borderRadius: 16, background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem', color: '#00B4D8', transition: 'all 0.3s' }} className="group-hover:scale-110 group-hover:bg-[#0077B6]/10">
                   {CATEGORY_ICONS[cat.industry] || <Briefcase size={26} />}
                 </div>
                 <div style={{ fontWeight: 700, fontSize: '1rem', color: isDark ? 'white' : '#1e293b', marginBottom: 6, transition: 'color 0.3s' }}>{cat.industry}</div>
@@ -416,7 +416,7 @@ export default function CareersPage() {
 
         {loading ? (
           <div style={{ textAlign: 'center', padding: '5rem', color: '#64748b' }}>
-            <div style={{ width: 50, height: 50, borderWidth: '3px', borderStyle: 'solid', borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)', borderLeftColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)', borderRightColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)', borderTopColor: '#38bdf8', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1.5rem' }} />
+            <div style={{ width: 50, height: 50, borderWidth: '3px', borderStyle: 'solid', borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)', borderLeftColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)', borderRightColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)', borderTopColor: '#00B4D8', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1.5rem' }} />
             <p style={{ fontSize: '1.1rem', fontWeight: 500 }}>Syncing Jobs...</p>
           </div>
         ) : (
@@ -442,13 +442,13 @@ export default function CareersPage() {
       {/* ===== JOIN BANNER ===== */}
       {!candidate && (
         <section style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem 6rem' }}>
-          <div style={{ background: 'linear-gradient(135deg, #0ea5e9, #4f46e5)', borderRadius: 32, padding: '4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '2rem', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ background: 'linear-gradient(135deg, #0ea5e9, #03045E)', borderRadius: 32, padding: '4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '2rem', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', right: -50, top: -50, width: 300, height: 300, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', filter: 'blur(40px)' }} />
             <div style={{ position: 'relative', zIndex: 2 }}>
               <h2 style={{ color: 'white', fontSize: '2.5rem', fontWeight: 900, marginBottom: 12, letterSpacing: '-1px' }}>Ready to level up?</h2>
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.125rem', maxWidth: 500 }}>Create your The Job Sync profile today. Upload your resume and let our AI match you with perfect opportunities instantly.</p>
             </div>
-            <Link href="/careers/register" style={{ position: 'relative', zIndex: 2, background: 'white', color: '#0ea5e9', padding: '1rem 2.5rem', borderRadius: 16, fontWeight: 800, fontSize: '1.125rem', textDecoration: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', gap: 10, transition: 'transform 0.2s' }} className="hover:scale-105">
+            <Link href="/careers/register" style={{ position: 'relative', zIndex: 2, background: 'white', color: '#00B4D8', padding: '1rem 2.5rem', borderRadius: 16, fontWeight: 800, fontSize: '1.125rem', textDecoration: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', gap: 10, transition: 'transform 0.2s' }} className="hover:scale-105">
               Create Profile <ArrowRight size={20} />
             </Link>
           </div>
@@ -460,11 +460,11 @@ export default function CareersPage() {
         <div className="footer-content" style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 28, width: 28, objectFit: 'contain', borderRadius: '50%' }} />
-            <span style={{ fontWeight: 800, fontSize: '1.25rem', color: isDark ? 'white' : '#0f172a', transition: 'color 0.3s' }}>The The Job Sync</span>
+            <span style={{ fontWeight: 800, fontSize: '1.25rem', color: isDark ? 'white' : '#0f172a', transition: 'color 0.3s' }}>The Job Sync</span>
           </div>
           <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.9rem' }}>
-            <Link href="/login" style={{ color: isDark ? '#94a3b8' : '#475569', textDecoration: 'none' }} className="hover:text-sky-500">Recruiter Login</Link>
-            <Link href="/careers/register" style={{ color: isDark ? '#94a3b8' : '#475569', textDecoration: 'none' }} className="hover:text-sky-500">Candidate Sign Up</Link>
+            <Link href="/login" style={{ color: isDark ? '#94a3b8' : '#475569', textDecoration: 'none' }} className="hover:text-[#0077B6]">Recruiter Login</Link>
+            <Link href="/careers/register" style={{ color: isDark ? '#94a3b8' : '#475569', textDecoration: 'none' }} className="hover:text-[#0077B6]">Candidate Sign Up</Link>
           </div>
         </div>
         <div style={{ maxWidth: 1280, margin: '2rem auto 0', textAlign: 'center', fontSize: '0.85rem', borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)'}`, paddingTop: '2rem' }}>
@@ -558,10 +558,10 @@ function JobCard({ job, candidate, delay = 0, isRecommended = false, isDark = tr
         boxShadow: isDark ? 'none' : '0 4px 12px rgba(0,0,0,0.02)',
         transition: 'all 0.3s ease'
       }}
-      className={`hover:bg-white/5 hover:border-sky-500/40 hover:-translate-y-1 transition-all duration-300 ${isRecommended ? 'shadow-[0_0_30px_rgba(168,85,247,0.1)]' : ''}`}
+      className={`hover:bg-white/5 hover:border-[#0077B6]/40 hover:-translate-y-1 transition-all duration-300 ${isRecommended ? 'shadow-[0_0_30px_rgba(168,85,247,0.1)]' : ''}`}
     >
       {isRecommended && (
-        <div style={{ position: 'absolute', top: 0, right: 0, background: 'linear-gradient(135deg, #a855f7, #6366f1)', color: 'white', padding: '0.3rem 1rem', fontSize: '0.75rem', fontWeight: 700, borderBottomLeftRadius: 16 }}>
+        <div style={{ position: 'absolute', top: 0, right: 0, background: 'linear-gradient(135deg, #00B4D8, #0077B6)', color: 'white', padding: '0.3rem 1rem', fontSize: '0.75rem', fontWeight: 700, borderBottomLeftRadius: 16 }}>
           {job.matchPercentage ? `${job.matchPercentage}% Match` : 'Recommended'}
         </div>
       )}
@@ -606,7 +606,7 @@ function JobCard({ job, candidate, delay = 0, isRecommended = false, isDark = tr
             onClick={handleApply}
             disabled={applying}
             style={{
-              background: applying ? (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)') : 'linear-gradient(135deg, #0ea5e9, #6366f1)',
+              background: applying ? (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)') : 'linear-gradient(135deg, #0ea5e9, #0077B6)',
               color: applying ? '#94a3b8' : 'white',
               border: 'none', borderRadius: 10, padding: '0.5rem 1.25rem',
               fontWeight: 700, fontSize: '0.85rem', cursor: applying ? 'wait' : 'pointer',

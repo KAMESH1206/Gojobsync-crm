@@ -93,7 +93,7 @@ export default function LoginPage() {
             <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 56, width: 56, objectFit: 'contain', borderRadius: '50%' }} />
           </div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--foreground)', marginBottom: '0.375rem', letterSpacing: '-0.5px' }}>
-            The The Job Sync
+            The Job Sync
           </h1>
           <p style={{ fontSize: '0.875rem', color: 'var(--muted-foreground)' }}>
             Recruitment Management System

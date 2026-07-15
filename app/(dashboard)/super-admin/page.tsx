@@ -166,10 +166,10 @@ export default function SuperAdminPage() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
-          { label: 'Total Candidates', value: loading ? '...' : stats?.totalCandidates, icon: <Users size={18} />, color: '#6366f1' },
+          { label: 'Total Candidates', value: loading ? '...' : stats?.totalCandidates, icon: <Users size={18} />, color: '#0077B6' },
           { label: 'Active Clients', value: loading ? '...' : stats?.totalClients, icon: <Building2 size={18} />, color: '#22c55e' },
           { label: 'Total Placements', value: loading ? '...' : stats?.placements, icon: <BarChart3 size={18} />, color: '#f97316' },
-          { label: 'Open Requirements', value: loading ? '...' : stats?.activeRequirements, icon: <Globe size={18} />, color: '#8b5cf6' },
+          { label: 'Open Requirements', value: loading ? '...' : stats?.activeRequirements, icon: <Globe size={18} />, color: '#0077B6' },
         ].map((s, i) => (
           <div key={s.label} className={`stat-card animate-fade-in-up delay-${i + 1}`}>
             <div style={{ width: 36, height: 36, borderRadius: 8, background: `${s.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, marginBottom: '0.75rem' }}>{s.icon}</div>
@@ -193,10 +193,10 @@ export default function SuperAdminPage() {
             <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '1rem' }}>Quick Actions</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {[
-                { label: 'Manage Employees', icon: <Users size={16} />, color: '#6366f1', onClick: () => setActiveTab('employees') },
+                { label: 'Manage Employees', icon: <Users size={16} />, color: '#0077B6', onClick: () => setActiveTab('employees') },
                 { label: 'Permission Matrix', icon: <Key size={16} />, color: '#22c55e', onClick: () => {} },
                 { label: 'Company Settings', icon: <Settings size={16} />, color: '#f97316', onClick: () => setActiveTab('company') },
-                { label: 'Database Management', icon: <Database size={16} />, color: '#3b82f6', onClick: () => {} },
+                { label: 'Database Management', icon: <Database size={16} />, color: '#0077B6', onClick: () => {} },
               ].map(action => (
                 <button key={action.label} onClick={action.onClick} className="btn btn-secondary" style={{ justifyContent: 'flex-start', width: '100%' }}>
                   <span style={{ color: action.color }}>{action.icon}</span> {action.label}
@@ -228,7 +228,7 @@ export default function SuperAdminPage() {
                 <tbody>
                   {employees.map(emp => (
                     <tr key={emp.id}>
-                      <td className="font-medium cursor-pointer text-sky-500 hover:underline" onClick={() => setSelectedEmployeeForAttendance(emp)}>
+                      <td className="font-medium cursor-pointer text-[#0077B6] hover:underline" onClick={() => setSelectedEmployeeForAttendance(emp)}>
                         {emp.name}
                       </td>
                       <td>

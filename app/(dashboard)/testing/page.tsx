@@ -49,11 +49,11 @@ export default function TestingPage() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
-          { label: 'Total Tests', value: MOCK_TEST_CASES.length, icon: <TestTube2 size={18} />, color: '#6366f1' },
+          { label: 'Total Tests', value: MOCK_TEST_CASES.length, icon: <TestTube2 size={18} />, color: '#0077B6' },
           { label: 'Passed', value: passed, icon: <CheckCircle size={18} />, color: '#22c55e' },
           { label: 'Failed', value: failed, icon: <XCircle size={18} />, color: '#ef4444' },
           { label: 'Pending', value: pending, icon: <Clock size={18} />, color: '#eab308' },
-          { label: 'Pass Rate', value: `${passRate}%`, icon: <FileText size={18} />, color: '#3b82f6' },
+          { label: 'Pass Rate', value: `${passRate}%`, icon: <FileText size={18} />, color: '#0077B6' },
           { label: 'Open Bugs', value: MOCK_BUGS.filter(b => b.status === 'open').length, icon: <Bug size={18} />, color: '#f97316' },
         ].map((s, i) => (
           <div key={s.label} className={`stat-card animate-fade-in-up delay-${i + 1}`}>

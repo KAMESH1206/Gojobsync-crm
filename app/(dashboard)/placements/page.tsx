@@ -4,22 +4,23 @@ import { useState, useMemo } from 'react';
 import { Award, Search, Building2, Calendar, DollarSign, CheckCircle, Plus, MoreVertical, Edit2, Trash2, X } from 'lucide-react';
 import { useDataStore } from '@/lib/useDataStore';
 import { Placement, Candidate, JobRequirement, Client } from '@/lib/types';
-import { validateForm, validateRequired } from '@/lib/validation';
+import { validateForm, validateRequired, validateNumber } from '@/lib/validation';
 import { useAuth } from '@/context/AuthContext';
+import { canEditModule } from '@/lib/permissions';
 
 const PIPELINE_STEPS = ['offer_sent', 'offer_accepted', 'joining_confirmed', 'joined'];
 const PIPELINE_LABELS: Record<string, string> = { offer_sent: 'Offer Sent', offer_accepted: 'Offer Accepted', joining_confirmed: 'Joining Confirmed', joined: 'Joined' };
 
 const STATUS_COLORS: Record<string, string> = {
-  offer_sent: '#3b82f6',
-  offer_accepted: '#a855f7',
+  offer_sent: '#0077B6',
+  offer_accepted: '#00B4D8',
   joining_confirmed: '#f59e0b',
   joined: '#22c55e',
 };
 
 export default function PlacementsPage() {
   const { user } = useAuth();
-  const isReadOnly = user?.role === 'admin';
+  const isReadOnly = !canEditModule(user?.role, 'placements');
 
   const { data: placements, loading, error, createItem, updateItem, deleteItem, fetchItems } = useDataStore<Placement>({
     endpoint: '/api/placements',

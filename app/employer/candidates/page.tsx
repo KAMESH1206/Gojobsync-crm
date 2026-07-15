@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
@@ -133,7 +133,7 @@ export default function EmployerCandidatesPage() {
   if (isLoading || !employer) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-sky-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-[#0077B6] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -149,14 +149,14 @@ export default function EmployerCandidatesPage() {
             <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-9 w-9 object-contain rounded-full border border-gray-200" />
             <div>
               <div className="font-extrabold text-slate-900 text-sm leading-none">The Job Sync</div>
-              <div className="text-sky-600 text-[10px] font-semibold mt-0.5 uppercase tracking-wider">Employer Portal</div>
+              <div className="text-[#03045E] text-[10px] font-semibold mt-0.5 uppercase tracking-wider">Employer Portal</div>
             </div>
           </div>
           <nav className="hidden md:flex items-center gap-1">
-            <Link href="/employer/dashboard" className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors">
+            <Link href="/employer/dashboard" className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#03045E] hover:bg-[#CAF0F8]/20 rounded-lg transition-colors">
               Dashboard
             </Link>
-            <span className="px-4 py-2 text-sm font-semibold text-sky-600 bg-sky-50 rounded-lg flex items-center gap-1.5">
+            <span className="px-4 py-2 text-sm font-semibold text-[#03045E] bg-[#CAF0F8]/30 rounded-lg flex items-center gap-1.5">
               <Search size={14} /> Candidates
             </span>
           </nav>
@@ -174,7 +174,7 @@ export default function EmployerCandidatesPage() {
             <button
               onClick={() => setShowSavedOnly(!showSavedOnly)}
               className={`flex items-center gap-2 font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors text-sm ${
-                showSavedOnly ? 'bg-sky-100 text-sky-700 border border-sky-200' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
+                showSavedOnly ? 'bg-[#90E0EF]/30 text-sky-700 border border-sky-200' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
               }`}
             >
               <Bookmark size={16} className={showSavedOnly ? "fill-sky-700" : ""} />
@@ -199,7 +199,7 @@ export default function EmployerCandidatesPage() {
               placeholder="Search by name, skills, role..."
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-              className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-all bg-slate-50 focus:bg-white"
+              className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-all bg-slate-50 focus:bg-white"
             />
           </div>
           <div className="flex-1 relative">
@@ -207,7 +207,7 @@ export default function EmployerCandidatesPage() {
             <select
               value={field}
               onChange={(e) => { setField(e.target.value); setPage(1); }}
-              className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-all bg-slate-50 focus:bg-white appearance-none"
+              className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-all bg-slate-50 focus:bg-white appearance-none"
             >
               <option value="">All Fields / Domains</option>
               {FIELDS.map(f => <option key={f} value={f}>{f}</option>)}
@@ -220,7 +220,7 @@ export default function EmployerCandidatesPage() {
               placeholder="Location (e.g. Chennai)"
               value={location}
               onChange={(e) => { setLocation(e.target.value); setPage(1); }}
-              className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-all bg-slate-50 focus:bg-white"
+              className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-all bg-slate-50 focus:bg-white"
             />
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function EmployerCandidatesPage() {
             <p className="text-slate-500 max-w-sm">Try adjusting your search filters or removing the location filter.</p>
             <button
               onClick={() => { setSearch(''); setField(''); setLocation(''); setShowSavedOnly(false); }}
-              className="mt-4 text-sky-600 font-semibold hover:underline"
+              className="mt-4 text-[#03045E] font-semibold hover:underline"
             >
               Clear all filters
             </button>
@@ -414,7 +414,7 @@ export default function EmployerCandidatesPage() {
                     try { s = JSON.parse(selectedCandidate.skills); } catch { s = []; }
                     if (s.length === 0) return <span className="text-sm text-slate-500">No skills listed</span>;
                     return s.map((skill: string, i: number) => (
-                      <span key={i} className="px-3 py-1.5 bg-sky-50 border border-sky-100 text-sky-700 text-xs font-bold rounded-lg">
+                      <span key={i} className="px-3 py-1.5 bg-[#CAF0F8]/30 border border-sky-100 text-sky-700 text-xs font-bold rounded-lg">
                         {skill}
                       </span>
                     ));
@@ -432,7 +432,7 @@ export default function EmployerCandidatesPage() {
               </button>
               <a
                 href={`mailto:${selectedCandidate.email}`}
-                className="px-5 py-2.5 bg-sky-600 text-white font-bold rounded-xl hover:bg-sky-700 transition-colors shadow-sm"
+                className="px-5 py-2.5 bg-[#03045E] text-white font-bold rounded-xl hover:bg-sky-700 transition-colors shadow-sm"
               >
                 Contact Candidate
               </a>

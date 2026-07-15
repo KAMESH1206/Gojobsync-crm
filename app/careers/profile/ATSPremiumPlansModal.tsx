@@ -63,7 +63,7 @@ export default function ATSPremiumPlansModal({ isOpen, onClose }: { isOpen: bool
           {/* Header */}
           <div style={{ padding: '2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.02)' }}>
             <div>
-              <div style={{ color: '#38bdf8', fontSize: '0.875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Job Seekers</div>
+              <div style={{ color: '#00B4D8', fontSize: '0.875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Job Seekers</div>
               <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'white', letterSpacing: '-0.5px', marginBottom: '0.5rem' }}>Premium Plans for Candidates</h2>
               <p style={{ color: '#94a3b8', fontSize: '1rem' }}>Unlock direct company contacts, profile boosts and recruiter assistance.</p>
             </div>
@@ -83,21 +83,21 @@ export default function ATSPremiumPlansModal({ isOpen, onClose }: { isOpen: bool
                 key={plan.name} 
                 style={{ 
                   background: plan.isPopular ? 'rgba(56,189,248,0.03)' : 'rgba(255,255,255,0.02)', 
-                  border: `2px solid ${plan.isPopular ? '#1e3a8a' : 'rgba(255,255,255,0.08)'}`, 
+                  border: `2px solid ${plan.isPopular ? '#03045E' : 'rgba(255,255,255,0.08)'}`, 
                   borderRadius: 16, padding: '2rem', 
                   display: 'flex', flexDirection: 'column', position: 'relative',
                   transition: 'transform 0.2s, border-color 0.2s'
                 }}
-                className="hover:-translate-y-1 hover:border-sky-500/50"
+                className="hover:-translate-y-1 hover:border-[#0077B6]/50"
               >
                 {plan.isPopular && (
-                  <div style={{ position: 'absolute', top: -14, right: 20, background: '#1e40af', color: 'white', fontSize: '0.75rem', fontWeight: 800, padding: '4px 12px', borderRadius: 20, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                  <div style={{ position: 'absolute', top: -14, right: 20, background: '#0077B6', color: 'white', fontSize: '0.75rem', fontWeight: 800, padding: '4px 12px', borderRadius: 20, textTransform: 'uppercase', letterSpacing: '1px' }}>
                     POPULAR
                   </div>
                 )}
                 
                 <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', marginBottom: '1rem' }}>{plan.name}</h3>
-                <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1e40af', marginBottom: '0.25rem' }}>{plan.price}</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#0077B6', marginBottom: '0.25rem' }}>{plan.price}</div>
                 <div style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '0.25rem' }}>+ 18% GST at checkout</div>
                 <div style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '2rem' }}>Valid 30 days</div>
 
@@ -113,7 +113,7 @@ export default function ATSPremiumPlansModal({ isOpen, onClose }: { isOpen: bool
                 <button 
                   onClick={() => alert(`Redirecting to payment gateway for ${plan.name}...`)}
                   style={{ 
-                    width: '100%', background: '#1e3a8a', color: 'white', border: 'none', 
+                    width: '100%', background: '#03045E', color: 'white', border: 'none', 
                     padding: '1rem', borderRadius: 12, fontWeight: 700, fontSize: '1rem', 
                     cursor: 'pointer', transition: 'background 0.2s' 
                   }}

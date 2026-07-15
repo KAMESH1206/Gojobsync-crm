@@ -48,7 +48,7 @@ export default async function CompanyProfilePage({ params }: { params: Promise<{
           
           <div>
             <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', marginBottom: 8, letterSpacing: '-0.5px' }}>{company.companyName}</h1>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#38bdf8', fontWeight: 600, fontSize: '1.1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#00B4D8', fontWeight: 600, fontSize: '1.1rem' }}>
               <Building2 size={20} /> {company.industry}
             </div>
           </div>
@@ -71,16 +71,16 @@ export default async function CompanyProfilePage({ params }: { params: Promise<{
                 </div>
               ) : (
                 openJobs.map(job => (
-                  <Link key={job.id} href={`/careers/jobs/${job.id}`} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '1.5rem', textDecoration: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} className="hover:bg-white/5 hover:border-sky-500/50 transition-all group">
+                  <Link key={job.id} href={`/careers/jobs/${job.id}`} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '1.5rem', textDecoration: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} className="hover:bg-white/5 hover:border-[#0077B6]/50 transition-all group">
                     <div>
-                      <h3 style={{ fontWeight: 800, color: 'white', fontSize: '1.15rem', marginBottom: 6 }} className="group-hover:text-sky-400 transition-colors">{job.title}</h3>
+                      <h3 style={{ fontWeight: 800, color: 'white', fontSize: '1.15rem', marginBottom: 6 }} className="group-hover:text-[#00B4D8] transition-colors">{job.title}</h3>
                       <div style={{ fontSize: '0.9rem', color: '#94a3b8', display: 'flex', gap: 12 }}>
                         <span>{job.location}</span>
                         <span>•</span>
                         <span>{job.experience}</span>
                       </div>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.1)', color: 'white', padding: '0.5rem 1rem', borderRadius: 8, fontWeight: 600, fontSize: '0.9rem' }} className="group-hover:bg-sky-500 group-hover:text-white transition-colors">
+                    <div style={{ background: 'rgba(255,255,255,0.1)', color: 'white', padding: '0.5rem 1rem', borderRadius: 8, fontWeight: 600, fontSize: '0.9rem' }} className="group-hover:bg-[#0077B6] group-hover:text-white transition-colors">
                       View Job
                     </div>
                   </Link>
@@ -107,7 +107,7 @@ export default async function CompanyProfilePage({ params }: { params: Promise<{
               {company.website && (
                 <div style={{ display: 'flex', gap: 12 }}>
                   <Globe size={20} color="#64748b" style={{ flexShrink: 0 }} />
-                  <a href={company.website} target="_blank" rel="noreferrer" style={{ color: '#38bdf8', textDecoration: 'none' }} className="hover:underline">{company.website}</a>
+                  <a href={company.website} target="_blank" rel="noreferrer" style={{ color: '#00B4D8', textDecoration: 'none' }} className="hover:underline">{company.website}</a>
                 </div>
               )}
             </div>

@@ -81,14 +81,14 @@ export default function CompaniesPage() {
       {/* Hero Section */}
       <section className="relative bg-white pt-16 pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-[#0a1f44] tracking-tight mb-4">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-[#03045E] dark:text-[#CAF0F8] tracking-tight mb-4">
             Navigate your Job posts here!
           </h1>
-          <p className="text-lg md:text-xl text-gray-500 italic mb-8 max-w-3xl mx-auto">
-            "Lakhs of Employers. Millions of Job seekers. Endless success — only on THEJOBSYNC.COM."
+          <p className="text-lg md:text-xl text-gray-500 dark:text-[#90E0EF] italic mb-8 max-w-3xl mx-auto">
+            "Lakhs of Employers. Millions of Job seekers. Endless success — only on THE JOB SYNC."
           </p>
           <Link href="/post-job" className="inline-block">
-            <button className="bg-[#1e3a8a] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-[#172554] transition-colors flex items-center gap-2 mx-auto">
+            <button className="bg-gradient-to-br from-[#03045E] to-[#0077B6] hover:from-[#0077B6] hover:to-[#00B4D8] text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all flex items-center gap-2 mx-auto">
               <span>🚀</span> Post a Job
             </button>
           </Link>
@@ -114,7 +114,7 @@ export default function CompaniesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <div className="text-sm text-gray-500 mb-12 flex items-center gap-2 border-b border-gray-100 pb-4">
-            <Link href="/" className="hover:text-[#1e3a8a]">Home</Link>
+            <Link href="/" className="hover:text-[#03045E]">Home</Link>
             <span>›</span>
             <span className="text-[#0a1f44] font-semibold">Companies</span>
           </div>
@@ -122,9 +122,9 @@ export default function CompaniesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Text Column */}
             <div>
-              <div className="flex items-center gap-2 text-sm font-bold text-[#1e3a8a] uppercase tracking-wider mb-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#1e3a8a] flex items-center justify-center">
-                  <span className="w-1.5 h-1.5 bg-[#1e3a8a] rounded-full"></span>
+              <div className="flex items-center gap-2 text-sm font-bold text-[#03045E] uppercase tracking-wider mb-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#03045E] flex items-center justify-center">
+                  <span className="w-1.5 h-1.5 bg-[#03045E] rounded-full"></span>
                 </div>
                 About Companies on The Job Sync
               </div>
@@ -141,7 +141,7 @@ export default function CompaniesPage() {
               </div>
 
               {/* Alert Box */}
-              <div className="bg-blue-50 border-l-4 border-[#1e3a8a] rounded-r-xl p-6 flex gap-4 shadow-sm">
+              <div className="bg-blue-50 border-l-4 border-[#03045E] rounded-r-xl p-6 flex gap-4 shadow-sm">
                 <Lightbulb className="text-yellow-500 flex-shrink-0" size={24} />
                 <p className="text-[#0a1f44] font-medium text-sm leading-relaxed">
                   <span className="font-bold">Did you know?</span> Companies on THEJOBSYNC receive applications from over 140 countries, giving employers access to a truly global talent pool — and giving candidates access to international opportunities, all from one platform.
@@ -157,7 +157,7 @@ export default function CompaniesPage() {
                 className="w-full h-[600px] object-cover rounded-3xl shadow-xl"
               />
               <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-2xl flex items-center gap-4">
-                <div className="bg-blue-50 p-3 rounded-lg text-[#1e3a8a]">
+                <div className="bg-blue-50 p-3 rounded-lg text-[#03045E]">
                   <Users size={28} />
                 </div>
                 <div>
@@ -174,7 +174,7 @@ export default function CompaniesPage() {
       <section className="py-24 bg-[#f8fafc]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-blue-50 text-[#1e3a8a] font-bold text-xs tracking-widest uppercase rounded-full mb-4">
+            <span className="inline-block px-4 py-1.5 bg-blue-50 text-[#03045E] font-bold text-xs tracking-widest uppercase rounded-full mb-4">
               Industry Sectors
             </span>
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#0a1f44] mb-6">
@@ -189,7 +189,7 @@ export default function CompaniesPage() {
             {/* Sector I */}
             <div>
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-[#3b82f6] text-white rounded-lg flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0">
+                <div className="w-12 h-12 bg-[#0077B6] text-white rounded-lg flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0">
                   I
                 </div>
                 <div>
@@ -204,7 +204,7 @@ export default function CompaniesPage() {
                       <img src={sector.image} alt={sector.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     </div>
                     <div className="p-6">
-                      <span className="text-[#3b82f6] text-xs font-bold tracking-wider mb-2 block">{sector.id}</span>
+                      <span className="text-[#0077B6] text-xs font-bold tracking-wider mb-2 block">{sector.id}</span>
                       <h4 className="text-[#0a1f44] font-bold text-lg mb-2">{sector.title}</h4>
                       <p className="text-gray-500 text-sm line-clamp-2">{sector.description}</p>
                     </div>
@@ -216,7 +216,7 @@ export default function CompaniesPage() {
             {/* Sector II */}
             <div>
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-[#3b82f6] text-white rounded-lg flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0">
+                <div className="w-12 h-12 bg-[#0077B6] text-white rounded-lg flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0">
                   II
                 </div>
                 <div>
@@ -231,7 +231,7 @@ export default function CompaniesPage() {
                       <img src={sector.image} alt={sector.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     </div>
                     <div className="p-6">
-                      <span className="text-[#3b82f6] text-xs font-bold tracking-wider mb-2 block">{sector.id}</span>
+                      <span className="text-[#0077B6] text-xs font-bold tracking-wider mb-2 block">{sector.id}</span>
                       <h4 className="text-[#0a1f44] font-bold text-lg mb-2">{sector.title}</h4>
                       <p className="text-gray-500 text-sm line-clamp-2">{sector.description}</p>
                     </div>
@@ -243,7 +243,7 @@ export default function CompaniesPage() {
             {/* Sector III */}
             <div>
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-[#3b82f6] text-white rounded-lg flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0">
+                <div className="w-12 h-12 bg-[#0077B6] text-white rounded-lg flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0">
                   III
                 </div>
                 <div>
@@ -258,7 +258,7 @@ export default function CompaniesPage() {
                       <img src={sector.image} alt={sector.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     </div>
                     <div className="p-6">
-                      <span className="text-[#3b82f6] text-xs font-bold tracking-wider mb-2 block">{sector.id}</span>
+                      <span className="text-[#0077B6] text-xs font-bold tracking-wider mb-2 block">{sector.id}</span>
                       <h4 className="text-[#0a1f44] font-bold text-lg mb-2">{sector.title}</h4>
                       <p className="text-gray-500 text-sm line-clamp-2">{sector.description}</p>
                     </div>
@@ -270,7 +270,7 @@ export default function CompaniesPage() {
             {/* Sector IV */}
             <div>
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-[#3b82f6] text-white rounded-lg flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0">
+                <div className="w-12 h-12 bg-[#0077B6] text-white rounded-lg flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0">
                   IV
                 </div>
                 <div>
@@ -285,7 +285,7 @@ export default function CompaniesPage() {
                       <img src={sector.image} alt={sector.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     </div>
                     <div className="p-6">
-                      <span className="text-[#3b82f6] text-xs font-bold tracking-wider mb-2 block">{sector.id}</span>
+                      <span className="text-[#0077B6] text-xs font-bold tracking-wider mb-2 block">{sector.id}</span>
                       <h4 className="text-[#0a1f44] font-bold text-lg mb-2">{sector.title}</h4>
                       <p className="text-gray-500 text-sm line-clamp-2">{sector.description}</p>
                     </div>
@@ -300,7 +300,7 @@ export default function CompaniesPage() {
       {/* Partner Companies Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block px-4 py-1.5 bg-blue-50 text-[#1e3a8a] font-bold text-xs tracking-widest uppercase rounded-full mb-4">
+          <span className="inline-block px-4 py-1.5 bg-blue-50 text-[#03045E] font-bold text-xs tracking-widest uppercase rounded-full mb-4">
             TIED-UP COMPANIES
           </span>
           <h2 className="text-4xl font-extrabold text-[#0a1f44] mb-6">Our Partner Companies</h2>
@@ -340,7 +340,7 @@ export default function CompaniesPage() {
 
           <p className="text-gray-500 font-medium mb-6">Are you a company looking to partner with THEJOBSYNC?</p>
           <Link href="/post-job" className="inline-block">
-            <button className="bg-[#1e3a8a] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-[#172554] transition-colors flex items-center gap-2 mx-auto">
+            <button className="bg-[#03045E] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-[#172554] transition-colors flex items-center gap-2 mx-auto">
               <User size={18} strokeWidth={2.5} />
               <span>Become a Partner & Post Jobs</span>
             </button>

@@ -19,9 +19,9 @@ export default function ClientPortalPage() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
-          { label: 'Active Requirements', value: clientRequirements.filter(r => r.status !== 'closed').length, icon: <Briefcase size={18} />, color: '#3b82f6' },
+          { label: 'Active Requirements', value: clientRequirements.filter(r => r.status !== 'closed').length, icon: <Briefcase size={18} />, color: '#0077B6' },
           { label: 'Candidates in Pipeline', value: relatedCandidates.length, icon: <Users size={18} />, color: '#22c55e' },
-          { label: 'Positions Filled', value: clientRequirements.reduce((acc, r) => acc + r.filledPositions, 0), icon: <CheckCircle size={18} />, color: '#8b5cf6' },
+          { label: 'Positions Filled', value: clientRequirements.reduce((acc, r) => acc + r.filledPositions, 0), icon: <CheckCircle size={18} />, color: '#0077B6' },
         ].map((s, i) => (
           <div key={s.label} className={`stat-card animate-fade-in-up delay-${i + 1}`}>
             <div style={{ width: 36, height: 36, borderRadius: 8, background: `${s.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, marginBottom: '0.75rem' }}>{s.icon}</div>

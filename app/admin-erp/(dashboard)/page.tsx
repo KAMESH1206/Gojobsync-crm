@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect } from "react";
 import { Users, Briefcase, Building, Clock } from "lucide-react";
 
@@ -25,7 +25,7 @@ export default function AdminERPDashboard() {
         </div>
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
           <div className="flex items-center justify-between mb-4">
-            <div className="bg-indigo-100 p-3 rounded-lg"><Building className="w-6 h-6 text-indigo-600" /></div>
+            <div className="bg-indigo-100 p-3 rounded-lg"><Building className="w-6 h-6 text-[#0077B6]" /></div>
           </div>
           <span className="text-3xl font-bold text-gray-800">{stats?.totalCompanies || 0}</span>
           <p className="text-sm text-gray-500 mt-1">Partner Companies</p>

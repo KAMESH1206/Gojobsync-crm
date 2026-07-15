@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
@@ -96,7 +96,7 @@ export default function HRPage() {
             <div className="space-y-3 mb-5 flex-1">
               {c.ed?.degree && (
                 <div className="flex items-start gap-2 text-sm text-[var(--foreground)]">
-                  <GraduationCap size={16} className="text-indigo-500 shrink-0 mt-0.5" />
+                  <GraduationCap size={16} className="text-[#0077B6] shrink-0 mt-0.5" />
                   <div>
                     <div className="font-medium">{c.ed.degree}</div>
                     {(c.ed.college || c.ed.cgpa) && (
@@ -129,7 +129,7 @@ export default function HRPage() {
                     </span>
                   ))}
                   {c.sk.length > 4 && (
-                    <span className="px-2 py-0.5 bg-indigo-50 rounded-md text-xs text-indigo-600 font-medium border border-indigo-100">
+                    <span className="px-2 py-0.5 bg-indigo-50 rounded-md text-xs text-[#0077B6] font-medium border border-indigo-100">
                       +{c.sk.length - 4}
                     </span>
                   )}

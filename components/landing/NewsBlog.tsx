@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -14,10 +14,10 @@ export default function NewsBlog() {
             <p className="text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300">Get the latest news, updates and tips</p>
           </div>
           <div className="hidden md:flex gap-3">
-            <button className="w-10 h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-400 hover:text-sky-500 hover:border-sky-500 transition-colors">
+            <button className="w-10 h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-400 hover:text-[#0077B6] hover:border-[#0077B6] transition-colors">
               <ChevronLeft size={20} />
             </button>
-            <button className="w-10 h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-400 hover:text-sky-500 hover:border-sky-500 transition-colors">
+            <button className="w-10 h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-400 hover:text-[#0077B6] hover:border-[#0077B6] transition-colors">
               <ChevronRight size={20} />
             </button>
           </div>
@@ -43,8 +43,8 @@ export default function NewsBlog() {
           {/* Content Right */}
           <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
             <div className="flex gap-2 mb-6 flex-wrap">
-              <span className="bg-sky-500 text-white text-[11px] font-bold px-3 py-1 rounded-full tracking-wider uppercase">FEATURED</span>
-              <span className="bg-indigo-500 text-white text-[11px] font-bold px-3 py-1 rounded-full tracking-wider uppercase">PLATFORM UPDATES</span>
+              <span className="bg-[#0077B6] text-white text-[11px] font-bold px-3 py-1 rounded-full tracking-wider uppercase">FEATURED</span>
+              <span className="bg-[#0077B6] text-white text-[11px] font-bold px-3 py-1 rounded-full tracking-wider uppercase">PLATFORM UPDATES</span>
             </div>
             
             <h3 className="text-2xl md:text-[28px] font-extrabold text-slate-900 dark:text-white mb-6 leading-tight transition-colors duration-300">
@@ -57,7 +57,7 @@ export default function NewsBlog() {
             
             <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-50 dark:border-white/10 transition-colors duration-300">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-indigo-500 text-white flex items-center justify-center text-xs font-bold">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0077B6] to-[#00B4D8] text-white flex items-center justify-center text-xs font-bold">
                   GT
                 </div>
                 <span className="text-sm font-bold text-slate-700 dark:text-slate-300 transition-colors duration-300">THEJOBSYNC Team</span>

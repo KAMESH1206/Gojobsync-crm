@@ -5,8 +5,13 @@ import { Building2, Plus, Search, MapPin, Globe, Phone, Mail, MoreVertical, Edit
 import { useDataStore } from '@/lib/useDataStore';
 import { Client } from '@/lib/types';
 import { validateForm, validateRequired, validateEmail, validatePhone } from '@/lib/validation';
+import { useAuth } from '@/context/AuthContext';
+import { canEditModule } from '@/lib/permissions';
 
 export default function ClientsPage() {
+  const { user } = useAuth();
+  const isReadOnly = !canEditModule(user?.role, 'clients');
+
   const { data: clients, loading, error, createItem, updateItem, deleteItem, fetchItems } = useDataStore<Client>({
     endpoint: '/api/clients',
   });
@@ -108,11 +113,16 @@ export default function ClientsPage() {
       <div className="animate-fade-in" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Client Management</h1>
-          <p style={{ color: 'var(--muted-foreground)', fontSize: '0.875rem' }}>Manage your client relationships and contacts</p>
+          <p style={{ color: 'var(--muted-foreground)', fontSize: '0.875rem' }}>Manage your client relationships and</p>
         </div>
-        <button className="btn btn-primary" onClick={() => handleOpenModal()}>
-          <Plus size={16} /> Add Client
-        </button>
+        {!isReadOnly && (
+          <button
+            onClick={() => handleOpenModal()}
+            className="btn btn-primary shadow-sm hover:shadow-md transition-all flex items-center gap-2"
+          >
+            <Plus size={16} /> <span className="hidden sm:inline">Add Client</span>
+          </button>
+        )}
       </div>
 
       {/* Filters */}
@@ -160,20 +170,37 @@ export default function ClientsPage() {
                   
                   {/* Dropdown Menu */}
                   <div style={{ position: 'relative' }}>
-                    <button 
-                      className="btn-ghost btn-icon" 
-                      onClick={(e) => { e.stopPropagation(); setOpenDropdownId(openDropdownId === client.id ? null : client.id); }}
-                    >
-                      <MoreVertical size={16} />
-                    </button>
-                    {openDropdownId === client.id && (
-                      <div className="dropdown-menu" style={{ position: 'absolute', right: 0, top: '100%', zIndex: 10, minWidth: '150px' }}>
-                        <button className="dropdown-item" onClick={(e) => { e.stopPropagation(); handleOpenModal(client); }}>
-                          <Edit2 size={14} /> Edit Client
+                    {!isReadOnly && (
+                      <div className="relative">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setOpenDropdownId(openDropdownId === client.id ? null : client.id); }}
+                          className="p-1.5 text-slate-400 hover:bg-slate-100 rounded-lg transition-colors"
+                        >
+                          <MoreVertical size={16} />
                         </button>
-                        <button className="dropdown-item text-destructive" onClick={(e) => { e.stopPropagation(); handleDelete(client.id); }}>
-                          <Trash2 size={14} /> Delete
-                        </button>
+                        
+                        {openDropdownId === client.id && (
+                          <>
+                            <div 
+                              className="fixed inset-0 z-10" 
+                              onClick={() => setOpenDropdownId(null)}
+                            />
+                            <div className="absolute right-0 mt-1 w-36 bg-white rounded-xl shadow-lg border border-slate-100 z-20 py-1 overflow-hidden">
+                              <button
+                                onClick={(e) => { e.stopPropagation(); handleOpenModal(client); }}
+                                className="w-full text-left px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 flex items-center gap-2"
+                              >
+                                <Edit2 size={14} /> Edit
+                              </button>
+                              <button
+                                onClick={(e) => { e.stopPropagation(); handleDelete(client.id); }}
+                                className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                              >
+                                <Trash2 size={14} /> Delete
+                              </button>
+                            </div>
+                          </>
+                        )}
                       </div>
                     )}
                   </div>

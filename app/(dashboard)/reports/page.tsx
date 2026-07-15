@@ -37,8 +37,8 @@ export default function ReportsPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
             {[
               { label: 'Total Placements', value: '43', change: '+18%', icon: <Award size={18} />, color: '#22c55e' },
-              { label: 'Interviews Conducted', value: '186', change: '+24%', icon: <Calendar size={18} />, color: '#3b82f6' },
-              { label: 'Candidates Processed', value: '312', change: '+32%', icon: <Users size={18} />, color: '#8b5cf6' },
+              { label: 'Interviews Conducted', value: '186', change: '+24%', icon: <Calendar size={18} />, color: '#0077B6' },
+              { label: 'Candidates Processed', value: '312', change: '+32%', icon: <Users size={18} />, color: '#0077B6' },
               { label: 'Active Clients', value: '5', change: '+10%', icon: <Building2 size={18} />, color: '#f97316' },
             ].map((s, i) => (
               <div key={s.label} className={`stat-card animate-fade-in-up delay-${i + 1}`}>
@@ -61,7 +61,7 @@ export default function ReportsPage() {
                     <XAxis dataKey="month" stroke="var(--muted)" fontSize={12} />
                     <YAxis stroke="var(--muted)" fontSize={12} />
                     <Tooltip contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8 }} />
-                    <Line type="monotone" dataKey="placements" stroke="#6366f1" strokeWidth={2} dot={{ fill: '#6366f1' }} />
+                    <Line type="monotone" dataKey="placements" stroke="#0077B6" strokeWidth={2} dot={{ fill: '#0077B6' }} />
                     <Line type="monotone" dataKey="interviews" stroke="#22c55e" strokeWidth={2} dot={{ fill: '#22c55e' }} />
                   </LineChart>
                 </ResponsiveContainer>
@@ -76,7 +76,7 @@ export default function ReportsPage() {
                     <XAxis dataKey="skill" stroke="var(--muted)" fontSize={11} />
                     <YAxis stroke="var(--muted)" fontSize={12} />
                     <Tooltip contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8 }} />
-                    <Bar dataKey="count" fill="#8b5cf6" radius={[4, 4, 0, 0]} barSize={32} />
+                    <Bar dataKey="count" fill="#0077B6" radius={[4, 4, 0, 0]} barSize={32} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -90,8 +90,8 @@ export default function ReportsPage() {
           <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '1rem' }}>Recruitment Funnel</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {[
-              { stage: 'Applications Received', count: 312, pct: 100, color: '#3b82f6' },
-              { stage: 'Shortlisted', count: 156, pct: 50, color: '#8b5cf6' },
+              { stage: 'Applications Received', count: 312, pct: 100, color: '#0077B6' },
+              { stage: 'Shortlisted', count: 156, pct: 50, color: '#0077B6' },
               { stage: 'Interviews Scheduled', count: 98, pct: 31, color: '#f97316' },
               { stage: 'Interviews Completed', count: 82, pct: 26, color: '#06b6d4' },
               { stage: 'Selected', count: 52, pct: 17, color: '#22c55e' },
@@ -122,7 +122,7 @@ export default function ReportsPage() {
                 <XAxis dataKey="name" stroke="var(--muted)" fontSize={11} />
                 <YAxis stroke="var(--muted)" fontSize={12} />
                 <Tooltip contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8 }} />
-                <Bar dataKey="requirements" fill="#6366f1" radius={[4, 4, 0, 0]} barSize={24} />
+                <Bar dataKey="requirements" fill="#0077B6" radius={[4, 4, 0, 0]} barSize={24} />
                 <Bar dataKey="placements" fill="#22c55e" radius={[4, 4, 0, 0]} barSize={24} />
               </BarChart>
             </ResponsiveContainer>

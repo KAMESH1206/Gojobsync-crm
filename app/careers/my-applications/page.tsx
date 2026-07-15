@@ -9,12 +9,12 @@ import { motion } from 'framer-motion';
 import { usePortalTheme } from '@/context/PortalThemeContext';
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; icon: any }> = {
-  applied:             { label: 'Applied',            color: '#38bdf8', bg: 'rgba(56,189,248,0.1)', icon: <Clock size={14} /> },
-  new:                 { label: 'Applied',            color: '#38bdf8', bg: 'rgba(56,189,248,0.1)', icon: <Clock size={14} /> },
-  shortlisted:         { label: 'Shortlisted',        color: '#818cf8', bg: 'rgba(129,140,248,0.1)', icon: <Star size={14} /> },
+  applied:             { label: 'Applied',            color: '#00B4D8', bg: 'rgba(56,189,248,0.1)', icon: <Clock size={14} /> },
+  new:                 { label: 'Applied',            color: '#00B4D8', bg: 'rgba(56,189,248,0.1)', icon: <Clock size={14} /> },
+  shortlisted:         { label: 'Shortlisted',        color: '#00B4D8', bg: 'rgba(129,140,248,0.1)', icon: <Star size={14} /> },
   interview_scheduled: { label: 'Interview Scheduled',color: '#fcd34d', bg: 'rgba(252,211,77,0.1)', icon: <Phone size={14} /> },
   interviewing:        { label: 'Interviewing',       color: '#fb923c', bg: 'rgba(251,146,60,0.1)', icon: <Phone size={14} /> },
-  interviewed:         { label: 'Interviewed',        color: '#0ea5e9', bg: 'rgba(14,165,233,0.1)', icon: <Phone size={14} /> },
+  interviewed:         { label: 'Interviewed',        color: '#00B4D8', bg: 'rgba(14,165,233,0.1)', icon: <Phone size={14} /> },
   selected:            { label: 'Selected 🎉',        color: '#34d399', bg: 'rgba(52,211,153,0.1)', icon: <CheckCircle size={14} /> },
   offered:             { label: 'Offer Sent',         color: '#10b981', bg: 'rgba(16,185,129,0.1)', icon: <CheckCircle size={14} /> },
   offer_accepted:      { label: 'Offer Accepted 🎉',  color: '#10b981', bg: 'rgba(16,185,129,0.1)', icon: <CheckCircle size={14} /> },
@@ -83,10 +83,10 @@ export default function MyApplicationsPage() {
       {/* Stats */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.5rem', marginBottom: '2.5rem' }}>
         {[
-          { label: 'Total Applied', value: stats.total, color: '#38bdf8' },
+          { label: 'Total Applied', value: stats.total, color: '#00B4D8' },
           { label: 'In Progress', value: stats.shortlisted, color: '#fb923c' },
           { label: 'Selected / Offered', value: stats.selected, color: '#34d399' },
-          { label: 'Pending Review', value: stats.pending, color: '#818cf8' },
+          { label: 'Pending Review', value: stats.pending, color: '#00B4D8' },
         ].map((s, i) => (
           <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} key={s.label} style={{ background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`, borderRadius: 20, padding: '1.5rem', textAlign: 'center' }}>
             <div style={{ fontSize: '2.5rem', fontWeight: 900, color: s.color, marginBottom: 8 }}>{s.value}</div>
@@ -98,7 +98,7 @@ export default function MyApplicationsPage() {
       {/* Applications list */}
       {loading ? (
         <div style={{ textAlign: 'center', padding: '4rem', color: isDark ? '#94a3b8' : '#64748b' }}>
-          <div style={{ width: 40, height: 40, border: `3px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`, borderTopColor: '#38bdf8', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }} />
+          <div style={{ width: 40, height: 40, border: `3px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`, borderTopColor: '#00B4D8', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }} />
           Loading your applications...
         </div>
       ) : applications.length === 0 ? (
@@ -106,7 +106,7 @@ export default function MyApplicationsPage() {
           <AlertCircle size={56} color="#475569" style={{ margin: '0 auto 1.5rem' }} />
           <h3 style={{ fontWeight: 800, color: isDark ? 'white' : '#0f172a', fontSize: '1.25rem', marginBottom: 10 }}>No applications yet</h3>
           <p style={{ color: isDark ? '#94a3b8' : '#64748b', marginBottom: '2rem' }}>Start applying to your dream jobs today!</p>
-          <Link href="/careers" style={{ background: 'linear-gradient(135deg,#0ea5e9,#6366f1)', color: 'white', padding: '1rem 2.5rem', borderRadius: 12, textDecoration: 'none', fontWeight: 800, fontSize: '1.05rem', boxShadow: '0 10px 20px rgba(14,165,233,0.3)' }} className="hover:scale-105 inline-block transition-transform">Browse Jobs</Link>
+          <Link href="/careers" style={{ background: 'linear-gradient(135deg,#0ea5e9,#0077B6)', color: 'white', padding: '1rem 2.5rem', borderRadius: 12, textDecoration: 'none', fontWeight: 800, fontSize: '1.05rem', boxShadow: '0 10px 20px rgba(14,165,233,0.3)' }} className="hover:scale-105 inline-block transition-transform">Browse Jobs</Link>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -116,14 +116,14 @@ export default function MyApplicationsPage() {
             const hue = job?.client?.companyName ? [...job.client.companyName].reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360 : 200;
 
             return (
-              <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }} key={app.id} style={{ background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`, borderRadius: 20, padding: '1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'wrap' }} className="hover:bg-sky-500/5 transition-colors">
+              <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }} key={app.id} style={{ background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`, borderRadius: 20, padding: '1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'wrap' }} className="hover:bg-[#0077B6]/5 transition-colors">
                 <div style={{ flex: 1, minWidth: 300 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '1rem' }}>
                     <div style={{ width: 52, height: 52, borderRadius: 14, background: `hsl(${hue}, 70%, 15%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.25rem', color: `hsl(${hue}, 80%, 70%)`, flexShrink: 0, border: `1px solid hsl(${hue}, 50%, 25%)` }}>
                       {(job?.client?.companyName || 'J')[0]}
                     </div>
                     <div>
-                      <Link href={`/careers/jobs/${job?.id}`} style={{ fontWeight: 800, fontSize: '1.15rem', color: isDark ? 'white' : '#0f172a', textDecoration: 'none' }} className="hover:text-sky-400 transition-colors">
+                      <Link href={`/careers/jobs/${job?.id}`} style={{ fontWeight: 800, fontSize: '1.15rem', color: isDark ? 'white' : '#0f172a', textDecoration: 'none' }} className="hover:text-[#00B4D8] transition-colors">
                         {job?.title || 'General Application'}
                       </Link>
                       <p style={{ fontSize: '0.95rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: 4 }}>{job?.client?.companyName || 'Confidential Company'}</p>

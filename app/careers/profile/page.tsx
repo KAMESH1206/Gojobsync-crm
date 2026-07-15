@@ -288,7 +288,7 @@ export default function CandidateProfilePage() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           {saved && <motion.span initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} style={{ color: '#34d399', fontSize: '0.9rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}><CheckCircle size={16} /> Saved!</motion.span>}
-          <button onClick={handleSave} disabled={saving} style={{ background: 'linear-gradient(135deg,#0ea5e9,#6366f1)', color: 'white', border: 'none', borderRadius: 12, padding: '0.875rem 1.75rem', fontWeight: 800, fontSize: '0.95rem', cursor: saving ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, boxShadow: '0 4px 15px rgba(14,165,233,0.3)', transition: 'transform 0.2s' }} className="hover:scale-105">
+          <button onClick={handleSave} disabled={saving} style={{ background: 'linear-gradient(135deg,#0ea5e9,#0077B6)', color: 'white', border: 'none', borderRadius: 12, padding: '0.875rem 1.75rem', fontWeight: 800, fontSize: '0.95rem', cursor: saving ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, boxShadow: '0 4px 15px rgba(14,165,233,0.3)', transition: 'transform 0.2s' }} className="hover:scale-105">
             <Save size={18} /> {saving ? 'Saving...' : 'Save Profile'}
           </button>
         </div>
@@ -329,7 +329,7 @@ export default function CandidateProfilePage() {
             </div>
             <Grid2>
               <Field label="Full Name *">
-                <input style={getINPUT(isDark)} value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Your full name" className="focus:border-sky-500" />
+                <input style={getINPUT(isDark)} value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Your full name" className="focus:border-[#0077B6]" />
               </Field>
               <Field label="Email Address">
                 <input style={{ ...getINPUT(isDark), background: 'rgba(255,255,255,0.02)', color: '#64748b' }} value={form.email} readOnly />
@@ -337,17 +337,17 @@ export default function CandidateProfilePage() {
             </Grid2>
             <Grid2>
               <Field label="Phone Number *">
-                <input style={getINPUT(isDark)} value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="Your mobile number" className="focus:border-sky-500" />
+                <input style={getINPUT(isDark)} value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="Your mobile number" className="focus:border-[#0077B6]" />
               </Field>
               <Field label="Location *">
                 <SmartSelector value={form.location} onChange={val => setForm({ ...form, location: val })} isDark={isDark} options={DISTRICTS} placeholder="Select your district" searchPlaceholder="Search district..." />
               </Field>
             </Grid2>
             <Field label="Professional Headline" full>
-              <input style={getINPUT(isDark)} value={form.headline} onChange={e => setForm({ ...form, headline: e.target.value })} placeholder="e.g. Senior React Developer | 5 Years Exp" className="focus:border-sky-500" />
+              <input style={getINPUT(isDark)} value={form.headline} onChange={e => setForm({ ...form, headline: e.target.value })} placeholder="e.g. Senior React Developer | 5 Years Exp" className="focus:border-[#0077B6]" />
             </Field>
             <Field label="Professional Summary" full>
-              <textarea style={{ ...getINPUT(isDark), resize: 'vertical', minHeight: 120, fontFamily: 'inherit', lineHeight: 1.6 }} value={form.summary} onChange={e => setForm({ ...form, summary: e.target.value })} placeholder="Write a short summary about your skills..." rows={4} className="focus:border-sky-500" />
+              <textarea style={{ ...getINPUT(isDark), resize: 'vertical', minHeight: 120, fontFamily: 'inherit', lineHeight: 1.6 }} value={form.summary} onChange={e => setForm({ ...form, summary: e.target.value })} placeholder="Write a short summary about your skills..." rows={4} className="focus:border-[#0077B6]" />
             </Field>
           </Section>
 
@@ -370,15 +370,15 @@ export default function CandidateProfilePage() {
                 </Grid2>
                 <Grid2>
                   <Field label="CGPA / Percentage">
-                    <input style={getINPUT(isDark)} value={edu.cgpa} onChange={e => updateEdu(i, 'cgpa', e.target.value)} placeholder="e.g. 8.5 CGPA" className="focus:border-sky-500" />
+                    <input style={getINPUT(isDark)} value={edu.cgpa} onChange={e => updateEdu(i, 'cgpa', e.target.value)} placeholder="e.g. 8.5 CGPA" className="focus:border-[#0077B6]" />
                   </Field>
                   <Field label="Year of Passing">
-                    <input style={getINPUT(isDark)} value={edu.year} onChange={e => updateEdu(i, 'year', e.target.value)} placeholder="e.g. 2022" type="number" className="focus:border-sky-500" />
+                    <input style={getINPUT(isDark)} value={edu.year} onChange={e => updateEdu(i, 'year', e.target.value)} placeholder="e.g. 2022" type="number" className="focus:border-[#0077B6]" />
                   </Field>
                 </Grid2>
               </div>
             ))}
-            <button onClick={addEducation} style={{ display: 'flex', alignItems: 'center', gap: 8, border: `1px dashed ${isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`, borderRadius: 12, padding: '1rem', background: 'transparent', color: '#38bdf8', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer', width: '100%', justifyContent: 'center', marginTop: '1rem' }} className={isDark ? "hover:bg-white/5" : "hover:bg-black/5"}>
+            <button onClick={addEducation} style={{ display: 'flex', alignItems: 'center', gap: 8, border: `1px dashed ${isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`, borderRadius: 12, padding: '1rem', background: 'transparent', color: '#00B4D8', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer', width: '100%', justifyContent: 'center', marginTop: '1rem' }} className={isDark ? "hover:bg-white/5" : "hover:bg-black/5"}>
               <Plus size={18} /> Add Another Education
             </button>
           </Section>
@@ -394,18 +394,18 @@ export default function CandidateProfilePage() {
                 )}
                 <Grid2>
                   <Field label="Company Name">
-                    <input style={getINPUT(isDark)} value={exp.company} onChange={e => updateExp(i, 'company', e.target.value)} placeholder="e.g. Startup Inc." className="focus:border-sky-500" />
+                    <input style={getINPUT(isDark)} value={exp.company} onChange={e => updateExp(i, 'company', e.target.value)} placeholder="e.g. Startup Inc." className="focus:border-[#0077B6]" />
                   </Field>
                   <Field label="Job Title / Role">
-                    <input style={getINPUT(isDark)} value={exp.role} onChange={e => updateExp(i, 'role', e.target.value)} placeholder="e.g. Software Developer" className="focus:border-sky-500" />
+                    <input style={getINPUT(isDark)} value={exp.role} onChange={e => updateExp(i, 'role', e.target.value)} placeholder="e.g. Software Developer" className="focus:border-[#0077B6]" />
                   </Field>
                 </Grid2>
                 <Grid2>
                   <Field label="From (Year)">
-                    <input style={getINPUT(isDark)} value={exp.from} onChange={e => updateExp(i, 'from', e.target.value)} placeholder="e.g. 2020" className="focus:border-sky-500" />
+                    <input style={getINPUT(isDark)} value={exp.from} onChange={e => updateExp(i, 'from', e.target.value)} placeholder="e.g. 2020" className="focus:border-[#0077B6]" />
                   </Field>
                   <Field label="To (Year / Present)">
-                    <input style={getINPUT(isDark)} value={exp.to} onChange={e => updateExp(i, 'to', e.target.value)} placeholder="e.g. 2023" disabled={exp.current} className="focus:border-sky-500" />
+                    <input style={getINPUT(isDark)} value={exp.to} onChange={e => updateExp(i, 'to', e.target.value)} placeholder="e.g. 2023" disabled={exp.current} className="focus:border-[#0077B6]" />
                   </Field>
                 </Grid2>
                 <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.85rem', color: isDark ? '#cbd5e1' : '#475569', cursor: 'pointer', marginTop: '1rem' }}>
@@ -414,17 +414,17 @@ export default function CandidateProfilePage() {
                 </label>
               </div>
             ))}
-            <button onClick={addExperience} style={{ display: 'flex', alignItems: 'center', gap: 8, border: `1px dashed ${isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`, borderRadius: 12, padding: '1rem', background: 'transparent', color: '#38bdf8', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer', width: '100%', justifyContent: 'center', marginTop: '1rem' }} className={isDark ? "hover:bg-white/5" : "hover:bg-black/5"}>
+            <button onClick={addExperience} style={{ display: 'flex', alignItems: 'center', gap: 8, border: `1px dashed ${isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`, borderRadius: 12, padding: '1rem', background: 'transparent', color: '#00B4D8', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer', width: '100%', justifyContent: 'center', marginTop: '1rem' }} className={isDark ? "hover:bg-white/5" : "hover:bg-black/5"}>
               <Plus size={18} /> Add Another Experience
             </button>
 
             <div style={{ marginTop: '1rem' }}>
               <Grid2>
                 <Field label="Current Company">
-                  <input style={getINPUT(isDark)} value={form.currentCompany} onChange={e => setForm({ ...form, currentCompany: e.target.value })} placeholder="Current employer" className="focus:border-sky-500" />
+                  <input style={getINPUT(isDark)} value={form.currentCompany} onChange={e => setForm({ ...form, currentCompany: e.target.value })} placeholder="Current employer" className="focus:border-[#0077B6]" />
                 </Field>
                 <Field label="Expected Salary">
-                  <input style={getINPUT(isDark)} value={form.expectedSalary} onChange={e => setForm({ ...form, expectedSalary: e.target.value })} placeholder="e.g. ₹20 LPA" className="focus:border-sky-500" />
+                  <input style={getINPUT(isDark)} value={form.expectedSalary} onChange={e => setForm({ ...form, expectedSalary: e.target.value })} placeholder="e.g. ₹20 LPA" className="focus:border-[#0077B6]" />
                 </Field>
               </Grid2>
             </div>
@@ -435,14 +435,14 @@ export default function CandidateProfilePage() {
             <div style={{ display: 'flex', gap: '1rem' }}>
               <input value={skillInput} onChange={e => setSkillInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), addSkill())}
                 placeholder="Type a skill and press Enter"
-                style={{ ...getINPUT(isDark), flex: 1 }} className="focus:border-sky-500" />
+                style={{ ...getINPUT(isDark), flex: 1 }} className="focus:border-[#0077B6]" />
               <button onClick={addSkill} style={{ background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', color: isDark ? 'white' : '#0f172a', border: 'none', borderRadius: 12, padding: '0 1.5rem', fontWeight: 700, cursor: 'pointer' }} className={isDark ? "hover:bg-white/20" : "hover:bg-black/10"}>Add</button>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '1rem' }}>
               {form.skillsArr.map((s: string, i: number) => (
-                <span key={i} style={{ background: 'rgba(56,189,248,0.1)', border: '1px solid rgba(56,189,248,0.3)', color: isDark ? '#7dd3fc' : '#0369a1', borderRadius: 8, padding: '0.4rem 0.8rem', fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span key={i} style={{ background: 'rgba(56,189,248,0.1)', border: '1px solid rgba(56,189,248,0.3)', color: isDark ? '#7dd3fc' : '#03045E', borderRadius: 8, padding: '0.4rem 0.8rem', fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8 }}>
                   {s}
-                  <button onClick={() => setForm({ ...form, skillsArr: form.skillsArr.filter((_: any, j: number) => j !== i) })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#38bdf8', padding: 0, display: 'flex' }}><X size={14} /></button>
+                  <button onClick={() => setForm({ ...form, skillsArr: form.skillsArr.filter((_: any, j: number) => j !== i) })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#00B4D8', padding: 0, display: 'flex' }}><X size={14} /></button>
                 </span>
               ))}
               {form.skillsArr.length === 0 && <p style={{ color: '#64748b', fontSize: '0.9rem' }}>No skills added yet.</p>}
@@ -463,7 +463,7 @@ export default function CandidateProfilePage() {
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#0ea5e9" />
-                    <stop offset="100%" stopColor="#6366f1" />
+                    <stop offset="100%" stopColor="#0077B6" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -496,7 +496,7 @@ export default function CandidateProfilePage() {
                     <div style={{ fontSize: '0.9rem', fontWeight: 700, color: isDark ? '#e0f2fe' : '#0f172a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {form.resumeFileName || 'Resume uploaded'}
                     </div>
-                    <a href={form.resumeUrl} target="_blank" rel="noreferrer" style={{ fontSize: '0.8rem', color: isDark ? '#38bdf8' : '#0284c7', textDecoration: 'none', fontWeight: 600 }} className="hover:underline">View File</a>
+                    <a href={form.resumeUrl} target="_blank" rel="noreferrer" style={{ fontSize: '0.8rem', color: isDark ? '#00B4D8' : '#0077B6', textDecoration: 'none', fontWeight: 600 }} className="hover:underline">View File</a>
                   </div>
                   <button onClick={() => setForm({ ...form, resumeUrl: '', resumeFileName: '' })} style={{ background: isDark ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.05)', border: 'none', borderRadius: 8, padding: 6, cursor: 'pointer', color: '#94a3b8' }} className={isDark ? "hover:text-white" : "hover:text-black"}>
                     <X size={16} />
@@ -505,8 +505,8 @@ export default function CandidateProfilePage() {
               </div>
             ) : null}
             <input ref={fileRef} type="file" accept=".pdf,.doc,.docx" onChange={handleResumeUpload} style={{ display: 'none' }} />
-            <button onClick={() => fileRef.current?.click()} disabled={uploading} style={{ width: '100%', border: `2px dashed ${isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)'}`, borderRadius: 16, padding: '1.5rem', background: isDark ? 'rgba(0,0,0,0.1)' : 'rgba(0,0,0,0.03)', cursor: uploading ? 'wait' : 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, transition: 'all 0.2s' }} className="hover:bg-sky-500/10 hover:border-sky-500/50">
-              <UploadCloud size={28} color={uploading ? '#94a3b8' : (isDark ? '#38bdf8' : '#0284c7')} />
+            <button onClick={() => fileRef.current?.click()} disabled={uploading} style={{ width: '100%', border: `2px dashed ${isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)'}`, borderRadius: 16, padding: '1.5rem', background: isDark ? 'rgba(0,0,0,0.1)' : 'rgba(0,0,0,0.03)', cursor: uploading ? 'wait' : 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, transition: 'all 0.2s' }} className="hover:bg-[#0077B6]/10 hover:border-[#0077B6]/50">
+              <UploadCloud size={28} color={uploading ? '#94a3b8' : (isDark ? '#00B4D8' : '#0077B6')} />
               <span style={{ fontSize: '0.95rem', fontWeight: 700, color: uploading ? '#94a3b8' : (isDark ? 'white' : '#0f172a') }}>
                 {uploading ? 'Uploading...' : form.resumeUrl ? 'Replace Resume' : 'Upload Resume'}
               </span>
@@ -535,7 +535,7 @@ export default function CandidateProfilePage() {
         <button
           onClick={() => setShowATSModal(true)}
           style={{
-            background: 'linear-gradient(135deg, #1e40af, #3b82f6)', color: 'white', border: 'none',
+            background: 'linear-gradient(135deg, #0077B6, #0077B6)', color: 'white', border: 'none',
             padding: '1rem 2rem', borderRadius: 16, fontSize: '1.05rem', fontWeight: 700,
             display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', transition: 'all 0.2s',
             boxShadow: '0 10px 25px rgba(59,130,246,0.3)'
@@ -617,7 +617,7 @@ function SmartSelector({ value, onChange, isDark, options, placeholder, searchPl
         <button
           type="button"
           onClick={() => { setIsOther(false); onChange(''); }}
-          style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#0ea5e9', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}
+          style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#00B4D8', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}
         >
           Select from list
         </button>
@@ -663,7 +663,7 @@ function SmartSelector({ value, onChange, isDark, options, placeholder, searchPl
             )}
             <div
               onClick={() => { setIsOther(true); onChange(search); setIsOpen(false); setSearch(''); }}
-              style={{ padding: '10px 16px', cursor: 'pointer', fontSize: '0.9rem', color: '#0ea5e9', fontWeight: 600, borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}` }}
+              style={{ padding: '10px 16px', cursor: 'pointer', fontSize: '0.9rem', color: '#00B4D8', fontWeight: 600, borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}` }}
               className={isDark ? "hover:bg-slate-700" : "hover:bg-slate-100"}
             >
               + Other (Type manually)
