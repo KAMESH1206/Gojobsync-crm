@@ -6,6 +6,7 @@ import { useCandidateAuth } from '@/context/CandidateAuthContext';
 import { Zap, Eye, EyeOff, Mail, Lock, ArrowRight, Sun, Moon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
+import ForgotPasswordModal from '@/components/ForgotPasswordModal';
 
 export default function CandidateLoginPage() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function CandidateLoginPage() {
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
   
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -101,6 +103,16 @@ export default function CandidateLoginPage() {
               {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
+          
+          <div className="flex justify-end w-full">
+            <button 
+              type="button" 
+              onClick={() => setIsForgotModalOpen(true)}
+              className="text-[var(--primary)] text-sm font-medium hover:underline bg-transparent border-none cursor-pointer p-0"
+            >
+              Forgot Password?
+            </button>
+          </div>
 
           {error && (
             <div className="bg-[var(--danger)]/10 border border-[var(--danger)]/20 rounded-lg p-3 text-[var(--danger)] text-sm">
@@ -124,6 +136,12 @@ export default function CandidateLoginPage() {
           </Link>
         </p>
       </motion.div>
+      
+      <ForgotPasswordModal 
+        isOpen={isForgotModalOpen} 
+        onClose={() => setIsForgotModalOpen(false)} 
+        role="candidate" 
+      />
     </div>
   );
 }

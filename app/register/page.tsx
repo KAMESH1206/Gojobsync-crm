@@ -112,7 +112,7 @@ export default function Register() {
                 <Briefcase size={28} />
               </div>
               <div>
-                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: isDark ? 'white' : '#1e293b', marginBottom: 8, transition: 'color 0.3s ease' }}>The Job Sync Candidate</h2>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: isDark ? 'white' : '#1e293b', marginBottom: 8, transition: 'color 0.3s ease' }}>Job Seeker</h2>
                 <p style={{ fontSize: '0.9rem', color: isDark ? '#64748b' : '#64748b', lineHeight: 1.5 }}>Browse open positions, track applications, and manage your profile.</p>
               </div>
               <div style={{ marginTop: 'auto', paddingTop: '1.5rem', display: 'flex', alignItems: 'center', gap: 6, color: '#00B4D8', fontWeight: 700, fontSize: '0.9rem' }}>

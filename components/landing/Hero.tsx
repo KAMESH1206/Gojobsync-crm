@@ -1,85 +1,10 @@
 'use client';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Monitor, ChevronDown, ChevronDownIcon } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Search, Monitor, Building2, ChevronDown } from 'lucide-react';
 
-const industryData = [
-  {
-    category: 'I - Primary Sector',
-    items: ['I-1 Agriculture', 'I-2 Fishing', 'I-3 Forestry', 'I-4 Mining', 'I-5 Oil & Gas E&P']
-  },
-  {
-    category: 'II - Manufacturing & Construction',
-    items: ['II-1 Aerospace & Defense', 'II-2 Automotive', 'II-3 Chemicals', 'II-4 Construction', 'II-5 Electronics', 'II-6 Food Processing', 'II-7 Heavy Machinery', 'II-8 Pharmaceuticals & Biotech', 'II-9 Steel & Metals', 'II-10 Textiles']
-  },
-  {
-    category: 'III - Services',
-    items: ['III-1 Accommodation & Food Services', 'III-2 Advertising & Marketing']
-  }
-];
 
-const locationData = [
-  'Mumbai, Maharashtra',
-  'Delhi',
-  'Bangalore, Karnataka',
-  'Dubai Creek Tower - 1st St, Deira-Riggat Al Buteen - Dubai',
-  'Hyderabad, Telangana',
-  'Kolkata, West Bengal',
-  'Pune, Maharashtra',
-  'Ahmedabad, Gujarat',
-  'Jaipur, Rajasthan',
-  'Surat, Gujarat',
-  'Lucknow, Uttar Pradesh',
-  'Kanpur, Uttar Pradesh',
-  'Nagpur, Maharashtra',
-  'Indore, Madhya Pradesh',
-  'Bhopal, Madhya Pradesh',
-  'Visakhapatnam, Andhra Pradesh',
-  'Patna, Bihar',
-  'Vadodara, Gujarat',
-  'Noida, Uttar Pradesh'
-];
-
-const jobData = [
-  'Software Developer',
-  'Software Engineer',
-  'Frontend Developer',
-  'Backend Developer',
-  'Full Stack Developer',
-  'Mobile App Developer',
-  'Android Developer',
-  'iOS Developer',
-  'Data Scientist',
-  'Data Analyst',
-  'Machine Learning Engineer',
-  'AI Engineer',
-  'DevOps Engineer',
-  'Cloud Engineer',
-  'Cybersecurity Analyst',
-  'Network Engineer',
-  'Database Administrator',
-  'UI/UX Designer',
-  'Graphic Designer'
-];
 
 export default function Hero() {
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  
-  const [selectedIndustry, setSelectedIndustry] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('');
-  const [selectedJob, setSelectedJob] = useState('');
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setActiveDropdown(null);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   return (
     <div className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
@@ -126,150 +51,32 @@ export default function Hero() {
             "Lakhs of Employers. Millions of Job seekers. Endless success \u2014 only on THEJOBSYNC.COM."
           </motion.p>
           
-          {/* Search Bar */}
-          <div ref={dropdownRef} className="relative w-full max-w-4xl mx-auto lg:mx-0 z-50">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="bg-white/90 dark:bg-slate-800/80 backdrop-blur-md rounded-full shadow-2xl p-2 flex flex-col md:flex-row items-center divide-y md:divide-y-0 md:divide-x divide-gray-200 dark:divide-white/10 border border-gray-100 dark:border-white/10 relative z-50 transition-colors duration-300"
-            >
-              
-              <div 
-                className="flex-1 flex items-center justify-between gap-3 px-6 py-4 md:py-2 w-full cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5 rounded-t-3xl md:rounded-l-full md:rounded-tr-none transition-colors relative"
-                onClick={() => setActiveDropdown(activeDropdown === 'industry' ? null : 'industry')}
-              >
-                <div className="flex items-center gap-3 overflow-hidden">
-                  <Monitor className="text-gray-400 flex-shrink-0" size={20} />
-                  <p className="text-slate-600 dark:text-slate-300 font-medium text-sm md:text-base truncate">
-                    {selectedIndustry || 'Industry'}
-                  </p>
-                </div>
-                <ChevronDown className={`text-gray-400 transition-transform ${activeDropdown === 'industry' ? 'rotate-180' : ''}`} size={16} />
-              </div>
+          {/* Stats Bar */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="flex flex-col sm:flex-row items-center justify-between gap-6 max-w-4xl mx-auto lg:mx-0 z-50 mt-4 bg-white/70 dark:bg-slate-800/60 backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-3xl p-6 shadow-2xl"
+          >
+            <div className="flex flex-col items-center sm:items-start flex-1 text-center sm:text-left">
+              <span className="text-3xl md:text-4xl font-extrabold text-blue-600 dark:text-blue-400">10,000+</span>
+              <span className="text-sm font-semibold text-slate-600 dark:text-slate-300 mt-1 uppercase tracking-wider">Active Candidates</span>
+            </div>
+            
+            <div className="hidden sm:block w-px h-16 bg-gradient-to-b from-transparent via-gray-300 dark:via-slate-600 to-transparent"></div>
+            
+            <div className="flex flex-col items-center sm:items-start flex-1 text-center sm:text-left">
+              <span className="text-3xl md:text-4xl font-extrabold text-[#03045E] dark:text-[#90E0EF]">500+</span>
+              <span className="text-sm font-semibold text-slate-600 dark:text-slate-300 mt-1 uppercase tracking-wider">Trusted Companies</span>
+            </div>
 
-              <div 
-                className="flex-1 flex items-center justify-between gap-3 px-6 py-4 md:py-2 w-full cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5 transition-colors relative"
-                onClick={() => setActiveDropdown(activeDropdown === 'location' ? null : 'location')}
-              >
-                <div className="flex items-center gap-3 overflow-hidden">
-                  <MapPin className="text-gray-400 flex-shrink-0" size={20} />
-                  <p className={`font-medium text-sm md:text-base truncate ${selectedLocation ? 'text-slate-800 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>
-                    {selectedLocation || 'Location'}
-                  </p>
-                </div>
-                <ChevronDownIcon className={`text-gray-400 transition-transform ${activeDropdown === 'location' ? 'rotate-180' : ''}`} size={16} />
-              </div>
-
-              <div 
-                className="flex-[1.5] flex items-center justify-between gap-3 px-6 py-4 md:py-2 w-full cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5 transition-colors relative"
-                onClick={() => setActiveDropdown(activeDropdown === 'job' ? null : 'job')}
-              >
-                <div className="flex items-center gap-3 overflow-hidden">
-                  <Search className="text-gray-400 flex-shrink-0" size={20} />
-                  <p className={`font-medium text-sm md:text-base truncate ${selectedJob ? 'text-slate-800 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>
-                    {selectedJob || 'Job title, keyword...'}
-                  </p>
-                </div>
-                <ChevronDownIcon className={`text-gray-400 transition-transform ${activeDropdown === 'job' ? 'rotate-180' : ''}`} size={16} />
-              </div>
-
-              {/* Submit Button */}
-              <div className="px-2 pb-2 pt-2 md:p-0 w-full md:w-auto h-full flex items-center">
-                <button 
-                  onClick={() => setActiveDropdown(null)}
-                  className="w-full md:w-auto bg-gradient-to-br from-[#03045E] to-[#0077B6] hover:from-[#0077B6] hover:to-[#00B4D8] text-white px-8 py-4 md:py-3.5 rounded-full font-bold hover:scale-[1.02] transition-all shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
-                >
-                  <Search size={18} strokeWidth={2.5} />
-                  <span>Search</span>
-                </button>
-              </div>
-            </motion.div>
-
-            {/* Dropdowns */}
-            <AnimatePresence>
-              
-              {/* Industry Dropdown */}
-              {activeDropdown === 'industry' && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-[110%] left-0 w-full md:w-[350px] bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-xl rounded-lg max-h-[400px] overflow-y-auto z-50 p-2"
-                >
-                  {industryData.map((category, idx) => (
-                    <div key={idx} className="mb-2">
-                      <div className="font-bold text-slate-800 dark:text-slate-200 text-sm px-3 py-2 bg-slate-50 dark:bg-slate-700/50 rounded-md mb-1">
-                        {category.category}
-                      </div>
-                      {category.items.map((item, i) => (
-                        <div 
-                          key={i} 
-                          className="px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-[#0077B6] hover:text-white cursor-pointer rounded-md transition-colors"
-                          onClick={() => {
-                            setSelectedIndustry(item);
-                            setActiveDropdown(null);
-                          }}
-                        >
-                          {item}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </motion.div>
-              )}
-
-              {/* Location Dropdown */}
-              {activeDropdown === 'location' && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-[110%] left-0 md:left-[25%] w-full md:w-[350px] bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-xl rounded-lg max-h-[400px] overflow-y-auto z-50 py-2"
-                >
-                  {locationData.map((item, i) => (
-                    <div 
-                      key={i} 
-                      className="px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-[#CAF0F8]/20 dark:hover:bg-slate-700 hover:text-[#03045E] dark:hover:text-white cursor-pointer transition-colors"
-                      onClick={() => {
-                        setSelectedLocation(item);
-                        setActiveDropdown(null);
-                      }}
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </motion.div>
-              )}
-
-              {/* Job Dropdown */}
-              {activeDropdown === 'job' && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-[110%] left-0 md:left-[50%] w-full md:w-[350px] bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-xl rounded-lg max-h-[400px] overflow-y-auto z-50 py-2"
-                >
-                  {jobData.map((item, i) => (
-                    <div 
-                      key={i} 
-                      className="px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-[#CAF0F8]/20 dark:hover:bg-slate-700 hover:text-[#03045E] dark:hover:text-white cursor-pointer transition-colors"
-                      onClick={() => {
-                        setSelectedJob(item);
-                        setActiveDropdown(null);
-                      }}
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </motion.div>
-              )}
-
-            </AnimatePresence>
-          </div>
+            <div className="hidden sm:block w-px h-16 bg-gradient-to-b from-transparent via-gray-300 dark:via-slate-600 to-transparent"></div>
+            
+            <div className="flex flex-col items-center sm:items-start flex-1 text-center sm:text-left">
+              <span className="text-3xl md:text-4xl font-extrabold text-indigo-600 dark:text-indigo-400">1,200+</span>
+              <span className="text-sm font-semibold text-slate-600 dark:text-slate-300 mt-1 uppercase tracking-wider">Live Jobs</span>
+            </div>
+          </motion.div>
         </div>
       </div>
       

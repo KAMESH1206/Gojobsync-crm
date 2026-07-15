@@ -511,3 +511,13 @@ model EmployerSavedCandidate {
 
   @@unique([employerId, candidateAccountId])
 }
+
+// ==================== PASSWORD RESET ====================
+model PasswordReset {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  role      String   // user | candidate | employer
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}

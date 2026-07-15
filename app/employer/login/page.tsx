@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -6,8 +6,11 @@ import Link from 'next/link';
 import { useEmployerAuth } from '@/context/EmployerAuthContext';
 import { Building2, Lock, Mail, ArrowRight, Eye, EyeOff, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import ForgotPasswordModal from '@/components/ForgotPasswordModal';
 
-export default function EmployerLoginPage() {
+import { Suspense } from 'react';
+
+function EmployerLoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { login, employer, isLoading } = useEmployerAuth();
@@ -15,6 +18,7 @@ export default function EmployerLoginPage() {
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
   const registered = searchParams.get('registered') === '1';
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -94,6 +98,16 @@ export default function EmployerLoginPage() {
               </button>
             </div>
 
+            <div className="flex justify-end w-full">
+              <button 
+                type="button" 
+                onClick={() => setIsForgotModalOpen(true)}
+                className="text-sky-400 text-sm font-medium hover:text-sky-300 transition-colors bg-transparent border-none cursor-pointer p-0"
+              >
+                Forgot Password?
+              </button>
+            </div>
+
             {error && (
               <div className="bg-red-500/20 border border-red-400/30 rounded-xl px-4 py-3 text-red-300 text-sm">
                 {error}
@@ -109,14 +123,30 @@ export default function EmployerLoginPage() {
             </button>
           </form>
 
-          <div className="text-center mt-6 pt-6 border-t border-white/10">
-            <span className="text-white/50 text-sm">New to The Job Sync? </span>
-            <Link href="/post-job" className="text-[#00B4D8] font-bold text-sm hover:underline">
-              Register your company →
+        <div className="mt-8 text-center">
+          <p className="text-white/60 text-sm">
+            Don't have a company account?{' '}
+            <Link href="/employer/register" className="text-sky-400 hover:text-sky-300 font-medium transition-colors">
+              Sign up
             </Link>
-          </div>
+          </p>
+        </div>
+        
+        <ForgotPasswordModal 
+          isOpen={isForgotModalOpen} 
+          onClose={() => setIsForgotModalOpen(false)} 
+          role="employer" 
+        />
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function EmployerLoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-[#0a1f44] via-[#0f2d6b] to-[#0a1f44] flex items-center justify-center text-white">Loading...</div>}>
+      <EmployerLoginForm />
+    </Suspense>
   );
 }

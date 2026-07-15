@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { Users, Lock, Mail, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import ForgotPasswordModal from '@/components/ForgotPasswordModal';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
   const { login, user, isLoading } = useAuth();
   const router = useRouter();
 
@@ -149,6 +151,19 @@ export default function LoginPage() {
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
             </div>
+            
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
+              <button 
+                type="button" 
+                onClick={() => setIsForgotModalOpen(true)}
+                style={{ 
+                  color: 'var(--primary)', fontSize: '0.8125rem', fontWeight: 500,
+                  background: 'none', border: 'none', cursor: 'pointer', padding: 0
+                }}
+              >
+                Forgot Password?
+              </button>
+            </div>
           </div>
 
           {error && (
@@ -221,6 +236,12 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+      
+      <ForgotPasswordModal 
+        isOpen={isForgotModalOpen} 
+        onClose={() => setIsForgotModalOpen(false)} 
+        role="user" 
+      />
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Lock, Mail, User, Phone, ShieldAlert } from "lucide-react";
+import ForgotPasswordModal from '@/components/ForgotPasswordModal';
 
 export default function SuperAdminERPLogin() {
   const [isLogin, setIsLogin] = useState(true);
@@ -12,6 +13,7 @@ export default function SuperAdminERPLogin() {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -145,7 +147,7 @@ export default function SuperAdminERPLogin() {
                   <input type="checkbox" className="rounded border-gray-300 text-[#0f172a] shadow-sm focus:ring-[#0f172a] mr-2" />
                   Remember me
                 </label>
-                <a href="#" className="text-gray-600 hover:underline">Forgot password?</a>
+                <button type="button" onClick={() => setIsForgotModalOpen(true)} className="text-gray-600 hover:underline bg-transparent border-none p-0 cursor-pointer">Forgot password?</button>
               </div>
             )}
 
@@ -159,6 +161,12 @@ export default function SuperAdminERPLogin() {
           </form>
         </div>
       </div>
+      
+      <ForgotPasswordModal 
+        isOpen={isForgotModalOpen} 
+        onClose={() => setIsForgotModalOpen(false)} 
+        role="user" 
+      />
     </div>
   );
 }
