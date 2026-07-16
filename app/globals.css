@@ -14,7 +14,7 @@
 
 :root {
   /* =============================================
-     THE JOB SYNC — Blue Ocean Palette (Dark Mode)
+     The jobsync — Blue Ocean Palette (Dark Mode)
      #03045E | #0077B6 | #00B4D8 | #90E0EF | #CAF0F8
      ============================================= */
 
@@ -69,7 +69,7 @@
 
 :root.light, :root[data-theme="light"] {
   /* =============================================
-     THE JOB SYNC — Blue Ocean Palette (Light Mode)
+     The jobsync — Blue Ocean Palette (Light Mode)
      ============================================= */
   --background: #f0f9ff;
   --foreground: #03045E;

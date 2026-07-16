@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, CheckCircle2, Circle, Eye, EyeOff, Check, Search, MapPin, Users, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Footer from '@/components/landing/Footer';
+import { INDUSTRIES } from '@/lib/constants';
 
 export default function EmployerRegistration() {
   const router = useRouter();
@@ -251,10 +252,10 @@ export default function EmployerRegistration() {
           <header className="w-full h-20 px-6 sm:px-10 flex items-center justify-between z-20 bg-white">
             <Link href="/" className="flex items-center gap-3">
               <div className="w-10 h-10 flex items-center justify-center">
-                <img src="/loooo.jpeg" alt="The Job Sync Logo" className="w-full h-full object-contain rounded-full border border-[#00B4D8]" />
+                <img src="/loooo.jpeg" alt="The jobsync Logo" className="w-full h-full object-contain rounded-full border border-[#00B4D8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-lg text-slate-900 leading-none tracking-tight">THE JOB SYNC</span>
+                <span className="font-extrabold text-lg text-slate-900 leading-none tracking-tight">The jobsync</span>
               </div>
             </Link>
             <Link href="/">
@@ -418,7 +419,7 @@ export default function EmployerRegistration() {
                       </form>
 
                       <div className="text-center mt-4 pt-4 border-t border-slate-100">
-                        <span className="text-xs text-slate-500">New to THEJOBSYNC? </span>
+                        <span className="text-xs text-slate-500">New to The jobsync? </span>
                         <button onClick={() => setIsWizardActive(true)} className="text-xs font-bold text-slate-900 hover:underline">Create account &rarr;</button>
                       </div>
                     </motion.div>
@@ -541,7 +542,7 @@ export default function EmployerRegistration() {
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-lg text-slate-900 dark:text-white leading-none tracking-tight">GO</span>
-                <span className="font-extrabold text-lg text-slate-900 dark:text-white leading-none tracking-tight">JOBSYNC</span>
+                <span className="font-extrabold text-lg text-slate-900 dark:text-white leading-none tracking-tight">The jobsync</span>
               </div>
             </Link>
             <div className="flex items-center gap-6">
@@ -724,11 +725,9 @@ export default function EmployerRegistration() {
                           <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Nature of Company *</label>
                           <select value={industry} onChange={e => setIndustry(e.target.value)} required className="w-full px-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors dark:text-white appearance-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}>
                             <option value="" disabled>Select nature of business</option>
-                            <option value="Information Technology">Information Technology</option>
-                            <option value="Manufacturing">Manufacturing</option>
-                            <option value="Finance">Finance</option>
-                            <option value="Healthcare">Healthcare</option>
-                            <option value="Other">Other</option>
+                            {INDUSTRIES.map((ind) => (
+                              <option key={ind} value={ind}>{ind}</option>
+                            ))}
                           </select>
                         </div>
 
@@ -880,9 +879,9 @@ export default function EmployerRegistration() {
             <div className="flex gap-4">
               <select className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-slate-700 dark:text-slate-300 font-medium focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors cursor-pointer min-w-[160px] appearance-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}>
                 <option>All Industries</option>
-                <option>Technology</option>
-                <option>Finance</option>
-                <option>Healthcare</option>
+                {INDUSTRIES.map((ind) => (
+                  <option key={ind} value={ind}>{ind}</option>
+                ))}
               </select>
               <select className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-slate-700 dark:text-slate-300 font-medium focus:outline-none focus:border-[#0077B6] dark:focus:border-[#0077B6] transition-colors cursor-pointer min-w-[160px] appearance-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}>
                 <option>All Locations</option>

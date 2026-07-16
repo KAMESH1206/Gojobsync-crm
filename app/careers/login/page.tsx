@@ -57,7 +57,7 @@ export default function CandidateLoginPage() {
         className="glass p-10 w-full max-w-[420px] relative z-10 m-4"
       >
         <Link href="/careers" className="flex items-center gap-3 no-underline mb-10">
-          <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-9 w-9 object-contain rounded-full" />
+          <img src="/loooo.jpeg" alt="The jobsync Logo" className="h-9 w-9 object-contain rounded-full" />
           <span className="font-extrabold text-xl text-[var(--foreground)] tracking-tight">
             The Job<span className="text-[var(--primary)]">Sync</span>
           </span>
@@ -132,7 +132,7 @@ export default function CandidateLoginPage() {
         <p className="text-center mt-7 text-[var(--muted-foreground)] text-sm">
           Don't have an account?{' '}
           <Link href="/careers/register" className="text-[var(--primary)] font-bold no-underline hover:text-[var(--primary-hover)] transition-colors">
-            Join The Job Sync
+            Join The jobsync
           </Link>
         </p>
       </motion.div>

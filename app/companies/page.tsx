@@ -5,8 +5,8 @@ import { Lightbulb, Users, User } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Companies | THEJOBSYNC',
-  description: 'Explore dynamic companies across every major industry sector on THEJOBSYNC.'
+  title: 'Companies | The jobsync',
+  description: 'Explore dynamic companies across every major industry sector on The jobsync.'
 };
 
 export default function CompaniesPage() {
@@ -85,7 +85,7 @@ export default function CompaniesPage() {
             Navigate your Job posts here!
           </h1>
           <p className="text-lg md:text-xl text-gray-500 dark:text-[#90E0EF] italic mb-8 max-w-3xl mx-auto">
-            "Lakhs of Employers. Millions of Job seekers. Endless success — only on THE JOB SYNC."
+            "Lakhs of Employers. Millions of Job seekers. Endless success — only on The jobsync."
           </p>
           <Link href="/post-job" className="inline-block">
             <button className="bg-gradient-to-br from-[#03045E] to-[#0077B6] hover:from-[#0077B6] hover:to-[#00B4D8] text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all flex items-center gap-2 mx-auto">
@@ -126,17 +126,17 @@ export default function CompaniesPage() {
                 <div className="w-4 h-4 rounded-full border-2 border-[#03045E] flex items-center justify-center">
                   <span className="w-1.5 h-1.5 bg-[#03045E] rounded-full"></span>
                 </div>
-                About Companies on The Job Sync
+                About Companies on The jobsync
               </div>
               <h2 className="text-4xl md:text-5xl font-extrabold text-[#0a1f44] leading-tight mb-6">
                 Where Talent Meets<br/>Industry
               </h2>
               <div className="space-y-6 text-gray-600 text-lg leading-relaxed mb-8">
                 <p>
-                  THEJOBSYNC brings together some of the world's most dynamic companies across every major industry sector. Whether you're a fresh graduate exploring your first career step or a seasoned professional seeking your next challenge, our platform connects you directly to the organizations that are shaping tomorrow.
+                  The jobsync brings together some of the world's most dynamic companies across every major industry sector. Whether you're a fresh graduate exploring your first career step or a seasoned professional seeking your next challenge, our platform connects you directly to the organizations that are shaping tomorrow.
                 </p>
                 <p>
-                  From global conglomerates in energy and manufacturing to disruptive startups in technology and information services — every company listed on THEJOBSYNC is vetted, active, and actively hiring.
+                  From global conglomerates in energy and manufacturing to disruptive startups in technology and information services — every company listed on The jobsync is vetted, active, and actively hiring.
                 </p>
               </div>
 
@@ -144,7 +144,7 @@ export default function CompaniesPage() {
               <div className="bg-blue-50 border-l-4 border-[#03045E] rounded-r-xl p-6 flex gap-4 shadow-sm">
                 <Lightbulb className="text-yellow-500 flex-shrink-0" size={24} />
                 <p className="text-[#0a1f44] font-medium text-sm leading-relaxed">
-                  <span className="font-bold">Did you know?</span> Companies on THEJOBSYNC receive applications from over 140 countries, giving employers access to a truly global talent pool — and giving candidates access to international opportunities, all from one platform.
+                  <span className="font-bold">Did you know?</span> Companies on The jobsync receive applications from over 140 countries, giving employers access to a truly global talent pool — and giving candidates access to international opportunities, all from one platform.
                 </p>
               </div>
             </div>
@@ -305,7 +305,7 @@ export default function CompaniesPage() {
           </span>
           <h2 className="text-4xl font-extrabold text-[#0a1f44] mb-6">Our Partner Companies</h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg mb-16">
-            Leading organisations across every industry have partnered with THEJOBSYNC to find the best talent.
+            Leading organisations across every industry have partnered with The jobsync to find the best talent.
           </p>
 
           <div className="relative overflow-hidden w-full mb-16 select-none flex flex-col gap-6">
@@ -338,7 +338,7 @@ export default function CompaniesPage() {
             </div>
           </div>
 
-          <p className="text-gray-500 font-medium mb-6">Are you a company looking to partner with THEJOBSYNC?</p>
+          <p className="text-gray-500 font-medium mb-6">Are you a company looking to partner with The jobsync?</p>
           <Link href="/post-job" className="inline-block">
             <button className="bg-[#03045E] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-[#172554] transition-colors flex items-center gap-2 mx-auto">
               <User size={18} strokeWidth={2.5} />

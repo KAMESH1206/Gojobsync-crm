@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { jwtVerify } from 'jose';
+import { transporter } from '@/lib/mail';
 
 
 const JWT_SECRET = new TextEncoder().encode(
@@ -97,6 +98,97 @@ export async function POST(req: NextRequest) {
     } catch (bridgeError) {
       console.error('Failed to bridge employer job to CRM:', bridgeError);
     }
+
+    // Send job alert email to all registered candidates (non-blocking)
+    setImmediate(async () => {
+      try {
+        const employer = await prisma.employer.findUnique({ where: { id: employerId } });
+        const candidates = await prisma.candidateAccount.findMany({
+          select: { email: true, name: true },
+        });
+
+        if (candidates.length === 0 || !process.env.SMTP_USER) return;
+
+        const companyName = employer?.companyName || 'A Company';
+        const jobUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/careers`;
+        const skillsList = Array.isArray(skills) ? skills.join(', ') : (skills || 'Not specified');
+
+        const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 32px auto; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    .header { background: linear-gradient(135deg, #03045E, #0077B6); padding: 32px 40px; text-align: center; }
+    .header h1 { color: white; margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+    .header p { color: #90E0EF; margin: 6px 0 0; font-size: 13px; }
+    .body { padding: 32px 40px; }
+    .badge { display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; margin-bottom: 16px; }
+    .job-title { font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 4px; }
+    .company { font-size: 15px; color: #0077B6; font-weight: 600; margin-bottom: 20px; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .info-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 16px; }
+    .info-label { font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .info-value { font-size: 14px; font-weight: 600; color: #1e293b; }
+    .cta { display: block; background: linear-gradient(135deg, #0ea5e9, #0077B6); color: white; text-decoration: none; text-align: center; padding: 16px 32px; border-radius: 12px; font-weight: 800; font-size: 16px; margin: 24px 0 0; }
+    .footer { background: #f8fafc; padding: 20px 40px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🚀 New Job Alert — The jobsync</h1>
+      <p>A new opportunity just dropped on The jobsync careers portal</p>
+    </div>
+    <div class="body">
+      <div class="badge">New Opening</div>
+      <div class="job-title">${title}</div>
+      <div class="company">📍 ${companyName}</div>
+      <div class="info-grid">
+        <div class="info-box"><div class="info-label">Field</div><div class="info-value">${field || 'General'}</div></div>
+        <div class="info-box"><div class="info-label">Job Type</div><div class="info-value">${jobType || 'Full-time'}</div></div>
+        <div class="info-box"><div class="info-label">Location</div><div class="info-value">${location}</div></div>
+        <div class="info-box"><div class="info-label">Salary Range</div><div class="info-value">${salaryRange || 'Negotiable'}</div></div>
+        <div class="info-box"><div class="info-label">Openings</div><div class="info-value">${openings || 1} Position(s)</div></div>
+        <div class="info-box"><div class="info-label">Experience</div><div class="info-value">${experience || 'Any'}</div></div>
+      </div>
+      ${skillsList ? `<p style="font-size:13px;color:#475569;"><strong>Skills:</strong> ${skillsList}</p>` : ''}
+      <p style="font-size:14px;color:#64748b;line-height:1.6;">${description?.slice(0, 300)}${description?.length > 300 ? '...' : ''}</p>
+      <a href="${jobUrl}" class="cta">View & Apply Now →</a>
+    </div>
+    <div class="footer">
+      You're receiving this because you're registered on The jobsync careers portal.<br/>
+      <a href="${jobUrl}" style="color:#0077B6;">Unsubscribe</a> · The jobsync Careers
+    </div>
+  </div>
+</body>
+</html>`;
+
+        // Send in batches of 50 BCC to avoid SMTP limits
+        const BATCH = 50;
+        for (let i = 0; i < candidates.length; i += BATCH) {
+          const batch = candidates.slice(i, i + BATCH);
+          const bccList = batch.map(c => c.email).join(',');
+          try {
+            await transporter.sendMail({
+              from: `"The jobsync" <${process.env.SMTP_USER}>`,
+              to: process.env.SMTP_USER, // send to self
+              bcc: bccList,
+              subject: `🚀 New Job: ${title} at ${companyName} — The jobsync`,
+              html,
+            });
+          } catch (batchErr) {
+            console.error(`Email batch ${i} failed:`, batchErr);
+          }
+        }
+
+        console.log(`Job alert sent to ${candidates.length} candidates.`);
+      } catch (emailErr) {
+        console.error('Failed to send job alert emails:', emailErr);
+      }
+    });
 
     return NextResponse.json({ success: true, job });
   } catch (err) {

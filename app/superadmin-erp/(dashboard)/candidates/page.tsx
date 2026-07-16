@@ -40,14 +40,14 @@ export default function SACandidatesPage() {
           <thead className="bg-gray-50 border-b"><tr><th className="text-left p-4 text-xs font-semibold text-gray-500 uppercase">Name</th><th className="text-left p-4 text-xs font-semibold text-gray-500 uppercase">Email</th><th className="text-left p-4 text-xs font-semibold text-gray-500 uppercase">Phone</th><th className="text-left p-4 text-xs font-semibold text-gray-500 uppercase">Location</th><th className="text-left p-4 text-xs font-semibold text-gray-500 uppercase">Status</th><th className="text-left p-4 text-xs font-semibold text-gray-500 uppercase">Resume</th><th className="text-left p-4 text-xs font-semibold text-gray-500 uppercase">Actions</th></tr></thead>
           <tbody>
             {filtered.length === 0 ? <tr><td colSpan={7} className="p-8 text-center text-gray-400">No candidates</td></tr> : filtered.map(c => (
-              <tr key={c.id} className="border-b hover:bg-gray-50">
+              <tr key={c.id} className="border-b hover:bg-gray-50 cursor-pointer" onClick={() => setViewResume(c)}>
                 <td className="p-4 text-sm font-medium text-gray-800">{c.name}</td>
                 <td className="p-4 text-sm text-gray-600">{c.email}</td>
                 <td className="p-4 text-sm text-gray-600">{c.phone}</td>
                 <td className="p-4 text-sm text-gray-600">{c.location}</td>
-                <td className="p-4"><select value={c.status} onChange={e => updateStatus(c.id, e.target.value)} className="text-xs border rounded-lg p-1.5 bg-white"><option value="new">New</option><option value="shortlisted">Shortlisted</option><option value="selected">Selected</option><option value="rejected">Rejected</option></select></td>
-                <td className="p-4"><button onClick={() => setViewResume(c)} className="flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-xs font-medium hover:bg-blue-100"><Eye size={14} /> View</button></td>
-                <td className="p-4"><button onClick={() => handleDelete(c.id)} className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><Trash2 size={16} /></button></td>
+                <td className="p-4" onClick={(e) => e.stopPropagation()}><select value={c.status} onChange={e => updateStatus(c.id, e.target.value)} className="text-xs border rounded-lg p-1.5 bg-white"><option value="new">New</option><option value="shortlisted">Shortlisted</option><option value="selected">Selected</option><option value="rejected">Rejected</option></select></td>
+                <td className="p-4" onClick={(e) => e.stopPropagation()}><button onClick={() => setViewResume(c)} className="flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-xs font-medium hover:bg-blue-100"><Eye size={14} /> View</button></td>
+                <td className="p-4" onClick={(e) => e.stopPropagation()}><button onClick={() => handleDelete(c.id)} className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><Trash2 size={16} /></button></td>
               </tr>
             ))}
           </tbody>
@@ -56,11 +56,11 @@ export default function SACandidatesPage() {
 
       {/* View Resume Modal */}
       {viewResume && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl p-6 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-5">
-              <h2 className="text-lg font-bold text-gray-800">Candidate Resume</h2>
-              <button onClick={() => setViewResume(null)} className="p-1 hover:bg-gray-100 rounded-lg"><X size={20} /></button>
+            <div className="flex justify-between items-center mb-5 sticky top-0 bg-white border-b pb-4">
+              <h2 className="text-lg font-bold text-gray-800">Candidate Details</h2>
+              <button onClick={() => setViewResume(null)} className="p-2 hover:bg-gray-100 rounded-full text-gray-500"><X size={20} /></button>
             </div>
             <div className="flex items-center gap-4 mb-6 pb-5 border-b">
               <div className="w-14 h-14 rounded-full bg-[#0f172a] flex items-center justify-center text-white text-xl font-bold">{viewResume.name?.[0]?.toUpperCase()}</div>

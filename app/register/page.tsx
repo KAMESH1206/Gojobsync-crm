@@ -84,7 +84,7 @@ export default function Register() {
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
           <img 
             src="/loooo.jpeg" 
-            alt="The Job Sync Logo" 
+            alt="The jobsync Logo" 
             style={{ 
               height: 96, 
               width: 96, 

@@ -177,7 +177,7 @@ export default function ResetPasswordPage() {
               <Building2 size={24} className="text-white" />
             </div>
             <div className="text-left">
-              <div className="text-white font-extrabold text-xl leading-none">The Job Sync</div>
+              <div className="text-white font-extrabold text-xl leading-none">The jobsync</div>
               <div className="text-sky-300 text-xs font-medium">Account Recovery</div>
             </div>
           </Link>

@@ -9,6 +9,8 @@ import PrintableEnrollmentForm from './PrintableEnrollmentForm';
 import ATSPremiumPlansModal from './ATSPremiumPlansModal';
 import { usePortalTheme } from '@/context/PortalThemeContext';
 import { toast } from 'react-hot-toast';
+import { getAllStates, getDistricts } from 'india-state-district';
+import { DEPARTMENTS, SALARY_RANGES } from '@/lib/constants';
 
 const getINPUT = (isDark: boolean) => ({
   width: '100%', border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`, borderRadius: 12,
@@ -84,7 +86,7 @@ export default function CandidateProfilePage() {
 
   const [form, setForm] = useState<any>({
     name: '', email: '', phone: '', headline: '', summary: '',
-    location: '', currentCompany: '', currentRole: '', expectedSalary: '',
+    locState: '', locDistrict: '', locCity: '', locAddress: '', currentCompany: '', currentRole: '', expectedSalary: '',
     preferredRoles: '', resumeUrl: '', resumeFileName: '', photoUrl: '',
     skillsArr: [],
     educations: [{ degree: '', college: '', year: '', cgpa: '' }],
@@ -127,13 +129,28 @@ export default function CandidateProfilePage() {
       if ((candidate as any).experience) experiences[0].role = (candidate as any).experience;
     }
 
+    let parsedLoc = { state: '', district: '', city: '', address: '' };
+    try {
+      if (candidate.location && candidate.location.startsWith('{')) {
+        const locObj = JSON.parse(candidate.location);
+        parsedLoc = { state: locObj.state || '', district: locObj.district || '', city: locObj.city || '', address: locObj.address || '' };
+      } else {
+        parsedLoc.city = candidate.location || '';
+      }
+    } catch (e) {
+      parsedLoc.city = candidate.location || '';
+    }
+
     setForm({
       name: candidate.name || '',
       email: candidate.email || '',
       phone: candidate.phone || '',
       headline: candidate.headline || '',
       summary: (candidate as any).summary || '',
-      location: candidate.location || '',
+      locState: parsedLoc.state,
+      locDistrict: parsedLoc.district,
+      locCity: parsedLoc.city,
+      locAddress: parsedLoc.address,
       currentCompany: candidate.currentCompany || '',
       currentRole: candidate.currentRole || '',
       expectedSalary: candidate.expectedSalary || '',
@@ -148,12 +165,23 @@ export default function CandidateProfilePage() {
   }, [candidate]);
 
   const profilePercent = Math.min(100, Math.round([
-    form.name, form.headline, form.summary, form.location,
+    form.name, form.headline, form.summary, (form.locState && form.locCity),
     form.educations?.[0]?.degree, form.educations?.[0]?.college, form.educations?.[0]?.cgpa,
     form.skillsArr?.length > 0,
     form.experiences?.[0]?.company || form.experiences?.[0]?.role,
     form.resumeUrl,
   ].filter(Boolean).length * 10));
+
+  const missingFields: string[] = [];
+  if (!form.name) missingFields.push('Full Name');
+  if (!form.headline) missingFields.push('Headline');
+  if (!form.summary) missingFields.push('Summary');
+  if (!form.locState || !form.locCity) missingFields.push('Location (State & City)');
+  if (!form.preferredRoles) missingFields.push('Department / Field');
+  if (!form.educations?.[0]?.degree || !form.educations?.[0]?.college) missingFields.push('Education Details');
+  if (!form.skillsArr || form.skillsArr.length === 0) missingFields.push('Skills');
+  if (!form.experiences?.[0]?.company && !form.experiences?.[0]?.role) missingFields.push('Experience Details');
+  if (!form.resumeUrl) missingFields.push('Resume');
 
   const addSkill = () => {
     const s = skillInput.trim();
@@ -254,7 +282,7 @@ export default function CandidateProfilePage() {
         phone: form.phone,
         headline: form.headline,
         summary: form.summary,
-        location: form.location,
+        location: JSON.stringify({ state: form.locState, district: form.locDistrict, city: form.locCity, address: form.locAddress }),
         currentCompany: form.currentCompany,
         currentRole: form.currentRole,
         expectedSalary: form.expectedSalary,
@@ -335,14 +363,32 @@ export default function CandidateProfilePage() {
                 <input style={{ ...getINPUT(isDark), background: 'rgba(255,255,255,0.02)', color: '#64748b' }} value={form.email} readOnly />
               </Field>
             </Grid2>
+            <div style={{ marginTop: 24, marginBottom: 8, fontSize: '1rem', fontWeight: 700, color: isDark ? 'white' : '#0f172a' }}>Location Details</div>
             <Grid2>
-              <Field label="Phone Number *">
-                <input style={getINPUT(isDark)} value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="Your mobile number" className="focus:border-[#0077B6]" />
+              <Field label="State *">
+                <select style={getINPUT(isDark)} value={form.locState} onChange={e => setForm({ ...form, locState: e.target.value, locDistrict: '' })} className="focus:border-[#0077B6] appearance-none">
+                  <option value="">Select State</option>
+                  {getAllStates().map((s: any) => <option key={s.code} value={s.code}>{s.name}</option>)}
+                </select>
               </Field>
-              <Field label="Location *">
-                <SmartSelector value={form.location} onChange={val => setForm({ ...form, location: val })} isDark={isDark} options={DISTRICTS} placeholder="Select your district" searchPlaceholder="Search district..." />
+              <Field label="District *">
+                <select style={getINPUT(isDark)} value={form.locDistrict} onChange={e => setForm({ ...form, locDistrict: e.target.value })} className="focus:border-[#0077B6] appearance-none">
+                  <option value="">Select District</option>
+                  {form.locState ? getDistricts(form.locState).map((d: string) => <option key={d} value={d}>{d}</option>) : null}
+                </select>
               </Field>
             </Grid2>
+            <Grid2>
+              <Field label="City / Locality *">
+                <input style={getINPUT(isDark)} value={form.locCity} onChange={e => setForm({ ...form, locCity: e.target.value })} placeholder="e.g. Anna Nagar" className="focus:border-[#0077B6]" />
+              </Field>
+              <Field label="Full Address">
+                <input style={getINPUT(isDark)} value={form.locAddress} onChange={e => setForm({ ...form, locAddress: e.target.value })} placeholder="Door No, Street Name" className="focus:border-[#0077B6]" />
+              </Field>
+            </Grid2>
+            <Field label="Phone Number *">
+              <input style={getINPUT(isDark)} value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="Your mobile number" className="focus:border-[#0077B6]" />
+            </Field>
             <Field label="Professional Headline" full>
               <input style={getINPUT(isDark)} value={form.headline} onChange={e => setForm({ ...form, headline: e.target.value })} placeholder="e.g. Senior React Developer | 5 Years Exp" className="focus:border-[#0077B6]" />
             </Field>
@@ -424,9 +470,40 @@ export default function CandidateProfilePage() {
                   <input style={getINPUT(isDark)} value={form.currentCompany} onChange={e => setForm({ ...form, currentCompany: e.target.value })} placeholder="Current employer" className="focus:border-[#0077B6]" />
                 </Field>
                 <Field label="Expected Salary">
-                  <input style={getINPUT(isDark)} value={form.expectedSalary} onChange={e => setForm({ ...form, expectedSalary: e.target.value })} placeholder="e.g. ₹20 LPA" className="focus:border-[#0077B6]" />
+                  <select style={getINPUT(isDark)} value={form.expectedSalary} onChange={e => setForm({ ...form, expectedSalary: e.target.value })} className="focus:border-[#0077B6] appearance-none">
+                    <option value="">Select Expected Salary</option>
+                    {SALARY_RANGES.map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
                 </Field>
               </Grid2>
+              <Field label="Department / Preferred Field *" full>
+                <select
+                  style={getINPUT(isDark)}
+                  value={DEPARTMENTS.includes(form.preferredRoles as any) || form.preferredRoles === '' ? form.preferredRoles : 'Other'}
+                  onChange={e => {
+                    if (e.target.value === 'Other') {
+                      setForm({ ...form, preferredRoles: 'Other' });
+                    } else {
+                      setForm({ ...form, preferredRoles: e.target.value });
+                    }
+                  }}
+                  className="focus:border-[#0077B6] appearance-none"
+                >
+                  <option value="">Select your Department / Field</option>
+                  {DEPARTMENTS.map(d => <option key={d} value={d}>{d}</option>)}
+                  <option value="Other">Other (Type below)</option>
+                </select>
+                {(form.preferredRoles === 'Other' || (!DEPARTMENTS.includes(form.preferredRoles as any) && form.preferredRoles !== '')) && (
+                  <input
+                    style={{ ...getINPUT(isDark), marginTop: 8 }}
+                    value={form.preferredRoles === 'Other' ? '' : form.preferredRoles}
+                    onChange={e => setForm({ ...form, preferredRoles: e.target.value })}
+                    placeholder="Type your department / field here..."
+                    className="focus:border-[#0077B6]"
+                    autoFocus
+                  />
+                )}
+              </Field>
             </div>
           </Section>
 
@@ -472,13 +549,26 @@ export default function CandidateProfilePage() {
               </div>
             </div>
 
-            {profilePercent < 80 ? (
-              <p style={{ fontSize: '0.9rem', color: isDark ? '#cbd5e1' : '#64748b', textAlign: 'center', lineHeight: 1.5 }}>
-                Complete your profile to increase your chances of being matched.
-              </p>
+            {profilePercent < 100 ? (
+              <div style={{ marginTop: '1rem' }}>
+                <p style={{ fontSize: '0.9rem', color: isDark ? '#cbd5e1' : '#64748b', textAlign: 'center', lineHeight: 1.5, marginBottom: '1rem' }}>
+                  Complete your profile to increase your chances of being matched.
+                </p>
+                {missingFields.length > 0 && (
+                  <div style={{ background: isDark ? 'rgba(239, 68, 68, 0.1)' : '#fef2f2', border: `1px solid ${isDark ? 'rgba(239, 68, 68, 0.2)' : '#fecaca'}`, borderRadius: 12, padding: '1rem' }}>
+                    <p style={{ fontSize: '0.8rem', fontWeight: 700, color: isDark ? '#f87171' : '#b91c1c', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <CheckCircle size={14} /> Pending Fields:
+                    </p>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.8rem', color: isDark ? '#fca5a5' : '#ef4444', lineHeight: 1.6 }}>
+                      {missingFields.slice(0, 5).map(f => <li key={f}>{f}</li>)}
+                      {missingFields.length > 5 && <li>+{missingFields.length - 5} more...</li>}
+                    </ul>
+                  </div>
+                )}
+              </div>
             ) : (
               <p style={{ fontSize: '0.9rem', color: '#34d399', textAlign: 'center', fontWeight: 600 }}>
-                Looking good! Your profile is strong.
+                Looking good! Your profile is 100% complete.
               </p>
             )}
           </div>

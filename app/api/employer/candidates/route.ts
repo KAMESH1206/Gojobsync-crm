@@ -46,17 +46,52 @@ export async function GET(req: NextRequest) {
   }
 
   if (field) {
-    andConditions.push({
-      OR: [
-        { preferredRoles: { contains: field } },
-        { skills: { contains: field } },
-        { headline: { contains: field } },
-      ],
-    });
+    // field may be a comma-separated list of keywords
+    const keywords = field.split(',').map(k => k.trim()).filter(Boolean);
+    const keywordConditions = keywords.flatMap(kw => [
+      { preferredRoles: { contains: kw } },
+      { skills: { contains: kw } },
+      { headline: { contains: kw } },
+      { currentRole: { contains: kw } },
+    ]);
+    if (keywordConditions.length > 0) {
+      andConditions.push({ OR: keywordConditions });
+    }
   }
 
   if (location) {
     andConditions.push({ location: { contains: location } });
+  }
+
+  const salary = searchParams.get('salary') || '';
+  if (salary) {
+    // Always match the exact dropdown range string (new candidates)
+    const salaryOrConditions: Record<string, unknown>[] = [
+      { expectedSalary: { contains: salary } },
+    ];
+
+    // Parse range like "2 - 5 LPA" or "25+ LPA" to also match old free-text values
+    const rangeMatch = salary.match(/^(\d+)\s*-\s*(\d+)/);
+    const plusMatch = salary.match(/^(\d+)\+/);
+
+    if (rangeMatch) {
+      const min = parseInt(rangeMatch[1]);
+      const max = parseInt(rangeMatch[2]);
+      // For each integer in [min, max], add free-text fallback conditions
+      for (let i = min; i <= max; i++) {
+        salaryOrConditions.push({ expectedSalary: { equals: i.toString() } });
+        salaryOrConditions.push({ expectedSalary: { contains: `${i} LPA` } });
+        salaryOrConditions.push({ expectedSalary: { contains: `₹${i}` } });
+        salaryOrConditions.push({ expectedSalary: { contains: `${i}L` } });
+      }
+    } else if (plusMatch) {
+      const min = parseInt(plusMatch[1]);
+      salaryOrConditions.push({ expectedSalary: { contains: `${min}+` } });
+      salaryOrConditions.push({ expectedSalary: { contains: `${min} LPA` } });
+      salaryOrConditions.push({ expectedSalary: { equals: min.toString() } });
+    }
+
+    andConditions.push({ OR: salaryOrConditions });
   }
 
   const where: Record<string, unknown> = {};

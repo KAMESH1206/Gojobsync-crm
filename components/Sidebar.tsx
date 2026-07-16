@@ -71,11 +71,11 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
           gap: '0.75rem',
           minHeight: 'var(--topbar-height)',
         }}>
-          <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 32, width: 32, objectFit: 'contain', borderRadius: '50%', flexShrink: 0 }} />
+          <img src="/loooo.jpeg" alt="The jobsync Logo" style={{ height: 32, width: 32, objectFit: 'contain', borderRadius: '50%', flexShrink: 0 }} />
           {!collapsed && (
             <div style={{ overflow: 'hidden' }}>
               <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--foreground)', whiteSpace: 'nowrap', letterSpacing: '-0.3px' }}>
-                The Job Sync
+                The jobsync
               </div>
               <div style={{ fontSize: '0.6875rem', color: 'var(--muted)', whiteSpace: 'nowrap' }}>
                 Recruitment System

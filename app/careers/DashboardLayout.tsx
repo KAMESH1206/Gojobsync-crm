@@ -55,8 +55,8 @@ export default function CandidateDashboardLayout({ children }: { children: React
         backdropFilter: 'blur(8px)'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 32, width: 32, objectFit: 'contain', borderRadius: '50%' }} />
-          <span style={{ fontWeight: 800, fontSize: '1.1rem', color: isDark ? 'white' : '#0f172a' }}>The Job Sync</span>
+          <img src="/loooo.jpeg" alt="The jobsync Logo" style={{ height: 32, width: 32, objectFit: 'contain', borderRadius: '50%' }} />
+          <span style={{ fontWeight: 800, fontSize: '1.1rem', color: isDark ? 'white' : '#0f172a' }}>The jobsync</span>
         </div>
         <button onClick={() => setMobileOpen(!mobileOpen)} style={{ background: 'none', border: 'none', color: isDark ? 'white' : '#0f172a', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Menu size={24} />
@@ -79,7 +79,7 @@ export default function CandidateDashboardLayout({ children }: { children: React
         <div style={{ padding: '2rem 1.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '3rem' }}>
             <Link href="/careers" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-              <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 36, width: 36, objectFit: 'contain', borderRadius: '50%' }} />
+              <img src="/loooo.jpeg" alt="The jobsync Logo" style={{ height: 36, width: 36, objectFit: 'contain', borderRadius: '50%' }} />
               <span style={{ fontWeight: 800, fontSize: '1.25rem', color: isDark ? 'white' : '#0f172a', letterSpacing: '-0.5px' }}>The Job<span style={{ color: '#00B4D8' }}>Sync</span></span>
             </Link>
             <button 

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCandidateAuth } from '@/context/CandidateAuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import { DEPARTMENTS } from '@/lib/constants';
 import {
   Search, MapPin, Briefcase, DollarSign, Users, Clock,
   ChevronRight, Star, Building2, Code, TrendingUp, Heart,
@@ -41,6 +42,7 @@ export default function CareersPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [locationFilter, setLocationFilter] = useState('');
+  const [departmentFilter, setDepartmentFilter] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -82,10 +84,25 @@ export default function CareersPage() {
 
   const filtered = jobs.filter(j => {
     const q = search.toLowerCase();
-    return (
-      (!q || j.title?.toLowerCase().includes(q) || j.client?.companyName?.toLowerCase().includes(q) || j.client?.industry?.toLowerCase().includes(q)) &&
-      (!locationFilter || j.location?.toLowerCase().includes(locationFilter.toLowerCase()))
-    );
+    
+    let jobLocStr = j.location || '';
+    if (jobLocStr.startsWith('{')) {
+      try {
+        const l = JSON.parse(jobLocStr);
+        jobLocStr = `${l.state || ''} ${l.district || ''} ${l.city || ''} ${l.address || ''}`;
+      } catch (e) {}
+    }
+
+    const matchesQ = !q || j.title?.toLowerCase().includes(q) || j.client?.companyName?.toLowerCase().includes(q) || j.client?.industry?.toLowerCase().includes(q);
+    const matchesLoc = !locationFilter || jobLocStr.toLowerCase().includes(locationFilter.toLowerCase());
+    
+    // Some jobs might have field stored in j.field (EmployerJob) or j.client.industry (JobRequirement)
+    const matchesDept = !departmentFilter || 
+                        j.field === departmentFilter || 
+                        j.client?.industry === departmentFilter || 
+                        j.client?.department === departmentFilter;
+
+    return matchesQ && matchesLoc && matchesDept;
   });
 
   const PRIORITY_COLORS: Record<string, string> = { urgent: '#ef4444', high: '#f97316', medium: '#eab308', low: '#22c55e' };
@@ -111,7 +128,7 @@ export default function CareersPage() {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 76 }}>
           {/* Logo */}
           <Link href="/careers" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 36, width: 36, objectFit: 'contain', borderRadius: '50%' }} />
+            <img src="/loooo.jpeg" alt="The jobsync Logo" style={{ height: 36, width: 36, objectFit: 'contain', borderRadius: '50%' }} />
             <span className="brand-text" style={{ fontWeight: 800, fontSize: '1.5rem', color: isDark ? 'white' : '#0f172a', letterSpacing: '-0.5px', transition: 'color 0.3s' }}>The Job<span style={{ color: '#00B4D8' }}>Sync</span></span>
           </Link>
 
@@ -156,7 +173,7 @@ export default function CareersPage() {
               <>
                 <Link href="/careers/login" style={{ color: isDark ? '#e2e8f0' : '#1e293b', fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none', transition: 'color 0.2s' }} className="hover:text-[#0077B6]">Sign In</Link>
                 <Link href="/careers/register" style={{ padding: '0.6rem 1.5rem', background: 'linear-gradient(135deg, #0ea5e9, #0077B6)', color: 'white', borderRadius: 12, fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none', boxShadow: '0 4px 20px rgba(14,165,233,0.4)', transition: 'transform 0.2s' }} className="hover:scale-105 hidden-mobile">
-                  Join The Job Sync
+                  Join The jobsync
                 </Link>
               </>
             )}
@@ -253,7 +270,7 @@ export default function CareersPage() {
                     onClick={() => setMobileMenuOpen(false)}
                     style={{ padding: '0.75rem', background: 'linear-gradient(135deg, #0ea5e9, #0077B6)', color: 'white', borderRadius: 10, fontWeight: 700, textDecoration: 'none', textAlign: 'center', boxShadow: '0 4px 15px rgba(14,165,233,0.3)' }}
                   >
-                    Join The Job Sync
+                    Join The jobsync
                   </Link>
                 </>
               )}
@@ -286,7 +303,7 @@ export default function CareersPage() {
               </span>
             </h1>
             <p style={{ color: isDark ? '#94a3b8' : '#475569', fontSize: '1.25rem', marginBottom: '3rem', lineHeight: 1.6, maxWidth: 600, margin: '0 auto 3rem', transition: 'color 0.3s' }}>
-              The Job Sync connects elite talent with top-tier companies seamlessly. Discover {jobs.length}+ opportunities tailored to your expertise.
+              The jobsync connects elite talent with top-tier companies seamlessly. Discover {jobs.length}+ opportunities tailored to your expertise.
             </p>
           </motion.div>
 
@@ -307,10 +324,21 @@ export default function CareersPage() {
               <input
                 value={locationFilter}
                 onChange={e => setLocationFilter(e.target.value)}
-                placeholder="Any Location"
+                placeholder="Locality / Area"
                 style={{ border: 'none', outline: 'none', fontSize: '1rem', color: isDark ? 'white' : '#0f172a', background: 'transparent', width: '100%', padding: '0.5rem 0' }}
                 className={isDark ? "placeholder-slate-500" : "placeholder-slate-400"}
               />
+            </div>
+            <div style={{ flex: '1 1 160px', display: 'flex', alignItems: 'center', gap: 12, padding: '0.5rem 1rem' }}>
+              <select
+                value={departmentFilter}
+                onChange={e => setDepartmentFilter(e.target.value)}
+                style={{ border: 'none', outline: 'none', fontSize: '1rem', color: isDark ? (departmentFilter ? 'white' : '#64748b') : (departmentFilter ? '#0f172a' : '#94a3b8'), background: 'transparent', width: '100%', padding: '0.5rem 0', cursor: 'pointer' }}
+                className="appearance-none"
+              >
+                <option value="" style={{ color: '#000' }}>All Departments</option>
+                {DEPARTMENTS.map(d => <option key={d} value={d} style={{ color: '#000' }}>{d}</option>)}
+              </select>
             </div>
             <button
               onClick={() => document.getElementById('jobs-list')?.scrollIntoView({ behavior: 'smooth' })}
@@ -432,7 +460,7 @@ export default function CareersPage() {
                 <Search size={48} color="#475569" style={{ margin: '0 auto 1.5rem' }} />
                 <p style={{ fontSize: '1.25rem', fontWeight: 700, color: isDark ? 'white' : '#0f172a', marginBottom: 8 }}>No matches found</p>
                 <p style={{ fontSize: '0.95rem', color: isDark ? '#94a3b8' : '#475569', marginBottom: 24 }}>Try adjusting your search or location filters to find what you're looking for.</p>
-                <button onClick={() => { setSearch(''); setLocationFilter(''); }} style={{ padding: '0.75rem 2rem', background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', color: isDark ? 'white' : '#1e293b', border: 'none', borderRadius: 12, cursor: 'pointer', fontWeight: 600, transition: 'all 0.2s' }} className="hover:bg-white/20">Clear All Filters</button>
+                <button onClick={() => { setSearch(''); setLocationFilter(''); setDepartmentFilter(''); }} style={{ padding: '0.75rem 2rem', background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', color: isDark ? 'white' : '#1e293b', border: 'none', borderRadius: 12, cursor: 'pointer', fontWeight: 600, transition: 'all 0.2s' }} className="hover:bg-white/20">Clear All Filters</button>
               </motion.div>
             )}
           </div>
@@ -446,7 +474,7 @@ export default function CareersPage() {
             <div style={{ position: 'absolute', right: -50, top: -50, width: 300, height: 300, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', filter: 'blur(40px)' }} />
             <div style={{ position: 'relative', zIndex: 2 }}>
               <h2 style={{ color: 'white', fontSize: '2.5rem', fontWeight: 900, marginBottom: 12, letterSpacing: '-1px' }}>Ready to level up?</h2>
-              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.125rem', maxWidth: 500 }}>Create your The Job Sync profile today. Upload your resume and let our AI match you with perfect opportunities instantly.</p>
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.125rem', maxWidth: 500 }}>Create your The jobsync profile today. Upload your resume and let our AI match you with perfect opportunities instantly.</p>
             </div>
             <Link href="/careers/register" style={{ position: 'relative', zIndex: 2, background: 'white', color: '#00B4D8', padding: '1rem 2.5rem', borderRadius: 16, fontWeight: 800, fontSize: '1.125rem', textDecoration: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', gap: 10, transition: 'transform 0.2s' }} className="hover:scale-105">
               Create Profile <ArrowRight size={20} />
@@ -459,8 +487,8 @@ export default function CareersPage() {
       <footer style={{ background: isDark ? '#020617' : '#f1f5f9', color: '#64748b', padding: '4rem 2rem 2rem', borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)'}`, transition: 'all 0.3s' }}>
         <div className="footer-content" style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src="/loooo.jpeg" alt="The Job Sync Logo" style={{ height: 28, width: 28, objectFit: 'contain', borderRadius: '50%' }} />
-            <span style={{ fontWeight: 800, fontSize: '1.25rem', color: isDark ? 'white' : '#0f172a', transition: 'color 0.3s' }}>The Job Sync</span>
+            <img src="/loooo.jpeg" alt="The jobsync Logo" style={{ height: 28, width: 28, objectFit: 'contain', borderRadius: '50%' }} />
+            <span style={{ fontWeight: 800, fontSize: '1.25rem', color: isDark ? 'white' : '#0f172a', transition: 'color 0.3s' }}>The jobsync</span>
           </div>
           <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.9rem' }}>
             <Link href="/login" style={{ color: isDark ? '#94a3b8' : '#475569', textDecoration: 'none' }} className="hover:text-[#0077B6]">Recruiter Login</Link>
@@ -468,7 +496,7 @@ export default function CareersPage() {
           </div>
         </div>
         <div style={{ maxWidth: 1280, margin: '2rem auto 0', textAlign: 'center', fontSize: '0.85rem', borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)'}`, paddingTop: '2rem' }}>
-          © 2026 The Job Sync (Powered by CRM). All rights reserved.
+          © 2026 The jobsync (Powered by CRM). All rights reserved.
         </div>
       </footer>
 
@@ -522,8 +550,6 @@ function JobCard({ job, candidate, delay = 0, isRecommended = false, isDark = tr
   const [applying, setApplying] = useState(false);
   const applied = appliedJobs?.has(job.id) || false;
 
-  const PRIORITY_COLORS: Record<string, string> = { urgent: '#ef4444', high: '#f97316', medium: '#eab308', low: '#22c55e' };
-
   const handleApply = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!candidate) { router.push('/careers/login'); return; }
@@ -537,6 +563,10 @@ function JobCard({ job, candidate, delay = 0, isRecommended = false, isDark = tr
 
   const companyInitial = (job.client?.companyName || 'C')[0].toUpperCase();
   const hue = job.client?.companyName ? [...job.client.companyName].reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360 : 200;
+
+  const jLocation = job.location?.startsWith('{') 
+    ? (() => { try { const l = JSON.parse(job.location); return [l.city, l.district, l.state].filter(Boolean).join(', '); } catch { return job.location; } })()
+    : job.location;
 
   return (
     <motion.div
@@ -575,7 +605,7 @@ function JobCard({ job, candidate, delay = 0, isRecommended = false, isDark = tr
           <div>
             <div style={{ fontWeight: 700, fontSize: '1rem', color: isDark ? 'white' : '#0f172a', marginBottom: 4, transition: 'color 0.3s' }}>{job.client?.companyName || 'Confidential'}</div>
             <div style={{ fontSize: '0.85rem', color: isDark ? '#94a3b8' : '#64748b', display: 'flex', alignItems: 'center', gap: 6, transition: 'color 0.3s' }}>
-              <MapPin size={12} color="#64748b" />{job.location}
+              <MapPin size={12} color="#64748b" />{jLocation}
             </div>
           </div>
         </div>

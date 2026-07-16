@@ -19,7 +19,7 @@ export const sendEmail = async ({
 }) => {
   try {
     const info = await transporter.sendMail({
-      from: `"ManpowerCRM" <${process.env.SMTP_USER}>`,
+      from: `"The jobsync" <${process.env.SMTP_USER}>`,
       to,
       subject,
       html,

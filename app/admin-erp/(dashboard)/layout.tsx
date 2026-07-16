@@ -11,9 +11,9 @@ export default function AdminERPLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-[#03045E] text-white flex flex-col h-full overflow-y-auto">
         <div className="p-6 border-b border-white/10 flex items-center space-x-3">
-          <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-8 w-8 object-contain rounded-full border border-gray-700 bg-white" />
+          <img src="/loooo.jpeg" alt="The jobsync Logo" className="h-8 w-8 object-contain rounded-full border border-gray-700 bg-white" />
           <div>
-            <h1 className="font-bold tracking-wider text-sm">The Job Sync</h1>
+            <h1 className="font-bold tracking-wider text-sm">The jobsync</h1>
             <p className="text-[10px] text-gray-300 tracking-widest uppercase">Admin Panel</p>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function AdminERPLayout({
             </div>
             <div>
               <p className="text-sm font-medium">Admin User</p>
-              <p className="text-xs text-gray-400">admin@thejobsync.com</p>
+              <p className="text-xs text-gray-400">admin@theThe jobsync.com</p>
             </div>
           </div>
         </div>

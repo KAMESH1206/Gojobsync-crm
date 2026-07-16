@@ -56,7 +56,7 @@ export async function POST(req: Request) {
 
     const emailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaec; border-radius: 8px;">
-        <h2 style="color: #03045E; text-align: center;">The Job Sync</h2>
+        <h2 style="color: #03045E; text-align: center;">The jobsync</h2>
         <p style="color: #333; font-size: 16px;">Hello,</p>
         <p style="color: #333; font-size: 16px;">We received a request to reset your password. If you didn't make this request, you can safely ignore this email.</p>
         <div style="text-align: center; margin: 30px 0;">
@@ -66,13 +66,13 @@ export async function POST(req: Request) {
         </div>
         <p style="color: #666; font-size: 14px; text-align: center;">This link will expire in 1 hour.</p>
         <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
-        <p style="color: #999; font-size: 12px; text-align: center;">&copy; ${new Date().getFullYear()} The Job Sync. All rights reserved.</p>
+        <p style="color: #999; font-size: 12px; text-align: center;">&copy; ${new Date().getFullYear()} The jobsync. All rights reserved.</p>
       </div>
     `;
 
     await sendEmail({
       to: email,
-      subject: 'Reset your password - The Job Sync',
+      subject: 'Reset your password - The jobsync',
       html: emailHtml
     });
 

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
@@ -9,6 +9,7 @@ import {
   MapPin, Clock, X, Check, AlertCircle, Search
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { DEPARTMENTS } from '@/lib/constants';
 
 interface Job {
   id: string;
@@ -22,10 +23,7 @@ interface Job {
   createdAt: string;
 }
 
-const FIELDS = [
-  'Information Technology', 'Software', 'Supply Chain & Logistics', 'Finance',
-  'Healthcare', 'HR & Administration', 'Manufacturing', 'Marketing', 'Sales', 'Other',
-];
+const FIELDS = DEPARTMENTS;
 
 const INPUT_CLS = 'w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#0077B6] transition-colors bg-white text-slate-900';
 
@@ -158,9 +156,9 @@ export default function EmployerDashboard() {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/loooo.jpeg" alt="The Job Sync Logo" className="h-9 w-9 object-contain rounded-full border border-gray-200" />
+            <img src="/loooo.jpeg" alt="The jobsync Logo" className="h-9 w-9 object-contain rounded-full border border-gray-200" />
             <div>
-              <div className="font-extrabold text-slate-900 text-sm leading-none">The Job Sync</div>
+              <div className="font-extrabold text-slate-900 text-sm leading-none">The jobsync</div>
               <div className="text-[#03045E] text-[10px] font-semibold mt-0.5 uppercase tracking-wider">Employer Portal</div>
             </div>
           </div>

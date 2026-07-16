@@ -1,5 +1,5 @@
 /**
- * THE JOB SYNC — Full Project Automated Test Suite
+ * The jobsync — Full Project Automated Test Suite
  * Tests every API endpoint, function, and user flow
  * Run: node tests/full-test.mjs
  */
@@ -574,7 +574,7 @@ async function testAdminERP() {
 
   await test('POST /api/admin/faqs — create FAQ', async () => {
     const res = await api('/api/admin/faqs', { method: 'POST', body: JSON.stringify({
-      question: 'What is The Job Sync?', answer: 'A recruitment platform', order: 1
+      question: 'What is The jobsync?', answer: 'A recruitment platform', order: 1
     })});
     assert(res.ok || res.status === 201, `Failed: ${res.status} ${JSON.stringify(res.data)}`);
   });
@@ -744,7 +744,7 @@ async function testLoad() {
 // ================================================================
 async function main() {
   console.log('═══════════════════════════════════════════════════');
-  console.log('  🧪 THE JOB SYNC — FULL PROJECT TEST SUITE');
+  console.log('  🧪 The jobsync — FULL PROJECT TEST SUITE');
   console.log('═══════════════════════════════════════════════════');
   console.log(`  Server: ${BASE}`);
   console.log(`  Started: ${new Date().toLocaleString()}`);

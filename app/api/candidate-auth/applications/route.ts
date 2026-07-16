@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
           <p>You can track the status of your application in your candidate portal under the "My Applications" tab.</p>
           <br/>
           <p>Best Regards,</p>
-          <p><strong>HR Team</strong><br/>ManpowerCRM</p>
+          <p><strong>HR Team</strong><br/>The jobsync Careers</p>
         </div>
       `
     });

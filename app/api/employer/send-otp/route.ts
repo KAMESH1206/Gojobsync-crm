@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     const html = `
       <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 520px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
         <div style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%); padding: 40px 32px; text-align: center;">
-          <h1 style="color: white; font-size: 28px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">The Job Sync</h1>
+          <h1 style="color: white; font-size: 28px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">The jobsync</h1>
           <p style="color: rgba(255,255,255,0.85); margin: 8px 0 0; font-size: 14px;">Employer Portal Verification</p>
         </div>
 
@@ -53,14 +53,14 @@ export async function POST(req: NextRequest) {
         </div>
 
         <div style="border-top: 1px solid #e2e8f0; padding: 20px 32px; background: #f8fafc; text-align: center;">
-          <p style="color: #94a3b8; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} The Job Sync. All rights reserved.</p>
+          <p style="color: #94a3b8; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} The jobsync. All rights reserved.</p>
         </div>
       </div>
     `;
 
     const result = await sendEmail({
       to: email,
-      subject: 'The Job Sync – Your OTP for Employer Registration',
+      subject: 'The jobsync – Your OTP for Employer Registration',
       html,
     });
 
