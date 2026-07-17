@@ -13,22 +13,8 @@ export default function LoginPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
-  const { login, user, isLoading } = useAuth();
+  const { login, logout, user, isLoading } = useAuth();
   const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoading && user) {
-      const roleMap: Record<string, string> = {
-        'super_admin': '/super-admin',
-        'admin': '/admin',
-        'hr': '/hr',
-        'recruiter': '/recruiter',
-        'interviewer': '/interviewer',
-        'client': '/client-portal',
-      };
-      router.push(roleMap[user.role] || '/dashboard');
-    }
-  }, [user, isLoading, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,6 +50,16 @@ export default function LoginPage() {
     { role: 'Placement', email: 'crm@crm.com' },
     { role: 'Client', email: 'client@crm.com' },
   ];
+
+  if (isLoading) {
+    return (
+      <div className="login-bg" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: 40, height: 40, border: '4px solid rgba(99, 102, 241, 0.2)', borderTopColor: '#6366f1', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+      </div>
+    );
+  }
+
+
 
   return (
     <div className="login-bg">

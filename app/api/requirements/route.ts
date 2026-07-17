@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
     // Send emails to all candidates if the job is open
     if (requirement.status === 'open') {
       (prisma as any).candidateAccount.findMany({
-        select: { email: true, name: true }
+        select: { email: true, name: true, phone: true }
       }).then(async (candidates: any[]) => {
         if (candidates.length > 0) {
           const { sendEmail } = await import('@/lib/mail');
@@ -125,6 +125,26 @@ export async function POST(request: NextRequest) {
             `
           }));
           await Promise.all(emailPromises);
+
+          // WhatsApp notifications (fire-and-forget)
+          try {
+            const { sendWhatsApp } = await import('@/lib/whatsapp');
+            candidates.forEach((c) => {
+              if (c.phone) {
+                const msg =
+                  `Hi ${c.name}! 👋\n\n` +
+                  `New Job Opportunity at *${requirement.client.companyName}*!\n\n` +
+                  `📌 *Role:* ${requirement.title}\n` +
+                  `📍 *Location:* ${requirement.location}\n` +
+                  `💼 *Experience:* ${requirement.experience}\n\n` +
+                  `Log in to your candidate portal to apply! 🚀\n\n` +
+                  `— The Jobsync Team`;
+                sendWhatsApp(c.phone, msg).catch(console.error);
+              }
+            });
+          } catch (waErr) {
+            console.error('[WhatsApp] New job notifications failed:', waErr);
+          }
         }
       }).catch((e: any) => console.error("Error sending bulk job notifications:", e));
     }

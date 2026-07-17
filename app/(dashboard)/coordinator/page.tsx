@@ -1,0 +1,231 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { PhoneCall, Loader2, CheckCircle2, PhoneOff, PhoneMissed, CalendarClock, XCircle } from 'lucide-react';
+import type { CompanyLead } from '@/lib/types';
+
+const STATUS_ACTIONS = [
+  { value: 'rnr', label: 'RNR', icon: <PhoneMissed size={16} />, color: 'bg-orange-100 text-orange-700' },
+  { value: 'switch_off', label: 'Switch Off', icon: <PhoneOff size={16} />, color: 'bg-red-100 text-red-700' },
+  { value: 'call_back', label: 'Call Back', icon: <CalendarClock size={16} />, color: 'bg-blue-100 text-blue-700' },
+  { value: 'not_interested', label: 'Not Interested', icon: <XCircle size={16} />, color: 'bg-slate-100 text-slate-700' },
+  { value: 'interested', label: 'Interested', icon: <CheckCircle2 size={16} />, color: 'bg-green-100 text-green-700' },
+];
+
+export default function CoordinatorDashboard() {
+  const { user } = useAuth();
+  const [leads, setLeads] = useState<CompanyLead[]>([]);
+  const [loading, setLoading] = useState(true);
+  
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [activeLead, setActiveLead] = useState<CompanyLead | null>(null);
+  const [formData, setFormData] = useState<Partial<CompanyLead>>({});
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    fetchLeads();
+  }, []);
+
+  const fetchLeads = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch('/api/leads');
+      if (res.ok) {
+        const data = await res.json();
+        setLeads(data);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleQuickStatus = async (leadId: string, status: string) => {
+    if (status === 'interested') {
+      const lead = leads.find(l => l.id === leadId);
+      if (lead) {
+        setActiveLead(lead);
+        setFormData({
+          companyName: lead.companyName,
+          email: lead.email || '',
+          phone: lead.phone || '',
+          contactPerson: lead.contactPerson || '',
+          position: lead.position || '',
+          website: lead.website || '',
+          address: lead.address || '',
+          requirementDetails: lead.requirementDetails || '',
+          validityTime: lead.validityTime || '',
+          remark: lead.remark || '',
+          status: 'interested'
+        });
+        setShowUpdateForm(true);
+      }
+      return;
+    }
+
+    try {
+      await fetch(`/api/leads/${leadId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      fetchLeads();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleUpdateSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!activeLead) return;
+    try {
+      setSubmitting(true);
+      const res = await fetch(`/api/leads/${activeLead.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      if (res.ok) {
+        setShowUpdateForm(false);
+        setActiveLead(null);
+        fetchLeads();
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (!user || !['super_admin', 'admin', 'coordinator'].includes(user.role)) {
+    return <div className="p-8">Access Denied</div>;
+  }
+
+  return (
+    <div className="p-8">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold">Fresh Leads (Coordinator)</h1>
+        <p className="text-[var(--muted-foreground)]">Your assigned calling list</p>
+      </div>
+
+      {showUpdateForm && activeLead && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white dark:bg-slate-900 rounded-xl max-w-2xl w-full p-6 shadow-xl relative my-8">
+            <h2 className="text-xl font-bold mb-6">Update Interested Client</h2>
+            <form onSubmit={handleUpdateSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="form-label">Company Name *</label>
+                  <input required className="form-input" value={formData.companyName || ''} onChange={e => setFormData({...formData, companyName: e.target.value})} />
+                </div>
+                <div>
+                  <label className="form-label">Contact Person *</label>
+                  <input required className="form-input" value={formData.contactPerson || ''} onChange={e => setFormData({...formData, contactPerson: e.target.value})} />
+                </div>
+                <div>
+                  <label className="form-label">Position</label>
+                  <input className="form-input" value={formData.position || ''} onChange={e => setFormData({...formData, position: e.target.value})} />
+                </div>
+                <div>
+                  <label className="form-label">Email ID</label>
+                  <input className="form-input" type="email" value={formData.email || ''} onChange={e => setFormData({...formData, email: e.target.value})} />
+                </div>
+                <div>
+                  <label className="form-label">Phone No</label>
+                  <input className="form-input" value={formData.phone || ''} onChange={e => setFormData({...formData, phone: e.target.value})} />
+                </div>
+                <div>
+                  <label className="form-label">Website</label>
+                  <input className="form-input" value={formData.website || ''} onChange={e => setFormData({...formData, website: e.target.value})} />
+                </div>
+              </div>
+              
+              <div>
+                <label className="form-label">Company Address</label>
+                <textarea className="form-input" rows={2} value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} />
+              </div>
+              
+              <div>
+                <label className="form-label">Requirement Details</label>
+                <textarea className="form-input" rows={3} value={formData.requirementDetails || ''} onChange={e => setFormData({...formData, requirementDetails: e.target.value})} />
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="form-label">Validity Time</label>
+                  <input className="form-input" value={formData.validityTime || ''} onChange={e => setFormData({...formData, validityTime: e.target.value})} placeholder="e.g. 3 Months" />
+                </div>
+                <div>
+                  <label className="form-label">Status</label>
+                  <select className="form-input" value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})}>
+                    <option value="interested">Interested</option>
+                    <option value="updated">Updated (Confirmed)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="form-label">Remark</label>
+                <input className="form-input" value={formData.remark || ''} onChange={e => setFormData({...formData, remark: e.target.value})} />
+              </div>
+              
+              <div className="flex justify-end gap-3 mt-8">
+                <button type="button" className="btn btn-ghost" onClick={() => setShowUpdateForm(false)}>Cancel</button>
+                <button type="submit" className="btn btn-primary" disabled={submitting}>
+                  {submitting ? <Loader2 className="animate-spin" size={18} /> : 'Save Update'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {loading ? (
+        <div className="flex justify-center p-12"><Loader2 className="animate-spin text-[var(--primary)]" size={32} /></div>
+      ) : leads.length === 0 ? (
+        <div className="bg-white dark:bg-slate-900 rounded-xl p-12 text-center border border-[var(--border)]">
+          <PhoneCall size={48} className="mx-auto text-[var(--muted-foreground)] mb-4 opacity-50" />
+          <h3 className="text-lg font-bold mb-2">No fresh leads</h3>
+          <p className="text-[var(--muted-foreground)]">You have no assigned company dumps right now.</p>
+        </div>
+      ) : (
+        <div className="grid gap-4">
+          {leads.map(lead => (
+            <div key={lead.id} className="bg-white dark:bg-slate-900 rounded-xl border border-[var(--border)] p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-1">
+                  <h3 className="font-bold text-lg">{lead.companyName}</h3>
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-bold uppercase ${
+                    lead.status === 'fresh' ? 'bg-purple-100 text-purple-700' :
+                    lead.status === 'interested' || lead.status === 'updated' ? 'bg-green-100 text-green-700' :
+                    'bg-slate-100 text-slate-600'
+                  }`}>{lead.status.replace('_', ' ')}</span>
+                </div>
+                <div className="text-sm text-[var(--muted-foreground)] flex items-center gap-4">
+                  <span>Phone: {lead.phone || 'N/A'}</span>
+                  <span>Email: {lead.email || 'N/A'}</span>
+                  {lead.dms?.name && <span>(Added by {lead.dms.name})</span>}
+                </div>
+                {lead.remark && <div className="text-sm mt-2 font-medium">Remark: {lead.remark}</div>}
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {STATUS_ACTIONS.map(action => (
+                  <button
+                    key={action.value}
+                    onClick={() => handleQuickStatus(lead.id, action.value)}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${action.color} hover:opacity-80`}
+                  >
+                    {action.icon} {action.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

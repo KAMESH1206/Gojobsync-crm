@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useMemo } from 'react';
 import { Briefcase, Plus, Search, MapPin, Clock, Users, MoreVertical, Edit2, Trash2, X } from 'lucide-react';
@@ -40,6 +40,9 @@ export default function RequirementsPage() {
 
   // Card dropdown state
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+
+  // Detail view modal
+  const [viewingReq, setViewingReq] = useState<JobRequirement | null>(null);
 
   const filtered = useMemo(() => {
     return requirements.filter(r => {
@@ -179,7 +182,12 @@ export default function RequirementsPage() {
         <>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {filtered.map((req, i) => (
-              <div key={req.id} className={`card animate-fade-in-up delay-${Math.min(i + 1, 8)}`} style={{ padding: '1.25rem' }}>
+              <div
+                key={req.id}
+                className={`card animate-fade-in-up delay-${Math.min(i + 1, 8)}`}
+                style={{ padding: '1.25rem', cursor: 'pointer' }}
+                onClick={() => setViewingReq(req)}
+              >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '0.375rem', flexWrap: 'wrap' }}>
@@ -366,6 +374,91 @@ export default function RequirementsPage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Detail View Modal */}
+      {viewingReq && (
+        <div className="modal-overlay" onClick={() => setViewingReq(null)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: '720px', maxHeight: '90vh', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', flexWrap: 'wrap', marginBottom: '0.25rem' }}>
+                  <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>{viewingReq.title}</h2>
+                  <span className="badge" style={{ background: `${STATUS_COLORS[viewingReq.status] || '#666'}15`, color: STATUS_COLORS[viewingReq.status] || '#666' }}>
+                    {viewingReq.status.replace('_', ' ')}
+                  </span>
+                  <span className="badge" style={{ background: `${PRIORITY_COLORS[viewingReq.priority as keyof typeof PRIORITY_COLORS] || '#666'}15`, color: PRIORITY_COLORS[viewingReq.priority as keyof typeof PRIORITY_COLORS] || '#666' }}>
+                    {viewingReq.priority}
+                  </span>
+                </div>
+                <p style={{ fontSize: '0.875rem', color: 'var(--muted-foreground)' }}>{viewingReq.clientName}</p>
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexShrink: 0 }}>
+                {!isReadOnly && (
+                  <button className="btn btn-secondary btn-sm" onClick={() => { setViewingReq(null); handleOpenModal(viewingReq); }}>
+                    <Edit2 size={14} /> Edit
+                  </button>
+                )}
+                <button className="btn-ghost btn-icon" onClick={() => setViewingReq(null)}><X size={20} /></button>
+              </div>
+            </div>
+
+            {/* Info grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', marginBottom: '1.5rem', padding: '1rem', background: 'var(--surface-hover)', borderRadius: '0.75rem' }}>
+              <div>
+                <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--muted-foreground)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Positions</div>
+                <div style={{ fontWeight: 600 }}>{viewingReq.filledPositions}/{viewingReq.positions} filled</div>
+              </div>
+              <div>
+                <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--muted-foreground)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Experience</div>
+                <div style={{ fontWeight: 600 }}>{viewingReq.experience}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--muted-foreground)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Location</div>
+                <div style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}><MapPin size={13} /> {viewingReq.location}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--muted-foreground)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Salary</div>
+                <div style={{ fontWeight: 600, color: 'var(--primary-hover)' }}>{viewingReq.salaryRange || 'Not specified'}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--muted-foreground)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Deadline</div>
+                <div style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}><Clock size={13} /> {new Date(viewingReq.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div style={{ marginBottom: '1.25rem' }}>
+              <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--muted-foreground)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>Job Description</div>
+              <p style={{ fontSize: '0.875rem', lineHeight: 1.7, color: 'var(--foreground)', whiteSpace: 'pre-wrap' }}>{viewingReq.description}</p>
+            </div>
+
+            {/* Skills */}
+            {viewingReq.skills && viewingReq.skills.length > 0 && (
+              <div style={{ marginBottom: '1.25rem' }}>
+                <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--muted-foreground)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.625rem' }}>Required Skills</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem' }}>
+                  {viewingReq.skills.map(skill => (
+                    <span key={skill} style={{ padding: '0.25rem 0.75rem', background: 'var(--primary-glow)', color: 'var(--primary-hover)', borderRadius: 'var(--radius-full)', fontSize: '0.8125rem', fontWeight: 500, border: '1px solid var(--primary-border, #bae6fd)' }}>
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Progress bar */}
+            <div style={{ marginBottom: '0.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.375rem', fontSize: '0.8125rem', color: 'var(--muted-foreground)' }}>
+                <span>Positions Filled</span>
+                <span style={{ fontWeight: 600 }}>{viewingReq.filledPositions}/{viewingReq.positions}</span>
+              </div>
+              <div className="progress-bar" style={{ height: 8 }}>
+                <div className="progress-fill" style={{ width: `${Math.min((viewingReq.filledPositions / viewingReq.positions) * 100, 100)}%` }} />
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -153,6 +153,21 @@ export async function POST(request: NextRequest) {
       `
     });
 
+    // Send WhatsApp notification to candidate
+    try {
+      const { notifyCandidateApplied } = await import('@/lib/whatsapp');
+      if (candAccount.phone) {
+        notifyCandidateApplied(
+          candAccount.phone,
+          candAccount.name,
+          jobTitle,
+          companyName.replace(/^\s*at\s+/i, '') || 'The jobsync Client'
+        ).catch(console.error);
+      }
+    } catch (waErr) {
+      console.error('[WhatsApp] Application notification failed:', waErr);
+    }
+
     return NextResponse.json(application, { status: 201 });
   } catch (error) {
     console.error('Application error:', error);

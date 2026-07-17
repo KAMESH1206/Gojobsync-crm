@@ -9,7 +9,7 @@ import {
   ChevronLeft, ChevronRight, User, X, Bookmark, DollarSign, ChevronDown, ChevronUp
 } from 'lucide-react';
 import * as XLSX from 'xlsx';
-import { DEPARTMENTS, SALARY_RANGES } from '@/lib/constants';
+import { DEPARTMENTS, SALARY_RANGES, DEPARTMENT_ROLES } from '@/lib/constants';
 import { getAllStates, getDistricts } from 'india-state-district';
 
 interface Candidate {
@@ -94,6 +94,31 @@ function getDeptKeywords(dept: string): string {
   return DEPARTMENT_KEYWORDS[dept] || dept;
 }
 
+function getRoleKeywords(role: string): string {
+  if (!role || role === 'Other') return role;
+  
+  const keywords = [role];
+  
+  // Split role into individual words (longer than 3 chars to ignore 'and', 'for', etc)
+  const words = role.split(/[\s&/-]+/).filter(w => w.length > 3);
+  
+  words.forEach(w => {
+    keywords.push(w);
+    // Add stemmed version for common suffixes to catch typos (e.g. developeer -> develop)
+    const lower = w.toLowerCase();
+    if (lower.endsWith('er')) {
+      keywords.push(w.slice(0, -2)); // Developer -> Develop
+    } else if (lower.endsWith('ing')) {
+      keywords.push(w.slice(0, -3)); // Engineering -> Engineer
+    } else if (lower.endsWith('ive')) {
+      keywords.push(w.slice(0, -3)); // Executive -> Execut
+    }
+  });
+  
+  // Remove duplicates and join
+  return Array.from(new Set(keywords)).join(',');
+}
+
 const allStates = getAllStates();
 
 function SidebarSection({ title, children, defaultOpen = true }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) {
@@ -122,6 +147,7 @@ export default function EmployerCandidatesPage() {
 
   const [search, setSearch] = useState('');
   const [field, setField] = useState('');
+  const [role, setRole] = useState('');
   const [locationText, setLocationText] = useState('');
   const [selectedState, setSelectedState] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('');
@@ -133,6 +159,44 @@ export default function EmployerCandidatesPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [emailSubject, setEmailSubject] = useState('');
+  const [emailBody, setEmailBody] = useState('');
+  const [sendingEmail, setSendingEmail] = useState(false);
+  const [emailSuccess, setEmailSuccess] = useState(false);
+  const [emailError, setEmailError] = useState('');
+
+  const handleSendEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedCandidate) return;
+    setSendingEmail(true);
+    setEmailError('');
+    try {
+      const res = await fetch('/api/employer/candidates/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          toEmail: selectedCandidate.email,
+          subject: emailSubject,
+          message: emailBody,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setEmailError(data.error || 'Failed to send email');
+      } else {
+        setEmailSuccess(true);
+        setTimeout(() => {
+          setShowEmailModal(false);
+          setEmailSuccess(false);
+        }, 2000);
+      }
+    } catch (err) {
+      setEmailError('Something went wrong. Please try again.');
+    }
+    setSendingEmail(false);
+  };
 
   useEffect(() => {
     if (!isLoading && !employer) {
@@ -156,7 +220,8 @@ export default function EmployerCandidatesPage() {
   const fetchCandidates = useCallback(async () => {
     setFetching(true);
     try {
-      const query = new URLSearchParams({ search, field: getDeptKeywords(field), location: locationText, salary, page: page.toString() });
+      const fieldQuery = role && role !== 'Other' ? getRoleKeywords(role) : getDeptKeywords(field);
+      const query = new URLSearchParams({ search, field: fieldQuery, location: locationText, salary, page: page.toString() });
       const res = await fetch(`/api/employer/candidates?${query.toString()}`);
       if (res.ok) {
         const data = await res.json();
@@ -168,7 +233,7 @@ export default function EmployerCandidatesPage() {
       console.error(err);
     }
     setFetching(false);
-  }, [search, field, locationText, salary, page]);
+  }, [search, field, role, locationText, salary, page]);
 
   const handleToggleSave = async (id: string, currentlySaved: boolean, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -191,11 +256,11 @@ export default function EmployerCandidatesPage() {
   }, [fetchCandidates, employer]);
 
   const clearAllFilters = () => {
-    setSearch(''); setField(''); setLocationText(''); setSelectedState('');
+    setSearch(''); setField(''); setRole(''); setLocationText(''); setSelectedState('');
     setSelectedDistrict(''); setSelectedCity(''); setSalary(''); setPage(1);
   };
 
-  const hasActiveFilters = search || field || locationText || salary;
+  const hasActiveFilters = search || field || role || locationText || salary;
 
   const handleExportExcel = () => {
     try {
@@ -326,7 +391,7 @@ export default function EmployerCandidatesPage() {
               <SidebarSection title="Department">
                 <div className="space-y-1 max-h-48 overflow-y-auto pr-1 custom-scroll">
                   <button
-                    onClick={() => { setField(''); setPage(1); }}
+                    onClick={() => { setField(''); setRole(''); setPage(1); }}
                     className={`w-full text-left text-sm px-3 py-1.5 rounded-lg transition-colors font-medium ${!field ? 'bg-[#0077B6] text-white' : 'text-slate-600 hover:bg-slate-50'}`}
                   >
                     All Departments
@@ -334,7 +399,7 @@ export default function EmployerCandidatesPage() {
                   {DEPARTMENTS.map(d => (
                     <button
                       key={d}
-                      onClick={() => { setField(field === d ? '' : d); setPage(1); }}
+                      onClick={() => { setField(field === d ? '' : d); setRole(''); setPage(1); }}
                       className={`w-full text-left text-sm px-3 py-1.5 rounded-lg transition-colors ${field === d ? 'bg-[#0077B6] text-white font-semibold' : 'text-slate-600 hover:bg-slate-50'}`}
                     >
                       {d}
@@ -342,6 +407,29 @@ export default function EmployerCandidatesPage() {
                   ))}
                 </div>
               </SidebarSection>
+
+              {/* Role */}
+              {field && DEPARTMENT_ROLES[field] && (
+                <SidebarSection title="Role">
+                  <div className="space-y-1 max-h-48 overflow-y-auto pr-1 custom-scroll">
+                    <button
+                      onClick={() => { setRole(''); setPage(1); }}
+                      className={`w-full text-left text-sm px-3 py-1.5 rounded-lg transition-colors font-medium ${!role ? 'bg-sky-100 text-sky-700' : 'text-slate-600 hover:bg-slate-50'}`}
+                    >
+                      All Roles
+                    </button>
+                    {DEPARTMENT_ROLES[field].filter(r => r !== 'Other').map(r => (
+                      <button
+                        key={r}
+                        onClick={() => { setRole(role === r ? '' : r); setPage(1); }}
+                        className={`w-full text-left text-sm px-3 py-1.5 rounded-lg transition-colors ${role === r ? 'bg-[#0077B6] text-white font-semibold' : 'text-slate-600 hover:bg-slate-50'}`}
+                      >
+                        {r}
+                      </button>
+                    ))}
+                  </div>
+                </SidebarSection>
+              )}
 
               {/* Location - State */}
               <SidebarSection title="State">
@@ -432,7 +520,8 @@ export default function EmployerCandidatesPage() {
             {hasActiveFilters && (
               <div className="flex flex-wrap gap-2 mb-4">
                 {search && <span className="px-3 py-1 bg-sky-50 border border-sky-200 text-sky-700 text-xs font-semibold rounded-full flex items-center gap-1.5">Search: {search} <button onClick={() => setSearch('')}><X size={10} /></button></span>}
-                {field && <span className="px-3 py-1 bg-sky-50 border border-sky-200 text-sky-700 text-xs font-semibold rounded-full flex items-center gap-1.5">{field} <button onClick={() => setField('')}><X size={10} /></button></span>}
+                {field && <span className="px-3 py-1 bg-sky-50 border border-sky-200 text-sky-700 text-xs font-semibold rounded-full flex items-center gap-1.5">{field} <button onClick={() => {setField(''); setRole('');}}><X size={10} /></button></span>}
+                {role && <span className="px-3 py-1 bg-sky-50 border border-sky-200 text-sky-700 text-xs font-semibold rounded-full flex items-center gap-1.5">Role: {role} <button onClick={() => setRole('')}><X size={10} /></button></span>}
                 {locationText && <span className="px-3 py-1 bg-sky-50 border border-sky-200 text-sky-700 text-xs font-semibold rounded-full flex items-center gap-1.5"><MapPin size={10} />{locationText} <button onClick={() => { setSelectedState(''); setSelectedDistrict(''); setSelectedCity(''); }}><X size={10} /></button></span>}
                 {salary && <span className="px-3 py-1 bg-sky-50 border border-sky-200 text-sky-700 text-xs font-semibold rounded-full flex items-center gap-1.5"><DollarSign size={10} />{salary} <button onClick={() => setSalary('')}><X size={10} /></button></span>}
               </div>
@@ -670,16 +759,96 @@ export default function EmployerCandidatesPage() {
                   Close
                 </button>
                 <a
-                  href={`mailto:${selectedCandidate.email}`}
+                  href={`https://wa.me/${selectedCandidate.phone.replace(/[\s\-\(\)\+]/g, '').startsWith('91') || selectedCandidate.phone.replace(/[\s\-\(\)\+]/g, '').length !== 10 ? selectedCandidate.phone.replace(/[\s\-\(\)\+]/g, '') : '91' + selectedCandidate.phone.replace(/[\s\-\(\)\+]/g, '')}?text=${encodeURIComponent(`Hi ${selectedCandidate.name},\n\nThis is regarding your profile on The jobsync. We would like to connect with you.`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-5 py-2.5 bg-[#25D366] text-white font-bold rounded-xl hover:bg-[#1ebd59] transition-colors shadow-sm flex items-center gap-2"
+                >
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.457 3.48 1.328 5L2 22l5.176-1.356c1.47.8 3.11 1.22 4.828 1.22 5.506 0 9.988-4.482 9.988-9.988C22 6.482 17.518 2 12.012 2zm6.27 13.916c-.258.73-1.49 1.418-2.072 1.488-.58.07-1.162.274-3.708-.772-3.252-1.334-5.328-4.63-5.49-4.846-.16-.216-1.306-1.736-1.306-3.31 0-1.574.82-2.35 1.112-2.66.29-.31.638-.388.852-.388.214 0 .428.002.614.01.2.01.468-.076.732.56.264.638.904 2.2.982 2.356.078.156.13.336.026.544-.104.208-.156.336-.31.518-.156.182-.328.406-.468.544-.156.156-.32.326-.138.638.182.312.808 1.332 1.732 2.156.924.824 1.704 1.078 2.022 1.21.318.13.506.104.692-.104.186-.208.808-.938 1.026-1.26.216-.32.434-.268.732-.156.298.112 1.892.894 2.216 1.056.324.162.54.242.618.374.078.13.078.756-.18 1.486z"/>
+                  </svg>
+                  WhatsApp
+                </a>
+                <button
+                  onClick={() => {
+                    setEmailSubject(`Regarding your profile on The jobsync`);
+                    setEmailBody('');
+                    setEmailSuccess(false);
+                    setEmailError('');
+                    setShowEmailModal(true);
+                  }}
                   className="px-5 py-2.5 bg-[#03045E] text-white font-bold rounded-xl hover:bg-sky-700 transition-colors shadow-sm"
                 >
-                  Contact Candidate
-                </a>
+                  Send Message
+                </button>
               </div>
             </div>
           </div>
         );
       })()}
+
+      {/* Email Compose Modal */}
+      {showEmailModal && selectedCandidate && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col">
+            <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-white">
+              <h2 className="text-lg font-extrabold text-slate-900">Message to {selectedCandidate.name}</h2>
+              <button onClick={() => setShowEmailModal(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
+                <X size={20} />
+              </button>
+            </div>
+            <form onSubmit={handleSendEmail} className="p-5 flex flex-col gap-4">
+              {emailError && <div className="p-3 bg-red-50 text-red-600 text-sm font-semibold rounded-lg border border-red-100">{emailError}</div>}
+              {emailSuccess && <div className="p-3 bg-green-50 text-green-600 text-sm font-semibold rounded-lg border border-green-100">Message sent successfully!</div>}
+              
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">To</label>
+                <input type="text" readOnly value={selectedCandidate.email} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 text-slate-500 font-medium" />
+              </div>
+              
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Subject</label>
+                <input 
+                  type="text" 
+                  required 
+                  value={emailSubject} 
+                  onChange={(e) => setEmailSubject(e.target.value)}
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-[#0077B6] focus:ring-1 focus:ring-[#0077B6]" 
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Message</label>
+                <textarea 
+                  required
+                  rows={6}
+                  value={emailBody}
+                  onChange={(e) => setEmailBody(e.target.value)}
+                  placeholder="Hi there, we loved your profile..."
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-[#0077B6] focus:ring-1 focus:ring-[#0077B6] resize-none"
+                ></textarea>
+              </div>
+
+              <div className="flex justify-end gap-3 mt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowEmailModal(false)}
+                  className="px-5 py-2.5 bg-white border border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={sendingEmail}
+                  className="px-5 py-2.5 bg-[#03045E] text-white font-bold rounded-xl hover:bg-sky-700 transition-colors shadow-sm disabled:opacity-50 flex items-center justify-center min-w-[120px]"
+                >
+                  {sendingEmail ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> : 'Send Message'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

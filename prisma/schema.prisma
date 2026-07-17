@@ -35,6 +35,10 @@ model User {
   leaveRequests         LeaveRequest[]
   createdTickets        Ticket[]          @relation("TicketCreator")
   sentMessages          TicketMessage[]   @relation("MessageSender")
+  
+  // Leads workflow
+  dmsLeads              CompanyLead[]     @relation("DMSLeads")
+  coordinatorLeads      CompanyLead[]     @relation("CoordinatorLeads")
 }
 
 // ==================== CLIENT ====================
@@ -534,6 +538,29 @@ model EmployerSubscription {
   createdAt           DateTime  @default(now())
 
   employer Employer @relation(fields: [employerId], references: [id], onDelete: Cascade)
+}
+
+// ==================== COMPANY LEADS (DMS & Coordinator) ====================
+model CompanyLead {
+  id                 String   @id @default(cuid())
+  companyName        String
+  email              String?
+  phone              String?
+  status             String   @default("fresh") // fresh | rnr | switch_off | call_back | interested | not_interested | updated
+  contactPerson      String?
+  position           String?
+  website            String?
+  address            String?
+  requirementDetails String?
+  validityTime       String?
+  remark             String?
+  dmsId              String
+  coordinatorId      String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  
+  dms         User  @relation("DMSLeads", fields: [dmsId], references: [id])
+  coordinator User? @relation("CoordinatorLeads", fields: [coordinatorId], references: [id])
 }
 
 // ==================== PASSWORD RESET ====================

@@ -10,7 +10,9 @@ export type UserRole =
   | 'hr'
   | 'client'
   | 'developer'
-  | 'tester';
+  | 'tester'
+  | 'dms'
+  | 'coordinator';
 
 export type RequirementStatus = 'open' | 'in_progress' | 'on_hold' | 'closed' | 'cancelled';
 export type CandidateStatus = 'new' | 'shortlisted' | 'interview_scheduled' | 'interviewed' | 'selected' | 'rejected' | 'offered' | 'joined' | 'withdrawn';
@@ -149,6 +151,29 @@ export interface AuditLog {
   createdAt: string;
 }
 
+export interface CompanyLead {
+  id: string;
+  companyName: string;
+  email?: string | null;
+  phone?: string | null;
+  status: string;
+  contactPerson?: string | null;
+  position?: string | null;
+  website?: string | null;
+  address?: string | null;
+  requirementDetails?: string | null;
+  validityTime?: string | null;
+  remark?: string | null;
+  dmsId: string;
+  coordinatorId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  
+  // Optional relations
+  dms?: User;
+  coordinator?: User;
+}
+
 // ==================== DASHBOARD STATS ====================
 
 export interface DashboardStats {
@@ -192,6 +217,8 @@ export const ROLE_LABELS: Partial<Record<UserRole, string>> = {
   client: 'Client',
   developer: 'Developer',
   tester: 'QA Tester',
+  dms: 'DMS',
+  coordinator: 'Coordinator',
 };
 
 export const ROLE_COLORS: Partial<Record<UserRole, string>> = {
@@ -205,6 +232,8 @@ export const ROLE_COLORS: Partial<Record<UserRole, string>> = {
   client: '#90E0EF',      // light cyan
   developer: '#a855f7',
   tester: '#ec4899',
+  dms: '#f43f5e',         // rose
+  coordinator: '#8b5cf6', // violet
 };
 
 export const STATUS_COLORS: Record<string, string> = {

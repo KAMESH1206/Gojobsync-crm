@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
+import { SignJWT } from 'jose';
 
 export async function POST(request: NextRequest) {
   try {
@@ -130,7 +131,31 @@ export async function POST(request: NextRequest) {
     }
 
     const { password: _, ...userWithoutPassword } = user;
-    return NextResponse.json(userWithoutPassword);
+    
+    // Create JWT Token
+    const JWT_SECRET = new TextEncoder().encode(
+      process.env.JWT_SECRET || 'gojobsync_jwt_secret_2024_secure'
+    );
+    const token = await new SignJWT({
+      userId: user.id,
+      email: user.email,
+      role: user.role,
+    })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setExpirationTime('7d')
+      .sign(JWT_SECRET);
+
+    const response = NextResponse.json(userWithoutPassword);
+    
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 7 * 24 * 60 * 60, // 7 days
+    });
+
+    return response;
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

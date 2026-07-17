@@ -57,6 +57,28 @@ export async function POST(request: NextRequest) {
       }
     });
 
+    // Send WhatsApp notification to candidate (fire-and-forget)
+    try {
+      let jobTitle = "a job";
+      let companyName = "The jobsync Client";
+      if (data.appliedFor) {
+        const requirement = await prisma.jobRequirement.findUnique({
+          where: { id: data.appliedFor },
+          include: { client: true }
+        });
+        if (requirement) {
+          jobTitle = requirement.title;
+          if (requirement.client) {
+            companyName = requirement.client.companyName;
+          }
+        }
+      }
+      const { notifyCandidateApplied } = await import('@/lib/whatsapp');
+      notifyCandidateApplied(candidate.phone, candidate.name, jobTitle, companyName).catch(console.error);
+    } catch (waErr) {
+      console.error('[WhatsApp] Candidate apply notification failed:', waErr);
+    }
+
     return NextResponse.json({ success: true, candidateId: candidate.id }, { status: 201 });
   } catch (error) {
     console.error('Error submitting application:', error);

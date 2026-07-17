@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
+import { notifyCandidateStatusChange } from '@/lib/whatsapp';
 
 type RouteParams = { params: Promise<{ id: string }> };
 
@@ -23,6 +24,11 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const { id } = await params;
     const data = await request.json();
 
+    const oldCandidate = await prisma.candidate.findUnique({
+      where: { id },
+      select: { status: true }
+    });
+
     const updateData: Record<string, unknown> = {};
     if (data.name !== undefined) updateData.name = data.name.trim();
     if (data.email !== undefined) updateData.email = data.email.trim();
@@ -38,7 +44,23 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     if (data.appliedFor !== undefined) updateData.appliedFor = data.appliedFor || null;
     if (data.notes !== undefined) updateData.notes = data.notes?.trim() || null;
 
-    const candidate = await prisma.candidate.update({ where: { id }, data: updateData });
+    const candidate = await prisma.candidate.update({
+      where: { id },
+      data: updateData,
+      include: { requirement: { select: { title: true } } }
+    });
+
+    if (data.status !== undefined && oldCandidate && oldCandidate.status !== data.status) {
+      if (candidate.phone) {
+        notifyCandidateStatusChange(
+          candidate.phone,
+          candidate.name,
+          candidate.requirement?.title || 'Job Application',
+          data.status
+        ).catch(console.error);
+      }
+    }
+
     return NextResponse.json({ ...candidate, skills: JSON.parse(candidate.skills) });
   } catch (error) {
     console.error('Error updating candidate:', error);

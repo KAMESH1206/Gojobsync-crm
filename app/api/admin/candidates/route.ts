@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { notifyCandidateStatusChange } from '@/lib/whatsapp';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -20,32 +21,24 @@ const STATUS_EMAIL_TEMPLATES: Record<string, { subject: string; html: (name: str
           <p style="color: rgba(255,255,255,0.7); margin: 8px 0 0; font-size: 12px; letter-spacing: 3px;">CAREER PORTAL</p>
         </div>
         <div style="padding: 32px 24px;">
-          <div style="text-align: center; margin-bottom: 24px;">
-            <span style="font-size: 48px;">🎉</span>
-          </div>
-          <h2 style="color: #1a237e; text-align: center; margin: 0 0 16px;">Congratulations, ${name}!</h2>
+          <div style="text-align: center; margin-bottom: 24px;"><span style="font-size: 48px;">🎉</span></div>
+          <h2 style="color: #1a237e; text-align: center; margin: 0 0 16px;">Hello ${name}!</h2>
           <p style="color: #4b5563; font-size: 15px; line-height: 1.6; text-align: center;">
-            We are thrilled to inform you that your profile has been <strong style="color: #059669;">shortlisted</strong> for the next round of our recruitment process.
+            Congratulations! You have been <strong style="color: #10b981;">shortlisted</strong> for the job role. Our recruitment team will review your details and contact you for the next steps.
           </p>
           <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 16px; margin: 24px 0; text-align: center;">
-            <p style="color: #166534; font-size: 14px; margin: 0;"><strong>Status Updated:</strong> Shortlisted ✅</p>
+            <p style="color: #15803d; font-size: 14px; margin: 0;"><strong>Status Updated:</strong> Shortlisted 🎉</p>
           </div>
-          <p style="color: #4b5563; font-size: 14px; line-height: 1.6;">
-            Our team will reach out to you shortly with further details regarding the interview process. Please keep your phone and email accessible.
-          </p>
-          <p style="color: #4b5563; font-size: 14px; line-height: 1.6;">
-            If you have any questions, feel free to reply to this email.
-          </p>
+          <p style="color: #4b5563; font-size: 14px; line-height: 1.6;">Please keep your resume and documents ready. All the best!</p>
         </div>
         <div style="background: #f9fafb; padding: 20px 24px; text-align: center; border-top: 1px solid #e5e7eb;">
           <p style="color: #9ca3af; font-size: 12px; margin: 0;">© 2026 The jobsync.com — All Rights Reserved</p>
-          <p style="color: #9ca3af; font-size: 11px; margin: 4px 0 0;">This is an automated email. Please do not reply directly.</p>
         </div>
       </div>
     `,
   },
   selected: {
-    subject: '🏆 You have been Selected! - The jobsync',
+    subject: '✅ Job Application Update: Selected! - The jobsync',
     html: (name: string) => `
       <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #e5e7eb;">
         <div style="background: #1a237e; padding: 32px 24px; text-align: center;">
@@ -53,19 +46,15 @@ const STATUS_EMAIL_TEMPLATES: Record<string, { subject: string; html: (name: str
           <p style="color: rgba(255,255,255,0.7); margin: 8px 0 0; font-size: 12px; letter-spacing: 3px;">CAREER PORTAL</p>
         </div>
         <div style="padding: 32px 24px;">
-          <div style="text-align: center; margin-bottom: 24px;">
-            <span style="font-size: 48px;">🏆</span>
-          </div>
-          <h2 style="color: #1a237e; text-align: center; margin: 0 0 16px;">Congratulations, ${name}!</h2>
+          <div style="text-align: center; margin-bottom: 24px;"><span style="font-size: 48px;">✅</span></div>
+          <h2 style="color: #1a237e; text-align: center; margin: 0 0 16px;">Hello ${name}!</h2>
           <p style="color: #4b5563; font-size: 15px; line-height: 1.6; text-align: center;">
-            We are delighted to inform you that you have been <strong style="color: #059669;">selected</strong> for the position!
+            We are excited to inform you that you have been <strong style="color: #10b981;">Selected</strong> for the job role. Our HR team will connect with you soon regarding the offer letter and onboarding process.
           </p>
           <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 16px; margin: 24px 0; text-align: center;">
-            <p style="color: #166534; font-size: 14px; margin: 0;"><strong>Status Updated:</strong> Selected 🏆</p>
+            <p style="color: #15803d; font-size: 14px; margin: 0;"><strong>Status Updated:</strong> Selected ✅</p>
           </div>
-          <p style="color: #4b5563; font-size: 14px; line-height: 1.6;">
-            Our HR team will contact you with the offer details and joining formalities. Welcome to the team!
-          </p>
+          <p style="color: #4b5563; font-size: 14px; line-height: 1.6;">Congratulations on your selection!</p>
         </div>
         <div style="background: #f9fafb; padding: 20px 24px; text-align: center; border-top: 1px solid #e5e7eb;">
           <p style="color: #9ca3af; font-size: 12px; margin: 0;">© 2026 The jobsync.com — All Rights Reserved</p>
@@ -74,7 +63,7 @@ const STATUS_EMAIL_TEMPLATES: Record<string, { subject: string; html: (name: str
     `,
   },
   rejected: {
-    subject: 'Application Update - The jobsync',
+    subject: '📋 Job Application Status Update - The jobsync',
     html: (name: string) => `
       <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #e5e7eb;">
         <div style="background: #1a237e; padding: 32px 24px; text-align: center;">
@@ -82,12 +71,13 @@ const STATUS_EMAIL_TEMPLATES: Record<string, { subject: string; html: (name: str
           <p style="color: rgba(255,255,255,0.7); margin: 8px 0 0; font-size: 12px; letter-spacing: 3px;">CAREER PORTAL</p>
         </div>
         <div style="padding: 32px 24px;">
-          <h2 style="color: #374151; text-align: center; margin: 0 0 16px;">Dear ${name},</h2>
-          <p style="color: #4b5563; font-size: 15px; line-height: 1.6; text-align: center;">
-            Thank you for your interest. After careful consideration, we regret to inform you that your application was not selected at this time.
+          <div style="text-align: center; margin-bottom: 24px;"><span style="font-size: 48px;">📋</span></div>
+          <h2 style="color: #1a237e; text-align: center; margin: 0 0 16px;">Hello ${name},</h2>
+          <p style="color: #4b5563; font-size: 15px; line-height: 1.6;">
+            Thank you for your interest in the position. We have reviewed your application and, unfortunately, we will not be moving forward with your profile at this time.
           </p>
-          <p style="color: #4b5563; font-size: 14px; line-height: 1.6; text-align: center;">
-            We encourage you to apply for future openings. We wish you the best in your career journey.
+          <p style="color: #4b5563; font-size: 14px; line-height: 1.6;">
+            We will keep your details in our system and reach out if another matching opportunity arises. We wish you the best in your job search.
           </p>
         </div>
         <div style="background: #f9fafb; padding: 20px 24px; text-align: center; border-top: 1px solid #e5e7eb;">
@@ -152,11 +142,30 @@ export async function GET() {
 export async function PUT(request: NextRequest) {
   try {
     const { id, ...data } = await request.json();
-    const candidate = await prisma.candidate.update({ where: { id }, data });
+
+    const oldCandidate = await prisma.candidate.findUnique({
+      where: { id },
+      select: { status: true }
+    });
+
+    const candidate = await prisma.candidate.update({
+      where: { id },
+      data,
+      include: { requirement: { select: { title: true } } }
+    });
 
     // Send auto email in background (fire-and-forget, don't block the response)
     if (data.status) {
       sendStatusEmail(candidate.email, candidate.name, data.status).catch(() => {});
+
+      if (oldCandidate && oldCandidate.status !== data.status && candidate.phone) {
+        notifyCandidateStatusChange(
+          candidate.phone,
+          candidate.name,
+          candidate.requirement?.title || 'Job Application',
+          data.status
+        ).catch(console.error);
+      }
     }
 
     return NextResponse.json(candidate);

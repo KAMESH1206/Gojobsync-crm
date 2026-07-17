@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
+import { notifyPlacement } from '@/lib/whatsapp';
 
 // GET /api/placements
 export async function GET() {
@@ -66,6 +67,30 @@ export async function POST(request: NextRequest) {
       where: { id: data.candidateId },
       data: { status: 'offered' },
     });
+
+    // WhatsApp notification to candidate (fire-and-forget)
+    try {
+      const candidate = await prisma.candidate.findUnique({
+        where: { id: data.candidateId },
+        select: { phone: true, name: true },
+      });
+      const phone = candidate?.phone;
+      if (phone) {
+        const name = candidate?.name || 'Candidate';
+        const joiningStr = data.joiningDate
+          ? new Date(data.joiningDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+          : undefined;
+        notifyPlacement(
+          phone,
+          name,
+          placement.requirement.title,
+          placement.client.companyName,
+          joiningStr
+        ).catch(console.error);
+      }
+    } catch (waErr) {
+      console.error('[WhatsApp] Placement notification failed:', waErr);
+    }
 
     return NextResponse.json({
       ...placement,

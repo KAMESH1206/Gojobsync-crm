@@ -1,5 +1,5 @@
 // ============================================================
-// The jobsync — Production Taxonomy (Clean Version)
+// The jobsync - Production Taxonomy (Clean Version)
 // Departments, Industries, Role Categories
 // ============================================================
 
@@ -40,7 +40,86 @@ export const DEPARTMENTS = [
   "Aviation & Aerospace",
   "Energy & Mining",
   "Shipping & Maritime",
+  "Other" // Added Other option
 ] as const;
+
+export const DEPARTMENT_ROLES: Record<string, string[]> = {
+  "Engineering - Software & QA": ["Software Engineer", "Software Developer", "Full Stack Developer", "Frontend Developer", "Backend Developer", "Mobile App Developer", "Web Developer", "DevOps Engineer", "Site Reliability Engineer (SRE)", "Cloud Engineer", "QA Engineer", "Automation Test Engineer", "Manual Test Engineer", "Performance Test Engineer", "Software Architect", "Technical Lead", "Other"],
+  "Sales & Business Development": ["Sales Executive", "Business Development Executive (BDE)", "Business Development Manager (BDM)", "Sales Manager", "Territory Sales Manager", "Area Sales Manager", "Key Account Manager", "Inside Sales Executive", "Field Sales Executive", "Channel Sales Manager", "Relationship Manager", "Sales Coordinator", "Other"],
+  "Customer Success, Service & Operations": ["Customer Support Executive", "Customer Success Manager", "Customer Service Representative", "Process Associate", "Operations Executive", "Operations Manager", "Client Success Executive", "Technical Support Engineer", "Call Center Executive", "Help Desk Executive", "Other"],
+  "Finance & Accounting": ["Accountant", "Accounts Executive", "Accounts Payable Executive", "Accounts Receivable Executive", "Financial Analyst", "Finance Executive", "Tax Consultant", "Auditor", "Payroll Executive", "Cost Accountant", "Finance Manager", "Other"],
+  "Production, Manufacturing & Engineering": ["Production Engineer", "Manufacturing Engineer", "Plant Engineer", "Production Supervisor", "Production Manager", "Maintenance Engineer", "Process Engineer", "Industrial Engineer", "Machine Operator", "CNC Programmer", "Other"],
+  "BFSI, Investments & Trading": ["Banking Executive", "Relationship Manager", "Credit Analyst", "Loan Officer", "Investment Analyst", "Equity Dealer", "Financial Advisor", "Insurance Advisor", "Wealth Manager", "Risk Analyst", "Other"],
+  "Human Resources": ["HR Executive", "HR Generalist", "HR Recruiter", "Talent Acquisition Executive", "HR Business Partner", "Payroll Executive", "Training Coordinator", "Learning & Development Executive", "HR Manager", "Other"],
+  "IT & Information Security": ["System Administrator", "Network Engineer", "Cyber Security Analyst", "SOC Analyst", "Information Security Analyst", "Security Engineer", "IT Support Engineer", "Desktop Support Engineer", "Infrastructure Engineer", "Network Administrator", "Other"],
+  "Marketing & Communication": ["Digital Marketing Executive", "Marketing Executive", "SEO Specialist", "SEM Specialist", "Social Media Manager", "Content Marketer", "Brand Manager", "Email Marketing Executive", "Marketing Analyst", "PR Executive", "Other"],
+  "Data Science & Analytics": ["Data Analyst", "Data Scientist", "Business Analyst", "BI Developer", "Machine Learning Engineer", "AI Engineer", "Data Engineer", "Statistician", "Analytics Consultant", "Other"],
+  "Consulting": ["Business Consultant", "Management Consultant", "Strategy Consultant", "Technology Consultant", "ERP Consultant", "SAP Consultant", "Functional Consultant", "Implementation Consultant", "Other"],
+  "Healthcare & Life Sciences": ["Staff Nurse", "Pharmacist", "Medical Officer", "Lab Technician", "Clinical Research Associate", "Medical Coder", "Physiotherapist", "Healthcare Administrator", "Other"],
+  "Administration & Facilities": ["Admin Executive", "Office Administrator", "Office Assistant", "Receptionist", "Front Office Executive", "Facility Manager", "Office Manager", "Other"],
+  "Project & Program Management": ["Project Coordinator", "Project Manager", "Program Manager", "PMO Analyst", "Scrum Master", "Agile Coach", "Delivery Manager", "Other"],
+  "Procurement & Supply Chain": ["Procurement Executive", "Purchase Executive", "Buyer", "Supply Chain Analyst", "Logistics Executive", "Warehouse Executive", "Inventory Manager", "Sourcing Specialist", "Other"],
+  "Engineering - Hardware & Networks": ["Hardware Engineer", "Embedded Engineer", "Electronics Engineer", "Network Engineer", "Telecom Engineer", "PCB Design Engineer", "Firmware Engineer", "Other"],
+  "Construction & Site Engineering": ["Site Engineer", "Civil Engineer", "Structural Engineer", "Quantity Surveyor", "Construction Manager", "Planning Engineer", "Project Engineer", "Other"],
+  "Teaching & Training": ["Teacher", "Lecturer", "Assistant Professor", "Professor", "Trainer", "Corporate Trainer", "Instructional Designer", "Other"],
+  "UX, Design & Architecture": ["UI Designer", "UX Designer", "Product Designer", "Graphic Designer", "Visual Designer", "Interior Designer", "Architect", "Other"],
+  "Research & Development": ["Research Associate", "Research Scientist", "R&D Engineer", "Innovation Engineer", "Product Research Analyst", "Other"],
+  "Quality Assurance": ["QA Executive", "QA Engineer", "Quality Inspector", "Quality Auditor", "Quality Control Engineer", "Validation Engineer", "Other"],
+  "Food, Beverage & Hospitality": ["Chef", "Cook", "Hotel Manager", "Restaurant Manager", "Waiter", "Bartender", "Housekeeping Executive", "Front Office Executive", "Other"],
+  "Legal & Regulatory": ["Legal Executive", "Legal Advisor", "Corporate Lawyer", "Compliance Officer", "Company Secretary", "Legal Associate", "Other"],
+  "Product Management": ["Product Manager", "Associate Product Manager", "Product Owner", "Product Analyst", "Technical Product Manager", "Other"],
+  "Content, Editorial & Journalism": ["Content Writer", "Copywriter", "Technical Writer", "Editor", "Journalist", "Proofreader", "News Reporter", "Other"],
+  "Environment, Health & Safety": ["Safety Officer", "HSE Engineer", "EHS Manager", "Environmental Engineer", "Fire Safety Officer", "Other"],
+  "Risk Management & Compliance": ["Compliance Officer", "Risk Analyst", "Internal Auditor", "AML Analyst", "Governance Analyst", "Other"],
+  "Merchandising, Retail & eCommerce": ["Retail Sales Executive", "Store Manager", "Merchandiser", "Category Manager", "eCommerce Executive", "Marketplace Executive", "Inventory Executive", "Other"],
+  "Strategic & Top Management": ["CEO", "COO", "CTO", "CFO", "VP Engineering", "Vice President", "Director", "General Manager", "Business Head", "Other"],
+  "Media Production & Entertainment": ["Video Editor", "Cinematographer", "Producer", "Director", "Script Writer", "Animator", "VFX Artist", "Sound Engineer", "Other"],
+  "Security Services": ["Security Guard", "Security Supervisor", "Security Officer", "Loss Prevention Officer", "Surveillance Operator", "Other"],
+  "Sports, Fitness & Personal Care": ["Fitness Trainer", "Personal Trainer", "Gym Instructor", "Sports Coach", "Yoga Trainer", "Nutritionist", "Beautician", "Other"],
+  "CSR & Social Service": ["Social Worker", "NGO Coordinator", "CSR Executive", "Community Manager", "Program Officer", "Other"],
+  "Aviation & Aerospace": ["Pilot", "Cabin Crew", "Aircraft Maintenance Engineer", "Aerospace Engineer", "Ground Staff", "Air Traffic Controller", "Other"],
+  "Energy & Mining": ["Petroleum Engineer", "Mining Engineer", "Renewable Energy Engineer", "Solar Engineer", "Wind Energy Engineer", "Drilling Engineer", "Other"],
+  "Shipping & Maritime": ["Marine Engineer", "Deck Officer", "Ship Captain", "Port Officer", "Logistics Coordinator", "Cargo Officer", "Shipping Executive", "Other"]
+};
+
+export const DEPARTMENT_PLACEHOLDERS: Record<string, { title: string, skills: string }> = {
+  "Engineering - Software & QA": { title: "e.g. Senior React Developer", skills: "React, Node.js, AWS, Python..." },
+  "Sales & Business Development": { title: "e.g. Area Sales Manager", skills: "B2B Sales, CRM, Lead Generation, Negotiation..." },
+  "Customer Success, Service & Operations": { title: "e.g. Customer Success Manager", skills: "Client Onboarding, Zendesk, Communication, Retention..." },
+  "Finance & Accounting": { title: "e.g. Senior Tax Consultant", skills: "Accounting, Tally, GST, Taxation, Auditing..." },
+  "Production, Manufacturing & Engineering": { title: "e.g. Plant Engineer", skills: "AutoCAD, Quality Control, Lean Manufacturing, Six Sigma..." },
+  "BFSI, Investments & Trading": { title: "e.g. Wealth Manager", skills: "Portfolio Management, Mutual Funds, Risk Analysis..." },
+  "Human Resources": { title: "e.g. Talent Acquisition Specialist", skills: "Sourcing, Screening, Onboarding, HRIS..." },
+  "IT & Information Security": { title: "e.g. Network Administrator", skills: "Cisco, Firewalls, TCP/IP, Linux, Security..." },
+  "Marketing & Communication": { title: "e.g. Digital Marketing Manager", skills: "SEO, Google Analytics, Social Media, Content Strategy..." },
+  "Data Science & Analytics": { title: "e.g. Data Scientist", skills: "Python, SQL, Machine Learning, Tableau, Pandas..." },
+  "Consulting": { title: "e.g. Strategy Consultant", skills: "Market Analysis, Problem Solving, Presentation..." },
+  "Healthcare & Life Sciences": { title: "e.g. Clinical Research Associate", skills: "Patient Care, CPR, Clinical Knowledge, Pharmacology..." },
+  "Administration & Facilities": { title: "e.g. Office Manager", skills: "Vendor Management, Office Administration, MS Office..." },
+  "Project & Program Management": { title: "e.g. Scrum Master", skills: "Agile, Jira, Sprint Planning, Leadership..." },
+  "Procurement & Supply Chain": { title: "e.g. Supply Chain Analyst", skills: "Logistics, Vendor Negotiation, Inventory Management..." },
+  "Engineering - Hardware & Networks": { title: "e.g. Embedded Engineer", skills: "C/C++, Microcontrollers, PCB Design, IoT..." },
+  "Construction & Site Engineering": { title: "e.g. Civil Engineer", skills: "AutoCAD, Site Execution, Structural Analysis..." },
+  "Teaching & Training": { title: "e.g. Corporate Trainer", skills: "Instructional Design, Presentation, Pedagogy..." },
+  "UX, Design & Architecture": { title: "e.g. UI/UX Designer", skills: "Figma, Adobe XD, Wireframing, Prototyping..." },
+  "Research & Development": { title: "e.g. Research Scientist", skills: "Data Analysis, R&D, Innovation, Lab Testing..." },
+  "Quality Assurance": { title: "e.g. Quality Auditor", skills: "ISO 9001, Quality Control, Inspection, Compliance..." },
+  "Food, Beverage & Hospitality": { title: "e.g. Executive Chef", skills: "Culinary Skills, Menu Planning, Food Safety, Hospitality..." },
+  "Legal & Regulatory": { title: "e.g. Corporate Lawyer", skills: "Contract Drafting, Compliance, Litigation, Legal Advisory..." },
+  "Product Management": { title: "e.g. Product Manager", skills: "Product Strategy, Roadmap, User Research, Agile..." },
+  "Content, Editorial & Journalism": { title: "e.g. Content Writer", skills: "Copywriting, SEO, Editing, Proofreading..." },
+  "Environment, Health & Safety": { title: "e.g. Safety Officer", skills: "OSHA, Fire Safety, EHS Audits, Risk Assessment..." },
+  "Risk Management & Compliance": { title: "e.g. Compliance Officer", skills: "Risk Analysis, Auditing, Regulatory Compliance..." },
+  "Merchandising, Retail & eCommerce": { title: "e.g. Store Manager", skills: "Retail Sales, Inventory, Visual Merchandising..." },
+  "Strategic & Top Management": { title: "e.g. Chief Operating Officer", skills: "Business Strategy, P&L Management, Leadership..." },
+  "Media Production & Entertainment": { title: "e.g. Video Editor", skills: "Premiere Pro, After Effects, Storyboarding..." },
+  "Security Services": { title: "e.g. Security Supervisor", skills: "Loss Prevention, Surveillance, Physical Security..." },
+  "Sports, Fitness & Personal Care": { title: "e.g. Fitness Trainer", skills: "Nutrition, Personal Training, Wellness..." },
+  "CSR & Social Service": { title: "e.g. NGO Coordinator", skills: "Community Outreach, Program Management, Fundraising..." },
+  "Aviation & Aerospace": { title: "e.g. Cabin Crew", skills: "Customer Service, Safety Procedures, Communication..." },
+  "Energy & Mining": { title: "e.g. Petroleum Engineer", skills: "Drilling, Field Operations, Safety Regulations..." },
+  "Shipping & Maritime": { title: "e.g. Marine Engineer", skills: "Ship Operations, Navigation, Logistics, Maintenance..." }
+};
 
 export const INDUSTRIES = [
   // IT & Technology

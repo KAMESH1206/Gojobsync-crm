@@ -71,7 +71,9 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    return NextResponse.json({ message: 'Logged out successfully' });
+    const response = NextResponse.json({ message: 'Logged out successfully' });
+    response.cookies.delete('token');
+    return response;
   } catch (error) {
     console.error('Logout error:', error);
     return NextResponse.json({ error: 'Failed to process logout' }, { status: 500 });

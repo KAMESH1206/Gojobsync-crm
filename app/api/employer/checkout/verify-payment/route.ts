@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
     });
 
     // We should also record an invoice here to keep track of payments in admin panel
-    await (prisma as any).invoice.create({
+    const inv = await (prisma as any).invoice.create({
       data: {
         invoiceNumber: `INV-${Date.now()}`,
         companyName: employer?.companyName || "Employer Company",
@@ -98,6 +98,21 @@ export async function POST(req: NextRequest) {
         paidAt: new Date()
       }
     });
+
+    // Send WhatsApp notification to the employer (fire-and-forget)
+    if (employer?.contactPhone) {
+      try {
+        const { notifyInvoiceSent } = await import('@/lib/whatsapp');
+        notifyInvoiceSent(
+          employer.contactPhone,
+          employer.contactPerson || employer.companyName,
+          inv.invoiceNumber,
+          parseFloat(totalAmount).toFixed(2)
+        ).catch(console.error);
+      } catch (waErr) {
+        console.error('[WhatsApp] Invoice notification failed:', waErr);
+      }
+    }
 
     return NextResponse.json({ success: true, subscription });
   } catch (error: any) {

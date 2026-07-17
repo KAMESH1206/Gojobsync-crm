@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { generateInvoicePdf } from '@/lib/generateInvoicePdf';
 import { motion, AnimatePresence } from 'framer-motion';
-import { DEPARTMENTS } from '@/lib/constants';
+import { DEPARTMENTS, DEPARTMENT_ROLES, DEPARTMENT_PLACEHOLDERS } from '@/lib/constants';
 
 interface Job {
   id: string;
@@ -47,7 +47,7 @@ export default function EmployerDashboard() {
 
   const [newJob, setNewJob] = useState({
     title: '', description: '', skills: '', experience: '',
-    location: '', salaryRange: '', jobType: 'full-time', field: '', openings: 1,
+    location: '', salaryRange: '', jobType: 'full-time', field: '', role: '', customField: '', customRole: '', openings: 1,
   });
 
   useEffect(() => {
@@ -116,11 +116,16 @@ export default function EmployerDashboard() {
     setPosting(true);
     setPostError('');
     try {
+      const finalField = newJob.field === 'Other' ? newJob.customField : newJob.field;
+      const finalRole = newJob.role === 'Other' ? newJob.customRole : newJob.role;
+      const combinedField = finalRole ? `${finalField} | ${finalRole}` : finalField;
+
       const res = await fetch('/api/employer/jobs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...newJob,
+          field: combinedField,
           skills: newJob.skills.split(',').map((s) => s.trim()).filter(Boolean),
         }),
       });
@@ -129,7 +134,10 @@ export default function EmployerDashboard() {
         setPostError(data.error || 'Failed to post job');
       } else {
         setPostSuccess(true);
-        setNewJob({ title: '', description: '', skills: '', experience: '', location: '', salaryRange: '', jobType: 'full-time', field: '', openings: 1 });
+        setNewJob({
+          title: '', description: '', skills: '', experience: '',
+          location: '', salaryRange: '', jobType: 'full-time', field: '', role: '', customField: '', customRole: '', openings: 1,
+        });
         fetchJobs();
         setTimeout(() => { setShowPostJob(false); setPostSuccess(false); }, 1500);
       }
@@ -518,18 +526,51 @@ export default function EmployerDashboard() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1.5">Job Title *</label>
-                      <input type="text" required placeholder="e.g. Senior React Developer"
+                      <input type="text" required placeholder={DEPARTMENT_PLACEHOLDERS[newJob.field]?.title || 'e.g. Senior Manager'}
                         value={newJob.title} onChange={(e) => setNewJob(p => ({ ...p, title: e.target.value }))}
                         className={INPUT_CLS} />
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1.5">Field / Domain *</label>
-                      <select required value={newJob.field} onChange={(e) => setNewJob(p => ({ ...p, field: e.target.value }))}
+                      <select required value={newJob.field} onChange={(e) => setNewJob(p => ({ ...p, field: e.target.value, role: '', customField: '', customRole: '' }))}
                         className={INPUT_CLS}>
                         <option value="">Select field</option>
-                        {FIELDS.map(f => <option key={f}>{f}</option>)}
+                        {FIELDS.map(f => <option key={f} value={f}>{f}</option>)}
                       </select>
                     </div>
+                  </div>
+
+                  {/* Dynamic Fields for Custom Field & Roles */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {newJob.field === 'Other' && (
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1.5">Specify Domain *</label>
+                        <input type="text" required placeholder="e.g. Graphic Design"
+                          value={newJob.customField} onChange={(e) => setNewJob(p => ({ ...p, customField: e.target.value }))}
+                          className={INPUT_CLS} />
+                      </div>
+                    )}
+                    
+                    {newJob.field && newJob.field !== 'Other' && (
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1.5">Role *</label>
+                        <select required value={newJob.role} onChange={(e) => setNewJob(p => ({ ...p, role: e.target.value, customRole: '' }))}
+                          className={INPUT_CLS}>
+                          <option value="">Select Role</option>
+                          {(DEPARTMENT_ROLES[newJob.field] || []).map(r => <option key={r} value={r}>{r}</option>)}
+                          {(!DEPARTMENT_ROLES[newJob.field] || !DEPARTMENT_ROLES[newJob.field].includes('Other')) && <option value="Other">Other</option>}
+                        </select>
+                      </div>
+                    )}
+
+                    {(newJob.role === 'Other' || newJob.field === 'Other') && (
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1.5">Specify Role *</label>
+                        <input type="text" required placeholder="e.g. UI Designer"
+                          value={newJob.customRole} onChange={(e) => setNewJob(p => ({ ...p, customRole: e.target.value }))}
+                          className={INPUT_CLS} />
+                      </div>
+                    )}
                   </div>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -549,7 +590,7 @@ export default function EmployerDashboard() {
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1.5">Skills Required (comma-separated)</label>
-                    <input type="text" placeholder="React, Node.js, AWS, Python..."
+                    <input type="text" placeholder={DEPARTMENT_PLACEHOLDERS[newJob.field]?.skills || 'Skill 1, Skill 2, Skill 3...'}
                       value={newJob.skills} onChange={(e) => setNewJob(p => ({ ...p, skills: e.target.value }))}
                       className={INPUT_CLS} />
                   </div>

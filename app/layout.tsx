@@ -4,8 +4,8 @@ import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
-
 import { ToastProvider } from "@/context/ToastContext";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -38,6 +38,7 @@ export default function RootLayout({
           <ToastProvider>
             <AuthProvider>{children}</AuthProvider>
           </ToastProvider>
+          <Toaster position="top-right" />
         </ThemeProvider>
       </body>
     </html>

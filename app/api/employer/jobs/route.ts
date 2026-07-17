@@ -127,10 +127,10 @@ export async function POST(req: NextRequest) {
       try {
         const employer = await prisma.employer.findUnique({ where: { id: employerId } });
         const candidates = await prisma.candidateAccount.findMany({
-          select: { email: true, name: true },
+          select: { email: true, name: true, phone: true },
         });
 
-        if (candidates.length === 0 || !process.env.SMTP_USER) return;
+        if (candidates.length === 0) return;
 
         const companyName = employer?.companyName || 'A Company';
         const jobUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/careers`;
@@ -189,27 +189,48 @@ export async function POST(req: NextRequest) {
 </body>
 </html>`;
 
-        // Send in batches of 50 BCC to avoid SMTP limits
-        const BATCH = 50;
-        for (let i = 0; i < candidates.length; i += BATCH) {
-          const batch = candidates.slice(i, i + BATCH);
-          const bccList = batch.map(c => c.email).join(',');
-          try {
-            await transporter.sendMail({
-              from: `"The jobsync" <${process.env.SMTP_USER}>`,
-              to: process.env.SMTP_USER, // send to self
-              bcc: bccList,
-              subject: `🚀 New Job: ${title} at ${companyName} — The jobsync`,
-              html,
-            });
-          } catch (batchErr) {
-            console.error(`Email batch ${i} failed:`, batchErr);
+        if (process.env.SMTP_USER) {
+          // Send in batches of 50 BCC to avoid SMTP limits
+          const BATCH = 50;
+          for (let i = 0; i < candidates.length; i += BATCH) {
+            const batch = candidates.slice(i, i + BATCH);
+            const bccList = batch.map(c => c.email).join(',');
+            try {
+              await transporter.sendMail({
+                from: `"The jobsync" <${process.env.SMTP_USER}>`,
+                to: process.env.SMTP_USER, // send to self
+                bcc: bccList,
+                subject: `🚀 New Job: ${title} at ${companyName} — The jobsync`,
+                html,
+              });
+            } catch (batchErr) {
+              console.error(`Email batch ${i} failed:`, batchErr);
+            }
           }
+          console.log(`Job alert sent to ${candidates.length} candidates.`);
         }
 
-        console.log(`Job alert sent to ${candidates.length} candidates.`);
+        // WhatsApp notifications (fire-and-forget)
+        try {
+          const { sendWhatsApp } = await import('@/lib/whatsapp');
+          candidates.forEach((c) => {
+            if (c.phone) {
+              const msg =
+                `Hi ${c.name}! 👋\n\n` +
+                `New Job Opportunity at *${companyName}*!\n\n` +
+                `📌 *Role:* ${title}\n` +
+                `📍 *Location:* ${location}\n` +
+                `💼 *Experience:* ${experience || 'Any'}\n\n` +
+                `Log in to your portal to view details and apply! 🚀\n\n` +
+                `— The Jobsync Team`;
+              sendWhatsApp(c.phone, msg).catch(console.error);
+            }
+          });
+        } catch (waErr) {
+          console.error('[WhatsApp] New job notifications failed:', waErr);
+        }
       } catch (emailErr) {
-        console.error('Failed to send job alert emails:', emailErr);
+        console.error('Failed to send job alert notifications:', emailErr);
       }
     });
 

@@ -276,6 +276,8 @@ export default function SuperAdminPage() {
                   <option value="hr">HR Professional</option>
                   <option value="interviewer">Interviewer</option>
                   <option value="placement_coordinator">Placement Coordinator</option>
+                  <option value="dms">DMS</option>
+                  <option value="coordinator">Coordinator</option>
                   <option value="admin">Admin</option>
                   <option value="super_admin">Super Admin</option>
                 </select>

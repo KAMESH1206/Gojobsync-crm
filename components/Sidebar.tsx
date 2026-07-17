@@ -7,7 +7,7 @@ import type { UserRole } from '@/lib/types';
 import {
   LayoutDashboard, Users, Briefcase, UserCheck, Calendar, Heart,
   Award, BarChart3, Settings, Shield, Server, Crown, Code, TestTube2,
-  Building2, ChevronLeft, ChevronRight, X, LifeBuoy, Clock
+  Building2, ChevronLeft, ChevronRight, X, LifeBuoy, Clock, PhoneCall
 } from 'lucide-react';
 
 interface NavItem {
@@ -18,7 +18,10 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard size={18} />, roles: ['super_admin', 'it_admin', 'admin', 'placement_coordinator', 'recruiter', 'interviewer', 'hr', 'developer', 'tester'] },
+  { label: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard size={18} />, roles: ['super_admin', 'it_admin', 'admin', 'placement_coordinator', 'recruiter', 'interviewer', 'hr', 'developer', 'tester', 'dms', 'coordinator'] },
+  { label: 'Company Client', href: '/dms', icon: <Building2 size={18} />, roles: ['super_admin', 'admin', 'dms'] },
+  { label: 'Fresh Leads', href: '/coordinator', icon: <PhoneCall size={18} />, roles: ['super_admin', 'admin', 'coordinator'] },
+  { label: 'All Leads', href: '/leads', icon: <Building2 size={18} />, roles: ['super_admin', 'admin'] },
   { label: 'Requirements', href: '/requirements', icon: <Briefcase size={18} />, roles: ['super_admin', 'admin', 'placement_coordinator', 'recruiter'] },
   { label: 'Candidates', href: '/candidates', icon: <Users size={18} />, roles: ['super_admin', 'admin', 'placement_coordinator', 'recruiter', 'interviewer', 'hr'] },
   { label: 'Interviews', href: '/interviews', icon: <Calendar size={18} />, roles: ['super_admin', 'admin', 'placement_coordinator', 'recruiter', 'interviewer', 'hr'] },
@@ -30,8 +33,8 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Reports', href: '/reports', icon: <BarChart3 size={18} />, roles: ['super_admin', 'admin', 'placement_coordinator', 'hr'] },
   { label: 'Admin Panel', href: '/admin', icon: <Shield size={18} />, roles: ['super_admin', 'admin'] },
   { label: 'Super Admin', href: '/super-admin', icon: <Crown size={18} />, roles: ['super_admin'] },
-  { label: 'Helpdesk & Leave', href: '/helpdesk', icon: <LifeBuoy size={18} />, roles: ['super_admin', 'it_admin', 'admin', 'placement_coordinator', 'recruiter', 'interviewer', 'hr', 'developer', 'tester'] },
-  { label: 'My Attendance', href: '/my-attendance', icon: <Clock size={18} />, roles: ['super_admin', 'it_admin', 'admin', 'placement_coordinator', 'recruiter', 'interviewer', 'hr', 'developer', 'tester'] },
+  { label: 'Helpdesk & Leave', href: '/helpdesk', icon: <LifeBuoy size={18} />, roles: ['super_admin', 'it_admin', 'admin', 'placement_coordinator', 'recruiter', 'interviewer', 'hr', 'developer', 'tester', 'dms', 'coordinator'] },
+  { label: 'My Attendance', href: '/my-attendance', icon: <Clock size={18} />, roles: ['super_admin', 'it_admin', 'admin', 'placement_coordinator', 'recruiter', 'interviewer', 'hr', 'developer', 'tester', 'dms', 'coordinator'] },
   { label: 'Settings', href: '/settings', icon: <Settings size={18} />, roles: ['super_admin', 'admin', 'placement_coordinator', 'recruiter', 'interviewer', 'hr', 'client'] },
 ];
 

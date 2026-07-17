@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
+import { notifyInterviewScheduled } from '@/lib/whatsapp';
 
 // GET /api/interviews
 export async function GET(request: NextRequest) {
@@ -73,6 +74,32 @@ export async function POST(request: NextRequest) {
       where: { id: data.candidateId },
       data: { status: 'interview_scheduled' },
     });
+
+    // Send WhatsApp notification to candidate (fire-and-forget)
+    try {
+      const candidate = await prisma.candidate.findUnique({
+        where: { id: data.candidateId },
+        select: { phone: true, name: true },
+      });
+      const phone = candidate?.phone;
+      if (phone) {
+        const name = candidate?.name || 'Candidate';
+        const dt = new Date(data.scheduledAt);
+        const dateStr = dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+        const timeStr = dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+        notifyInterviewScheduled(
+          phone,
+          name,
+          interview.requirement.title,
+          dateStr,
+          timeStr,
+          data.type || 'Technical',
+          data.notes
+        ).catch(console.error);
+      }
+    } catch (waErr) {
+      console.error('[WhatsApp] Interview notification failed:', waErr);
+    }
 
     return NextResponse.json({
       ...interview,
