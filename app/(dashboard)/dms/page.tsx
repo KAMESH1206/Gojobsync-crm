@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { Plus, Building2, Mail, Phone, Calendar, Loader2 } from 'lucide-react';
+import { Plus, Building2, Mail, Phone, Calendar, Loader2, Upload, Download } from 'lucide-react';
 import type { CompanyLead } from '@/lib/types';
+import { read, utils, writeFile } from 'xlsx';
 
 export default function DMSDashboard() {
   const { user } = useAuth();
@@ -13,6 +14,8 @@ export default function DMSDashboard() {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({ companyName: '', email: '', phone: '' });
   const [submitting, setSubmitting] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetchLeads();
@@ -56,6 +59,90 @@ export default function DMSDashboard() {
     }
   };
 
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setUploading(true);
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        const data = event.target?.result;
+        if (data) {
+          const workbook = read(data, { type: 'array' });
+          const firstSheetName = workbook.SheetNames[0];
+          const worksheet = workbook.Sheets[firstSheetName];
+          const json: any[] = utils.sheet_to_json(worksheet, { defval: '' });
+
+          const leads = json.map(row => {
+            let companyName = '';
+            let email = '';
+            let phone = '';
+
+            for (const key of Object.keys(row)) {
+              const val = row[key];
+              if (val === undefined || val === null || val === '') continue;
+              
+              const normalizedKey = String(key).toLowerCase().replace(/[^a-z0-9]/g, '');
+              
+              if (!companyName && (normalizedKey.includes('company') || normalizedKey.includes('client') || normalizedKey.includes('organization') || normalizedKey.includes('business') || normalizedKey.includes('firm') || normalizedKey === 'name')) {
+                companyName = String(val);
+              }
+              else if (!email && (normalizedKey.includes('email') || normalizedKey.includes('mail'))) {
+                email = String(val);
+              }
+              else if (!phone && (normalizedKey.includes('phone') || normalizedKey.includes('mobile') || normalizedKey.includes('contact') || normalizedKey.includes('number') || normalizedKey.includes('cell'))) {
+                phone = String(val);
+              }
+            }
+
+            return { companyName: companyName.trim(), email: email.trim(), phone: phone.trim() };
+          }).filter(lead => lead.companyName !== '');
+
+          if (leads.length === 0) {
+            alert('No valid company names found in the file. Ensure you have a "Company Name" column.');
+            setUploading(false);
+            if (fileInputRef.current) fileInputRef.current.value = '';
+            return;
+          }
+
+          const res = await fetch('/api/leads/bulk', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ leads })
+          });
+
+          if (res.ok) {
+            alert(`Successfully uploaded ${leads.length} leads! They have been assigned to coordinators.`);
+            fetchLeads();
+          } else {
+            const err = await res.json();
+            alert(`Failed to upload: ${err.error}`);
+          }
+        }
+        setUploading(false);
+        if (fileInputRef.current) fileInputRef.current.value = '';
+      };
+      reader.readAsArrayBuffer(file);
+    } catch (error) {
+      console.error(error);
+      alert('Error reading file');
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
+
+  const downloadTemplate = () => {
+    const ws = utils.json_to_sheet([{
+      'Company Name': 'Acme Corp',
+      'Email ID': 'contact@acme.com',
+      'Phone No': '9876543210'
+    }]);
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, "Leads");
+    writeFile(wb, "Leads_Template.xlsx");
+  };
+
   if (!user || !['super_admin', 'admin', 'dms'].includes(user.role)) {
     return <div className="p-8">Access Denied</div>;
   }
@@ -67,9 +154,31 @@ export default function DMSDashboard() {
           <h1 className="text-2xl font-bold">Company Client (DMS)</h1>
           <p className="text-[var(--muted-foreground)]">Add fresh company dumps to distribute to coordinators</p>
         </div>
-        <button className="btn btn-primary" onClick={() => setShowForm(true)}>
-          <Plus size={18} /> Add Client
-        </button>
+        <div className="flex gap-3">
+          <button className="btn btn-ghost" onClick={downloadTemplate} title="Download Excel Template">
+            <Download size={18} /> Template
+          </button>
+          
+          <input 
+            type="file" 
+            ref={fileInputRef}
+            onChange={handleFileUpload}
+            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+            style={{ display: 'none' }}
+          />
+          <button 
+            className="btn btn-outline" 
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploading}
+          >
+            {uploading ? <Loader2 className="animate-spin" size={18} /> : <Upload size={18} />}
+            Upload Excel
+          </button>
+          
+          <button className="btn btn-primary" onClick={() => setShowForm(true)}>
+            <Plus size={18} /> Add Client
+          </button>
+        </div>
       </div>
 
       {showForm && (
